@@ -1,0 +1,114 @@
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:rawvoice="http://www.rawvoice.com/rawvoiceRssModule/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://www.rssboard.org/media-rss" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>
+            Point-Free Videos (Private feed for coen@tenthijeboonkkamp.nl)
+        </title>
+        <link>https://www.pointfree.co/</link>
+        <language>en-US</language>
+        <description>
+            Point-Free is a video series that explores advanced topics in the Swift programming language. Each episode covers a topic that may seem complex and academic at first, but turns out to be quite simple. At the end of each episode we’ll ask “what’s the point?!”, so that we can bring the concepts back down to earth and show how these ideas can improve the quality of your code today. --- This is a private feed associated with the Point-Free account coen@tenthijeboonkkamp.nl. Please do not share this link with anyone else.
+        </description>
+        <copyright>Copyright Point-Free, Inc. 2024</copyright>
+        <image>
+            <url>
+                https://d3rccdn33rt8ze.cloudfront.net/social-assets/pf-avatar-square.jpg
+            </url>
+            <title>
+                Point-Free Videos (Private feed for coen@tenthijeboonkkamp.nl)
+            </title>
+            <link>https://www.pointfree.co/</link>
+        </image>
+        <itunes:author>Brandon Williams & Stephen Celis</itunes:author>
+        <itunes:block>yes</itunes:block>
+        <itunes:subtitle>Functional programming concepts explained simply.</itunes:subtitle>
+        <itunes:summary>
+            Point-Free is a video series that explores advanced topics in the Swift programming language. Each episode covers a topic that may seem complex and academic at first, but turns out to be quite simple. At the end of each episode we’ll ask “what’s the point?!”, so that we can bring the concepts back down to earth and show how these ideas can improve the quality of your code today. --- This is a private feed associated with the Point-Free account coen@tenthijeboonkkamp.nl. Please do not share this link with anyone else.
+        </itunes:summary>
+        <itunes:explicit>no</itunes:explicit>
+        <itunes:owner>
+            <itunes:name>Brandon Williams & Stephen Celis</itunes:name>
+            <itunes:email>support@pointfree.co</itunes:email>
+        </itunes:owner>
+        <itunes:type>episodic</itunes:type>
+        <itunes:keywords>
+            programming,development,mobile,ios,functional,swift,apple,developer,software engineering,server,app
+        </itunes:keywords>
+        <itunes:image href="https://d3rccdn33rt8ze.cloudfront.net/social-assets/pf-avatar-square.jpg"/>
+        <itunes:category text="Technology">
+            <itunes:category>Software How-To</itunes:category>
+        </itunes:category>
+        <itunes:category text="Education">
+            <itunes:category>Training</itunes:category>
+        </itunes:category>
+        <item>
+            <title>Tour of Sharing: File Storage: Part 1</title>
+            <pubDate>Mon, 16 Dec 2024 00:00:00 +0000</pubDate>
+            <link>
+                https://www.pointfree.co/episodes/ep307-tour-of-sharing-file-storage-part-1
+            </link>
+            <guid>
+                https://www.pointfree.co/episodes/ep307-tour-of-sharing-file-storage-part-1
+            </guid>
+            <description>
+                `@Shared` is far more than a glorified version of `@AppStorage`: it can be customized with additional persistence strategies, including the file storage strategy that comes with the library, which persists far more complex data than user defaults. We will create a complex, new feature that is powered by the file system.
+            </description>
+            <dc:creator>Brandon Williams</dc:creator>
+            <dc:creator>Stephen Celis</dc:creator>
+            <itunes:author>Brandon Williams & Stephen Celis</itunes:author>
+            <itunes:subtitle>
+                `@Shared` is far more than a glorified version of `@AppStorage`: it can be customized with additional persistence strategies, including the file storage strategy that comes with the library, which persists far more complex data than user defaults. We will create a complex, new feature that is powered by the file system.
+            </itunes:subtitle>
+            <itunes:summary>
+                `@Shared` is far more than a glorified version of `@AppStorage`: it can be customized with additional persistence strategies, including the file storage strategy that comes with the library, which persists far more complex data than user defaults. We will create a complex, new feature that is powered by the file system.
+            </itunes:summary>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>00:39:46</itunes:duration>
+            <itunes:image>
+                https://d3rccdn33rt8ze.cloudfront.net/episodes/0307.jpeg
+            </itunes:image>
+            <itunes:season>1</itunes:season>
+            <itunes:episode>307</itunes:episode>
+            <itunes:title>Tour of Sharing: File Storage: Part 1</itunes:title>
+            <itunes:episodeType>full</itunes:episodeType>
+            <enclosure url="https://pointfreeco-episodes-processed.s3.amazonaws.com/0307-720p-2cfa6f8fe0b444b2bbc3392c303f59a8.mp4" length="326000000" type="video/mp4"/>
+            <media:content url="https://pointfreeco-episodes-processed.s3.amazonaws.com/0307-720p-2cfa6f8fe0b444b2bbc3392c303f59a8.mp4" length="326000000" type="video/mp4" medium="video">
+                <media:title>Tour of Sharing: File Storage: Part 1</media:title>
+            </media:content>
+        </item>
+        <item>
+            <title>Tour of Sharing: App Storage, Part 2</title>
+            <pubDate>Mon, 09 Dec 2024 00:00:00 +0000</pubDate>
+            <link>
+                https://www.pointfree.co/episodes/ep306-tour-of-sharing-app-storage-part-2
+            </link>
+            <guid>
+                https://www.pointfree.co/episodes/ep306-tour-of-sharing-app-storage-part-2
+            </guid>
+            <description>
+                We show how the `@Shared` property wrapper, unlike `@AppStorage`, can be used _anywhere_, not just SwiftUI views. And we show how `@Shared` has some extra bells and whistles that make it easier to write maintainable Xcode previews and avoid potential bugs around "string-ly" typed keys and default values.
+            </description>
+            <dc:creator>Brandon Williams</dc:creator>
+            <dc:creator>Stephen Celis</dc:creator>
+            <itunes:author>Brandon Williams & Stephen Celis</itunes:author>
+            <itunes:subtitle>
+                We show how the `@Shared` property wrapper, unlike `@AppStorage`, can be used _anywhere_, not just SwiftUI views. And we show how `@Shared` has some extra bells and whistles that make it easier to write maintainable Xcode previews and avoid potential bugs around "string-ly" typed keys and default values.
+            </itunes:subtitle>
+            <itunes:summary>
+                We show how the `@Shared` property wrapper, unlike `@AppStorage`, can be used _anywhere_, not just SwiftUI views. And we show how `@Shared` has some extra bells and whistles that make it easier to write maintainable Xcode previews and avoid potential bugs around "string-ly" typed keys and default values.
+            </itunes:summary>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>00:26:34</itunes:duration>
+            <itunes:image>
+                https://d3rccdn33rt8ze.cloudfront.net/episodes/0306.jpeg
+            </itunes:image>
+            <itunes:season>1</itunes:season>
+            <itunes:episode>306</itunes:episode>
+            <itunes:title>Tour of Sharing: App Storage, Part 2</itunes:title>
+            <itunes:episodeType>full</itunes:episodeType>
+            <enclosure url="https://pointfreeco-episodes-processed.s3.amazonaws.com/0306-720p-1e939c4957b94df595b0e39455ff749f.mp4" length="280900000" type="video/mp4"/>
+            <media:content url="https://pointfreeco-episodes-processed.s3.amazonaws.com/0306-720p-1e939c4957b94df595b0e39455ff749f.mp4" length="280900000" type="video/mp4" medium="video">
+                <media:title>Tour of Sharing: App Storage, Part 2</media:title>
+            </media:content>
+        </item>
+    </channel>
+</rss>

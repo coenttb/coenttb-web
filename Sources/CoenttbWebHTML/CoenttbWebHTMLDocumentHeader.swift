@@ -19,6 +19,7 @@ public struct CoenttbWebHTMLDocumentHeader<
     let title: String?
     let description: String?
     let canonicalHref: URL?
+    let rssXml: URL?
     let themeColor: HTMLColor
     let language: Languages.Language
     let languages: [Languages.Language]
@@ -31,6 +32,7 @@ public struct CoenttbWebHTMLDocumentHeader<
         title: String?,
         description: String?,
         canonicalHref: URL?,
+        rssXml: URL?,
         themeColor: HTMLColor,
         language: Languages.Language,
         languages: [Languages.Language] = Languages.Language.allCases,
@@ -42,6 +44,7 @@ public struct CoenttbWebHTMLDocumentHeader<
         self.title = title
         self.description = description
         self.canonicalHref = canonicalHref
+        self.rssXml = rssXml
         self.themeColor = themeColor
         self.language = language
         self.languages = languages
@@ -57,6 +60,7 @@ public struct CoenttbWebHTMLDocumentHeader<
             description: description,
             themeColor: themeColor,
             canonicalHref: canonicalHref,
+            rssXml: rssXml,
             language: language,
             languages: languages,
             hreflang: hreflang,

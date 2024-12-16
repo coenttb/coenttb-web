@@ -18,6 +18,7 @@ public struct WebHTMLDocumentHeader<
     let description: String?
     let themeColor: HTMLColor
     let canonicalHref: URL?
+    let rssXml: URL?
     let language: Language
     let languages: [Language]
     let hreflang: (Languages.Language) -> URL
@@ -30,6 +31,7 @@ public struct WebHTMLDocumentHeader<
         description: String?,
         themeColor: HTMLColor,
         canonicalHref: URL?,
+        rssXml: URL?,
         language: Language,
         languages: [Language],
         hreflang: @escaping (Languages.Language) -> URL,
@@ -44,6 +46,7 @@ public struct WebHTMLDocumentHeader<
         self.languages = languages
         self.hreflang = hreflang
         self.canonicalHref = canonicalHref
+        self.rssXml = rssXml
         self.styles = styles
         self.favicons = favicons
         self.scripts = scripts
@@ -59,6 +62,15 @@ public struct WebHTMLDocumentHeader<
             link()
                 .attribute("rel", "canonical")
                 .attribute("href", canonicalHref.absoluteString)
+        }
+        if
+            let title,
+            let rssXml {
+            link()
+                .attribute("rel", "alternate")
+                .attribute("type", "application/rss+xml")
+                .attribute("title", "\(title) RSS Feed")
+                .attribute("href", "\(rssXml.relativeString)")
         }
         HTMLForEach(self.languages.filter { $0 != language }) { lx in
             link()
