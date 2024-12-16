@@ -38,8 +38,6 @@ public struct CoenttbWebAccountHTMLDocument<
         @HTMLBuilder favicons: () -> Favicons,
         canonicalHref: URL?,
         hreflang: @escaping (Route, Languages.Language) -> URL,
-//        hotjarId: String?,
-//        googleAnalyticsId: String?,
         termsOfUse: URL,
         privacyStatement: URL,
         @HTMLBuilder body: () -> Body
@@ -63,6 +61,7 @@ public struct CoenttbWebAccountHTMLDocument<
             title: title(route),
             description: description(route),
             canonicalHref: canonicalHref,
+            rssXml: nil,
             themeColor: accentColor,
             language: language,
             languages: languages,
