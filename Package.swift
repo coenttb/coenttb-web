@@ -207,9 +207,10 @@ let package = Package(
                 .coenttbWebHTML,
                 .coenttbWebModels,
                 .swiftDate,
+                .language,
                 
                 // unsure whether this is correct, included to thread through the overlay view instead of introducting a generic.
-                .coenttbWebNewsletter
+                .coenttbWebNewsletter,
             ],
             resources: [ .process("Resources") ]
         ),
@@ -225,6 +226,7 @@ let package = Package(
                 .vapor,
                 .dependenciesMacros,
                 .coenttbWebHTML,
+                .language,
             ]
         ),
         .target(
@@ -239,7 +241,8 @@ let package = Package(
                 .vapor,
                 .dependenciesMacros,
                 .coenttbWebHTML,
-                .coenttbWebStripe
+                .coenttbWebStripe,
+                .language,
             ]
         ),
         .target(
@@ -254,13 +257,24 @@ let package = Package(
                 .mailgun,
                 .memberwiseInit,
                 .tagged,
-                .sharing
+                .sharing,
+                .language,
             ]
         ),
         .target(
             name: .coenttbWebSyndication,
             dependencies: [
-                .swiftDate
+                .swiftDate,
+                .urlRouting,
+                .vaporRouting,
+                .stripeKit,
+                .dependencies,
+                .memberwiseInit,
+                .codable,
+                .vapor,
+                .dependenciesMacros,
+                .coenttbWebHTML,
+                .language,
             ]
         ),
         .target(
@@ -325,7 +339,8 @@ let package = Package(
                 .tagged,
                 .vapor,
                 .jwt,
-                .casePaths
+                .casePaths,
+                .language,
             ]
         ),
         .target(
@@ -345,7 +360,8 @@ let package = Package(
                 .vaporRouting,
                 .coenttbServerRouter,
                 .coenttbEnvVars,
-                .coenttbWebSyndication
+                .coenttbWebSyndication,
+                .language,
             ]
         ),
         .target(
@@ -371,6 +387,7 @@ let package = Package(
                 .urlFormCoding,
                 .urlRouting,
                 .coenttbWebModels,
+                .language,
             ]
         ),
         .target(
@@ -385,6 +402,7 @@ let package = Package(
                 .memberwiseInit,
                 .tagged,
                 .emailaddress,
+                .language,
             ]
         ),
         .target(
@@ -403,6 +421,7 @@ let package = Package(
                 .memberwiseInit,
                 .tagged,
                 .urlFormEncoding,
+                .language,
             ]
         ),
         .target(
