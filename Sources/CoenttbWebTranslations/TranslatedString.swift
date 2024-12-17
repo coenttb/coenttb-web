@@ -174,8 +174,8 @@ extension String {
     )
 
     public static let identity: TranslatedString = .init(
-        dutch: "Identiteit",
-        english: "Identity"
+        dutch: "identiteit",
+        english: "identity"
     )
     
     public static let current_password: TranslatedString = .init(
