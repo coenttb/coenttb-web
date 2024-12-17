@@ -69,6 +69,11 @@ extension RSS {
         let url: URL
         let variant: Image.Variant
         
+        public init(url: URL, variant: Image.Variant) {
+            self.url = url
+            self.variant = variant
+        }
+        
         public enum Variant: String, Codable, Hashable, Sendable {
             case jpeg
             case png
