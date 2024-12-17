@@ -41,3 +41,11 @@ extension RSS.Feed.Memoized {
         return feed
     }
 }
+
+extension RSS.Feed.Memoized {
+    public func callAsFunction(
+        generate: () -> RSS.Feed
+    ) -> RSS.Feed {
+        self.getFeed(generate: generate)
+    }
+}
