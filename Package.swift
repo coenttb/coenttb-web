@@ -20,6 +20,7 @@ extension String {
     static let coenttbWebStripe: Self = "CoenttbWebStripe"
     static let coenttbWebStripeLive: Self = "CoenttbWebStripeLive"
     static let coenttbWebBlog: Self = "CoenttbWebBlog"
+    static let coenttbWebSyndication: Self = "CoenttbWebSyndication"
     static let mailgun: Self = "Mailgun"
     static let gitHub: Self = "GitHub"
     static let hotjar: Self = "Hotjar"
@@ -44,6 +45,7 @@ extension Target.Dependency {
     static var coenttbWebStripe: Self { .target(name: .coenttbWebStripe) }
     static var coenttbWebStripeLive: Self { .target(name: .coenttbWebStripeLive) }
     static var coenttbWebBlog: Self { .target(name: .coenttbWebBlog) }
+    static var coenttbWebSyndication: Self { .target(name: .coenttbWebSyndication) }
     
     static var gitHub: Self { .target(name: .gitHub) }
     static var mailgun: Self { .target(name: .mailgun) }
@@ -113,6 +115,7 @@ let package = Package(
         .library(name: .coenttbWebStripeLive, targets: [.coenttbWebStripeLive]),
         .library(name: .coenttbWebNewsletter, targets: [.coenttbWebNewsletter]),
         .library(name: .coenttbWebBlog, targets: [.coenttbWebBlog]),
+        .library(name: .coenttbWebSyndication, targets: [.coenttbWebSyndication]),
         .library(name: .mailgun, targets: [.mailgun]),
         .library(name: .gitHub, targets: [.gitHub]),
         .library(name: .hotjar, targets: [.hotjar]),
@@ -255,6 +258,12 @@ let package = Package(
             ]
         ),
         .target(
+            name: .coenttbWebSyndication,
+            dependencies: [
+                .swiftDate
+            ]
+        ),
+        .target(
             name: .coenttbWebHTML,
             dependencies: [
                 .coenttbMarkdown,
@@ -336,6 +345,7 @@ let package = Package(
                 .vaporRouting,
                 .coenttbServerRouter,
                 .coenttbEnvVars,
+                .coenttbWebSyndication
             ]
         ),
         .target(
