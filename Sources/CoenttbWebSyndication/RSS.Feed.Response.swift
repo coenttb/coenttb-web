@@ -6,7 +6,7 @@
 //
 
 import Foundation
-@_exported import CoenttbWebSyndication
+import CoenttbVapor
 
 extension RSS.Feed {
     public struct Response: AsyncResponseEncodable {

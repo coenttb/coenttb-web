@@ -296,7 +296,6 @@ let package = Package(
                 .coenttbWebHTML,
                 .coenttbMarkdown,
                 .coenttbTranslations,
-                .coenttbWebVapor,
                 .dependencies,
                 .language,
                 .coenttbHtml,
@@ -358,7 +357,6 @@ let package = Package(
                 .vaporRouting,
                 .coenttbServerRouter,
                 .coenttbEnvVars,
-                .coenttbWebSyndication,
                 .language,
             ]
         ),
