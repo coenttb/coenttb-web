@@ -67,17 +67,20 @@ extension RSS.Feed {
         let link: URL
         let description: String
         let language: String
+        let imageURL: URL?
         
         public init(
             title: String,
             link: URL,
             description: String,
-            language: String = "en-US"
+            language: String = "en-US",
+            imageURL: URL? = nil
         ) {
             self.title = title
             self.link = link
             self.description = description
             self.language = language
+            self.imageURL = imageURL
         }
     }
 }
@@ -122,6 +125,15 @@ extension RSS.Feed {
                     <description>\(feed.metadata.description)</description>
                     <language>\(feed.metadata.language)</language>
                     <lastBuildDate>\(Date().formatted(.rfc822))</lastBuildDate>
+                    \(feed.metadata.imageURL.map { imageURL in
+                    """
+                    <image>
+                        <url>\(imageURL.absoluteString)</url>
+                        <title>\(feed.metadata.title)</title>
+                        <link>\(feed.metadata.link.absoluteString)</link>
+                    </image>
+                    """
+                    } ?? "")
                     \(generateItems())
                 </channel>
             </rss>
