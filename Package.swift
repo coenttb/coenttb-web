@@ -282,11 +282,9 @@ let package = Package(
             dependencies: [
                 .coenttbMarkdown,
                 .coenttbTranslations,
-                .coenttbWebVapor,
                 .dependencies,
                 .language,
                 .coenttbHtml,
-                .vapor,
                 .web,
                 .swiftHtml,
                 .mailgun
