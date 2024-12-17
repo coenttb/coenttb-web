@@ -88,9 +88,31 @@ extension RSS.Feed {
         
         public init(feed: RSS.Feed) {
             self.feed = feed
-        }
-        
-        public var description: String {
+            
+            func generateItems(
+                sortBy: @escaping (RSS.Feed.Item, RSS.Feed.Item) -> Bool = { $0.publicationDate > $1.publicationDate },
+                limit: Int = 20
+            ) -> String {
+                feed.items
+                    .sorted(by: sortBy)
+                    .prefix(limit)
+                    .map(generateItem)
+                    .joined(separator: "\n")
+            }
+            
+            func generateItem(_ item: RSS.Feed.Item) -> String {
+                """
+                <item>
+                    <title>\(item.title)</title>
+                    <link>\(item.link.absoluteString)</link>
+                    <dc:creator><![CDATA[\(item.creator)]]></dc:creator>
+                    <pubDate>\(item.publicationDate.formatted(.rfc822))</pubDate>
+                    <description><![CDATA[\(item.description)]]></description>
+                </item>
+                """
+            }
+            
+            self.description =
             """
             <?xml version="1.0" encoding="UTF-8"?>
             <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">
@@ -104,30 +126,12 @@ extension RSS.Feed {
                 </channel>
             </rss>
             """
+            
         }
         
-        private func generateItems(
-            sortBy: @escaping (RSS.Feed.Item, RSS.Feed.Item) -> Bool = { $0.publicationDate > $1.publicationDate },
-            limit: Int = 20
-        ) -> String {
-            feed.items
-                .sorted(by: sortBy)
-                .prefix(limit)
-                .map(generateItem)
-                .joined(separator: "\n")
-        }
+        public let description: String
         
-        private func generateItem(_ item: RSS.Feed.Item) -> String {
-            """
-            <item>
-                <title>\(item.title)</title>
-                <link>\(item.link.absoluteString)</link>
-                <dc:creator><![CDATA[\(item.creator)]]></dc:creator>
-                <pubDate>\(item.publicationDate.formatted(.rfc822))</pubDate>
-                <description><![CDATA[\(item.description)]]></description>
-            </item>
-            """
-        }
+        
     }
 }
 
