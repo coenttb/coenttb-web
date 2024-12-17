@@ -8,19 +8,19 @@
 import Foundation
 import Date
 
-public struct RSS {
+public struct RSS: Codable, Hashable, Sendable {
     
 }
 
 extension RSS {
-    public enum Version {
+    public enum Version: String, Codable, Hashable, Sendable {
         case atom
         case rss2_0
     }
 }
 
 extension RSS {
-    public struct Feed {
+    public struct Feed: Codable, Hashable, Sendable {
         let metadata: Metadata
         let items: [Item]
         let version: RSS.Version
@@ -38,7 +38,7 @@ extension RSS {
 }
 
 extension RSS.Feed {
-    public struct Item {
+    public struct Item: Codable, Hashable, Sendable {
         let title: String
         let link: URL
         let creator: String
@@ -62,7 +62,7 @@ extension RSS.Feed {
 }
 
 extension RSS.Feed {
-    public struct Metadata {
+    public struct Metadata: Codable, Hashable, Sendable {
         let title: String
         let link: URL
         let description: String
@@ -83,7 +83,7 @@ extension RSS.Feed {
 }
 
 extension RSS.Feed {
-    public struct XML: CustomStringConvertible {
+    public struct XML: CustomStringConvertible, Sendable {
         private let feed: RSS.Feed
         
         public init(feed: RSS.Feed) {
