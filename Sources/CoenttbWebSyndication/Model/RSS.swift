@@ -41,6 +41,7 @@ extension RSS.Feed {
     public struct Item: Codable, Hashable, Sendable {
         let title: String
         let link: URL
+        let imageURL: URL?
         let creator: String
         let publicationDate: Date
         let description: String
@@ -48,12 +49,14 @@ extension RSS.Feed {
         public init(
             title: String,
             link: URL,
+            imageURL: URL?,
             creator: String,
             publicationDate: Date,
             description: String
         ) {
             self.title = title
             self.link = link
+            self.imageURL = imageURL
             self.creator = creator
             self.publicationDate = publicationDate
             self.description = description
@@ -111,6 +114,9 @@ extension RSS.Feed {
                     <dc:creator><![CDATA[\(item.creator)]]></dc:creator>
                     <pubDate>\(item.publicationDate.formatted(.rfc822))</pubDate>
                     <description><![CDATA[\(item.description)]]></description>
+                    \(item.imageURL.map { """
+                    <enclosure url="\($0.absoluteString)" type="image/jpeg" />
+                    """ } ?? "")
                 </item>
                 """
             }
