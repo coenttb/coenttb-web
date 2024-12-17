@@ -176,7 +176,7 @@ extension String {
     public static let identity: TranslatedString = .init(
         dutch: "Identiteit",
         english: "Identity"
-    ).period
+    )
     
     public static let current_password: TranslatedString = .init(
         dutch: "huidige wachtwoord",
