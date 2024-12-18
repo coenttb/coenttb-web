@@ -141,9 +141,6 @@ extension Newsletter {
                 try await database.schema(Newsletter.schema)
                     .field(FieldKeys.emailVerificationStatus, .string, .required, .custom("DEFAULT \(EmailVerificationStatus.unverified.rawValue)"))
                     .update()
-                
-                try await Newsletter.Token.Migration.Create().prepare(on: database)
-                
             }
             
             public func revert(on database: Database) async throws {
