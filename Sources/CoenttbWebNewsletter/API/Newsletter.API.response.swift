@@ -14,11 +14,10 @@ import CoenttbVapor
 import Mailgun
 
 extension CoenttbWebNewsletter.API {
-
+    
     private static let subscriptionRateLimiter = SubscriptionRateLimiter()
     
     public static func response(
-        database: Fluent.Database,
         client: CoenttbWebNewsletter.Client,
         logger: Logger,
         cookieId: String,
@@ -44,29 +43,10 @@ extension CoenttbWebNewsletter.API {
                 )
                 
                 do {
-                    // First check rate limiting
+                    // Check rate limiting first
                     try await subscriptionRateLimiter.subscribe(email)
                     
-                    // Then check if subscription exists and its state
-                    if let existingSubscription = try await Newsletter.query(on: database)
-                        .filter(\.$email == email)
-                        .first() {
-                        
-                        switch existingSubscription.emailVerificationStatus {
-                        case .verified:
-                            let response = Response.json(success: true, message: "Already subscribed")
-                            response.cookies[cookieId] = cookieValue
-                            return response
-                        case .pending:
-                            // Delete old pending subscription to allow retry
-                            try await existingSubscription.delete(on: database)
-                        case .failed, .unverified:
-                            // Delete failed/unverified to allow retry
-                            try await existingSubscription.delete(on: database)
-                        }
-                    }
-                    
-                    // Handle new subscription
+                    // Let the client handle all subscription logic
                     try await client.subscribe.request(.init(email))
                     
                     let response = Response.json(success: true, message: "Successfully subscribed")
@@ -81,8 +61,8 @@ extension CoenttbWebNewsletter.API {
                         throw error
                     }
                 } catch {
-                    logger.error("Mailgun subscription failed: \(error)")
-                    throw Abort(.internalServerError, reason: "Failed to send subscription email. Please contact support.")
+                    logger.error("Subscription failed: \(error)")
+                    throw Abort(.internalServerError, reason: "Failed to process subscription. Please try again later.")
                 }
                 
             case .verify(let verify):
