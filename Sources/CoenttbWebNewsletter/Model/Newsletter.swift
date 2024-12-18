@@ -113,14 +113,13 @@ extension Newsletter {
             }
         }
         
-        public struct STEP_1_AddEmailVerification: AsyncMigration {
+        public struct STEP_1_AddCreatedAt: AsyncMigration {
             
             public init() {}
             
             public func prepare(on database: Database) async throws {
                 try await database.schema(Newsletter.schema)
                     .field(Newsletter.FieldKeys.createdAt, .datetime)
-                    .field(FieldKeys.emailVerificationStatus, .string, .required, .custom("DEFAULT \(EmailVerificationStatus.unverified.rawValue)"))
                     .update()
                 
                 try await Newsletter.Token.Migration.Create().prepare(on: database)
@@ -130,6 +129,25 @@ extension Newsletter {
             public func revert(on database: Database) async throws {
                 try await database.schema(Newsletter.schema)
                     .deleteField(Newsletter.FieldKeys.createdAt)
+                    .update()
+            }
+        }
+        
+        public struct STEP_2_AddEmailVerification: AsyncMigration {
+            
+            public init() {}
+            
+            public func prepare(on database: Database) async throws {
+                try await database.schema(Newsletter.schema)
+                    .field(FieldKeys.emailVerificationStatus, .string, .required, .custom("DEFAULT \(EmailVerificationStatus.unverified.rawValue)"))
+                    .update()
+                
+                try await Newsletter.Token.Migration.Create().prepare(on: database)
+                
+            }
+            
+            public func revert(on database: Database) async throws {
+                try await database.schema(Newsletter.schema)
                     .deleteField(FieldKeys.emailVerificationStatus)
                     .update()
             }

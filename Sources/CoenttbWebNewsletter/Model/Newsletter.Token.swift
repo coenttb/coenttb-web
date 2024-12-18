@@ -80,7 +80,7 @@ extension Newsletter.Token {
 
 extension Newsletter.Token {
     public enum Migration {
-        struct Create: AsyncMigration {
+        public struct Create: AsyncMigration {
             public init() {}
             
             public func prepare(on database: Database) async throws {
