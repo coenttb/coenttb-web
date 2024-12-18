@@ -123,6 +123,14 @@ extension Newsletter {
                 try await database.schema(Newsletter.schema)
                     .field(Newsletter.FieldKeys.updatedAt, .datetime)
                     .update()
+                
+                try await Newsletter.query(on: database)
+                    .set(\.$updatedAt, to: .now)
+                    .update()
+                
+                try await database.schema(Newsletter.schema)
+                    .field(Newsletter.FieldKeys.updatedAt, .datetime, .required)
+                    .update()
             }
             
             public func revert(on database: Database) async throws {
@@ -137,6 +145,14 @@ extension Newsletter {
             public init() {}
             
             public func prepare(on database: Database) async throws {
+                try await database.schema(Newsletter.schema)
+                    .field(FieldKeys.emailVerificationStatus, .string)
+                    .update()
+
+                try await Newsletter.query(on: database)
+                    .set(\.$emailVerificationStatus, to: .unverified)
+                    .update()
+
                 try await database.schema(Newsletter.schema)
                     .field(FieldKeys.emailVerificationStatus, .string, .required, .custom("DEFAULT '\(EmailVerificationStatus.unverified.rawValue)'"))
                     .update()
