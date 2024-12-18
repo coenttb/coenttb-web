@@ -70,6 +70,16 @@ extension Newsletter {
 }
 
 extension Newsletter {
+    public func generateToken(type: Newsletter.Token.TokenType, validUntil: Date? = nil) throws -> Newsletter.Token {
+        try .init(
+            newsletter: self,
+            type: type,
+            validUntil: validUntil
+        )
+    }
+}
+
+extension Newsletter {
     public func canGenerateToken(on db: Database) async throws -> Bool {
         guard let id = self.id else { return false }
         
