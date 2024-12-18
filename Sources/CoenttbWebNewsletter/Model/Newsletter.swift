@@ -117,7 +117,7 @@ extension Newsletter {
         
         public struct STEP_1_AddUpdatedAt: AsyncMigration {
             
-            public let name: String = "Newsletter.Migration.STEP_1_AddUpdatedAt"
+            public let name: String = "CoenttbWebNewsletter.Newsletter.Migration.STEP_1_AddUpdatedAt"
             
             public init() {}
             
@@ -140,7 +140,7 @@ extension Newsletter {
         
         public struct STEP_2_AddEmailVerification: AsyncMigration {
             
-            public let name: String = "Newsletter.Migration.STEP_2_AddEmailVerification"
+            public let name: String = "CoenttbWebNewsletter.Newsletter.Migration.STEP_2_AddEmailVerification"
             
             public init() {}
             
@@ -151,7 +151,7 @@ extension Newsletter {
 
                 try await Newsletter.query(on: database)
                     .set(\.$emailVerificationStatus, to: .unverified)
-                    .update()                
+                    .update()
             }
             
             public func revert(on database: Database) async throws {
