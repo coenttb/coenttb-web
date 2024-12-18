@@ -28,7 +28,6 @@ extension CoenttbWebNewsletter.API {
         public var body: some URLRouting.Router<CoenttbWebNewsletter.API> {
             OneOf {
                 URLRouting.Route(.case(CoenttbWebNewsletter.API.subscribe)) {
-                    Method.post
                     Path { "subscribe" }
                     CoenttbWebNewsletter.API.Subscribe.Router()
                 }
