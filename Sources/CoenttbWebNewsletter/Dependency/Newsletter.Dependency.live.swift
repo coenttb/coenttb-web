@@ -65,13 +65,6 @@ extension Client {
                             // Send verification email
                             try await sendVerificationEmail(emailAddress.rawValue, verificationToken.value)
                             
-                            // Send notification if configured
-                            if let sendEmail,
-                               let notifyOfNewSubscriptionEmail {
-                                let emailResponse = try await sendEmail(notifyOfNewSubscriptionEmail(emailAddress.rawValue))
-                                logger.info("Notification sent: \(emailResponse.message)")
-                            }
-                            
                             logger.notice("Newsletter subscription initiated and verification email sent for: \(emailAddress.rawValue)")
                         }
                     } catch let error as DatabaseError where error.isConstraintFailure {
@@ -112,6 +105,12 @@ extension Client {
                             verificationToken.newsletter.emailVerificationStatus = .verified
                             try await verificationToken.newsletter.save(on: database)
                             try await verificationToken.delete(on: database)
+                            
+                            if let sendEmail,
+                               let notifyOfNewSubscriptionEmail {
+                                let emailResponse = try await sendEmail(notifyOfNewSubscriptionEmail(email))
+                                logger.info("Notification sent: \(emailResponse.message)")
+                            }
                             
                             logger.notice("Newsletter subscription verified for: \(email)")
                         }
