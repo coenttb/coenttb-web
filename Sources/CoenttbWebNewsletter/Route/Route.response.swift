@@ -20,7 +20,7 @@ extension CoenttbWebNewsletter.Route {
         htmlDocument: (any HTML) -> HTMLDoc,
         subscribeCaption: () -> String,
         subscribeAction: () -> URL,
-        verificationUrl: (Route.Subscribe.Verify) -> URL,
+        verificationAction: (Route.Subscribe.Verify) -> URL,
         verificationRedirectURL: () -> URL,
         newsletterUnsubscribeAction: () -> URL,
         form_id: () -> String,
@@ -42,7 +42,7 @@ extension CoenttbWebNewsletter.Route {
                 return htmlDocument (
                     AnyHTML(
                         CoenttbWebNewsletter.Verify(
-                            verificationAction: verificationUrl(verify),
+                            verificationAction: verificationAction(verify),
                             redirectURL: verificationRedirectURL()
                         )
                     )
