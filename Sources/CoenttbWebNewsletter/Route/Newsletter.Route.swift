@@ -59,6 +59,7 @@ extension CoenttbWebNewsletter.Route {
                         }
                         
                         URLRouting.Route(.case(CoenttbWebNewsletter.Route.Subscribe.verify)) {
+                            Method.post
                             Path { "email-verification" }
                             Parse(.memberwise(CoenttbWebNewsletter.Route.Subscribe.Verify.init)) {
                                 Query {
