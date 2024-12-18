@@ -63,8 +63,39 @@ extension CoenttbWebNewsletter.API {
                     return response
                 }
             case .verify(let verify):
-                print("Hello")
-                fatalError()
+                logger.info("Processing verification request for email: \(verify.email) with token: \(verify.token)")
+                
+                do {
+                    try await client.subscribe.verify(verify.token, verify.email)
+                    
+                    let cookieValue = HTTPCookies.Value(
+                        string: "true",
+                        expires: .distantFuture,
+                        maxAge: nil,
+                        isSecure: false,
+                        isHTTPOnly: false,
+                        sameSite: .strict
+                    )
+                    
+                    let response = Response.json(success: true, message: "Email successfully verified")
+                    response.cookies[cookieId] = cookieValue
+                    return response
+                    
+                } catch let error as ValidationError {
+                    switch error {
+                    case .invalidToken:
+                        throw Abort(.badRequest, reason: "Invalid or expired verification token")
+                    case .invalidInput:
+                        throw Abort(.badRequest, reason: "Invalid verification data provided")
+                    case .invalidVerificationStatus:
+                        throw Abort(.badRequest, reason: "Invalid verification status")
+                    case .tooManyAttempts:
+                        throw Abort(.tooManyRequests, reason: "Too many verification attempts")
+                    }
+                } catch {
+                    logger.error("Verification failed: \(error)")
+                    throw Abort(.internalServerError, reason: "Verification failed. Please try again later.")
+                }
             }
             
         case .unsubscribe(let emailAddress):
