@@ -170,13 +170,31 @@ public struct NewsletterSubscriptionForm: HTML {
     var successSection: some HTML {
         VStack {
             Header(3) {
-                "Successfully subscribed"
+                TranslatedString(
+                    dutch: "Controleer je e-mail",
+                    english: "Check your email"
+                )
             }
-            .color(.green)
+            .color(.blue)
             
             Paragraph {
-                "Thank you for subscribing to our newsletter!"
+                TranslatedString(
+                    dutch: "Controleer je inbox voor een verificatie-e-mail. Klik op de link in de e-mail om je inschrijving te voltooien",
+                    english: "Please check your inbox for a verification email. Click the link in the email to complete your subscription"
+                ).period
+                
             }
+            
+            Paragraph {
+                TranslatedString(
+                    dutch: "Als je de e-mail niet ziet, controleer dan je spam-map",
+                    english: "If you don't see the email, please check your spam folder"
+                ).period
+                
+            }
+            .fontStyle(.body(.small))
+//            .color(HTMLColor.gray)
+            
         }
         .textAlign(.center, media: .desktop)
     }
