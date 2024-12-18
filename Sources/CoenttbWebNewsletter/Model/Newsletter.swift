@@ -121,9 +121,6 @@ extension Newsletter {
                 try await database.schema(Newsletter.schema)
                     .field(Newsletter.FieldKeys.updatedAt, .datetime)
                     .update()
-                
-                try await Newsletter.Token.Migration.Create().prepare(on: database)
-                
             }
             
             public func revert(on database: Database) async throws {
