@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  tenthijeboonkkamp-nl-server
+//  coenttb-web
 //
 //  Created by Coen ten Thije Boonkkamp on 10/09/2024.
 //
@@ -14,65 +14,90 @@ import CoenttbVapor
 import Mailgun
 
 extension CoenttbWebNewsletter.API {
-    private static let subscriptionManager = SubscriptionManager()
+
+    private static let subscriptionRateLimiter = SubscriptionRateLimiter()
     
     public static func response(
+        database: Fluent.Database,
         client: CoenttbWebNewsletter.Client,
         logger: Logger,
         cookieId: String,
         newsletter: CoenttbWebNewsletter.API
     ) async throws -> any AsyncResponseEncodable {
-        
         switch newsletter {
         case .subscribe(let subscribe):
-            
             switch subscribe {
             case .request(let request):
                 let email = request.email
                 
                 logger.info("Received subscription request for email: \(email)")
                 
-                let isNewSubscription = await subscriptionManager.subscribe(email)
+                @Dependency(\.envVars.appEnv) var appEnv
                 
                 let cookieValue = HTTPCookies.Value(
                     string: "true",
                     expires: .distantFuture,
                     maxAge: nil,
-                    isSecure: false,
+                    isSecure: appEnv == .production ? true : false,
                     isHTTPOnly: false,
                     sameSite: .strict
                 )
                 
-                if isNewSubscription {
-                    do {
-                        try await client.subscribe.request(.init(email))
-                    } catch {
-                        logger.error("Mailgun subscription failed: \(error)")
-                        throw Abort(.internalServerError, reason: "Failed to send subscription email. Please contact support.")
-                    }
-
-                    let response = Response.json(success: true, message: "Successfully subscribed")
-
-                    response.cookies[cookieId] = cookieValue
+                do {
+                    // First check rate limiting
+                    try await subscriptionRateLimiter.subscribe(email)
                     
-                    return response
-                                    
-                } else {
-                    let response = Response.json(success: true, message: "Already subscribed")
+                    // Then check if subscription exists and its state
+                    if let existingSubscription = try await Newsletter.query(on: database)
+                        .filter(\.$email == email)
+                        .first() {
+                        
+                        switch existingSubscription.emailVerificationStatus {
+                        case .verified:
+                            let response = Response.json(success: true, message: "Already subscribed")
+                            response.cookies[cookieId] = cookieValue
+                            return response
+                        case .pending:
+                            // Delete old pending subscription to allow retry
+                            try await existingSubscription.delete(on: database)
+                        case .failed, .unverified:
+                            // Delete failed/unverified to allow retry
+                            try await existingSubscription.delete(on: database)
+                        }
+                    }
+                    
+                    // Handle new subscription
+                    try await client.subscribe.request(.init(email))
+                    
+                    let response = Response.json(success: true, message: "Successfully subscribed")
                     response.cookies[cookieId] = cookieValue
                     return response
+                    
+                } catch let error as ValidationError {
+                    switch error {
+                    case .tooManyAttempts:
+                        throw Abort(.tooManyRequests, reason: "Too many subscription attempts. Please try again later.")
+                    default:
+                        throw error
+                    }
+                } catch {
+                    logger.error("Mailgun subscription failed: \(error)")
+                    throw Abort(.internalServerError, reason: "Failed to send subscription email. Please contact support.")
                 }
+                
             case .verify(let verify):
                 logger.info("Processing verification request for email: \(verify.email) with token: \(verify.token)")
                 
                 do {
                     try await client.subscribe.verify(verify.token, verify.email)
                     
+                    @Dependency(\.envVars.appEnv) var appEnv
+                    
                     let cookieValue = HTTPCookies.Value(
                         string: "true",
                         expires: .distantFuture,
                         maxAge: nil,
-                        isSecure: false,
+                        isSecure: appEnv == .production ? true : false,
                         isHTTPOnly: false,
                         sameSite: .strict
                     )
