@@ -13,13 +13,15 @@ import Languages
 import CoenttbVapor
 
 extension CoenttbWebNewsletter.Route {
-    public static func response<HTMLDoc: HTMLDocument & AsyncResponseEncodable>(
+    public static func response<
+        HTMLDoc: HTMLDocument & AsyncResponseEncodable
+    >(
         newsletter: CoenttbWebNewsletter.Route,
         htmlDocument: (any HTML) -> HTMLDoc,
+        subscribeCaption: () -> String,
+        subscribeAction: () -> URL,
         verificationUrl: (Route.Subscribe.Verify) -> URL,
         verificationRedirectURL: () -> URL,
-        @HTMLBuilder subscribeView: () -> some HTML,
-        @HTMLBuilder unsubscribeView: () -> some HTML,
         newsletterUnsubscribeAction: () -> URL,
         form_id: () -> String,
         localStorageKey: () -> String
@@ -30,7 +32,10 @@ extension CoenttbWebNewsletter.Route {
             case .request:
                 return htmlDocument (
                     AnyHTML(
-                        subscribeView()
+                        CoenttbWebNewsletter.Route.Subscribe.View(
+                            caption: subscribeCaption(),
+                            newsletterSubscribeAction: subscribeAction()
+                        )
                     )
                 )
             case .verify(let verify):
@@ -53,7 +58,7 @@ extension CoenttbWebNewsletter.Route {
                             newsletterUnsubscribeAction: newsletterUnsubscribeAction()
                         )
                     }
-                    .margin(vertical: 3.rem)
+                        .margin(vertical: 3.rem)
                 )
             )
         }
