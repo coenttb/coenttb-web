@@ -6,7 +6,6 @@
 //
 
 import CoenttbWebHTML
-//import Date
 import Dependencies
 import Foundation
 import HTML
@@ -86,7 +85,7 @@ public struct NewsletterSubscriptionForm: HTML {
     public var body: some HTML {
         form {
             VStack {
-                Input.default(CoenttbWebNewsletter.Post.Email.CodingKeys.value)
+                Input.default(CoenttbWebNewsletter.API.Subscribe.Request.CodingKeys.email)
                     .type(.email)
                     .value("")
                     .placeholder(
@@ -127,7 +126,7 @@ public struct NewsletterSubscriptionForm: HTML {
                     event.preventDefault();
 
                     const formData = new FormData(form);
-                    const email = formData.get('\(Post.Email.CodingKeys.value.rawValue)');
+                    const email = formData.get('\(CoenttbWebNewsletter.API.Subscribe.Request.CodingKeys.email.rawValue)');
 
                     try {
                         const response = await fetch(form.action, {
@@ -136,7 +135,7 @@ public struct NewsletterSubscriptionForm: HTML {
                                 'Content-Type': 'application/x-www-form-urlencoded',
                                 'Accept': 'application/json'
                             },
-                            body: new URLSearchParams({ \(Post.Email.CodingKeys.value.rawValue): email }).toString()
+                            body: new URLSearchParams({ \(CoenttbWebNewsletter.API.Subscribe.Request.CodingKeys.email.rawValue): email }).toString()
                         });
 
 

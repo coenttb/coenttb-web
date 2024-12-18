@@ -159,7 +159,8 @@ let package = Package(
                 .dependenciesMacros,
                 .coenttbWebHTML,
                 .coenttbEmail,
-                .coenttbWebUtils
+                .coenttbWebUtils,
+                .coenttbWebVapor
             ]
         ),
         .target(
@@ -182,6 +183,7 @@ let package = Package(
         .target(
             name: .coenttbWebNewsletter,
             dependencies: [
+                .casePaths,
                 .urlRouting,
                 .vaporRouting,
                 .dependencies,
@@ -190,8 +192,9 @@ let package = Package(
                 .vapor,
                 .dependenciesMacros,
                 .coenttbWebHTML,
-                .coenttbWebDatabase,
+                .coenttbEmail,
                 .coenttbWebUtils,
+                .coenttbWebVapor
             ]
         ),
         .target(
@@ -275,6 +278,7 @@ let package = Package(
                 .dependenciesMacros,
                 .coenttbWebHTML,
                 .language,
+                .coenttbWebVapor
             ]
         ),
         .target(

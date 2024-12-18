@@ -78,27 +78,29 @@ public final class Identity: Model, Content, @unchecked Sendable {
 }
 
 extension Identity {
-    public struct Migration: AsyncMigration {
-        public init() {}
+    public enum Migration {
+        public struct Create: AsyncMigration {
+            public init() {}
 
-        public func prepare(on database: Database) async throws {
-            try await database.schema(Identity.schema)
-                .id()
-                .field(FieldKeys.email, .string, .required)
-                .unique(on: FieldKeys.email)
-                .field(FieldKeys.passwordHash, .string, .required)
-                .field(FieldKeys.name, .string)
-                .field(FieldKeys.isAdmin, .bool, .required, .custom("DEFAULT FALSE"))
-                .field(FieldKeys.emailVerificationStatus, .string, .required)
-                .field(FieldKeys.createdAt, .datetime)
-                .field(FieldKeys.updatedAt, .datetime)
-                .field(FieldKeys.sessionVersion, .int, .required, .custom("DEFAULT 0"))
-                .field(FieldKeys.lastLoginAt, .datetime)
-                .create()
-        }
+            public func prepare(on database: Database) async throws {
+                try await database.schema(Identity.schema)
+                    .id()
+                    .field(FieldKeys.email, .string, .required)
+                    .unique(on: FieldKeys.email)
+                    .field(FieldKeys.passwordHash, .string, .required)
+                    .field(FieldKeys.name, .string)
+                    .field(FieldKeys.isAdmin, .bool, .required, .custom("DEFAULT FALSE"))
+                    .field(FieldKeys.emailVerificationStatus, .string, .required)
+                    .field(FieldKeys.createdAt, .datetime)
+                    .field(FieldKeys.updatedAt, .datetime)
+                    .field(FieldKeys.sessionVersion, .int, .required, .custom("DEFAULT 0"))
+                    .field(FieldKeys.lastLoginAt, .datetime)
+                    .create()
+            }
 
-        public func revert(on database: Database) async throws {
-            try await database.schema(Identity.schema).delete()
+            public func revert(on database: Database) async throws {
+                try await database.schema(Identity.schema).delete()
+            }
         }
     }
 }

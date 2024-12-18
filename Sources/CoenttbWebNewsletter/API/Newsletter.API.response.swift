@@ -23,44 +23,48 @@ extension CoenttbWebNewsletter.API {
         newsletter: CoenttbWebNewsletter.API
     ) async throws -> any AsyncResponseEncodable {
         
-//        @Dependency(CoenttbWebNewsletter.Client.self) var client
-        
         switch newsletter {
-        case .subscribe(let emailAddress):
+        case .subscribe(let subscribe):
             
-            let emailLocal = emailAddress.value
-            logger.info("Received subscription request for email: \(emailLocal)")
-            
-            let isNewSubscription = await subscriptionManager.subscribe(emailLocal)
-            
-            let cookieValue = HTTPCookies.Value(
-                string: "true",
-                expires: .distantFuture,
-                maxAge: nil,
-                isSecure: false,
-                isHTTPOnly: false,
-                sameSite: .strict
-            )
-            
-            if isNewSubscription {
+            switch subscribe {
+            case .request(let request):
+                let email = request.email
                 
-                do {
-                    try await client.subscribe(.init(emailLocal))
-                } catch {
-                    logger.error("Mailgun subscription failed: \(error)")
-                    throw Abort(.internalServerError, reason: "Failed to send subscription email. Please contact support.")
+                logger.info("Received subscription request for email: \(email)")
+                
+                let isNewSubscription = await subscriptionManager.subscribe(email)
+                
+                let cookieValue = HTTPCookies.Value(
+                    string: "true",
+                    expires: .distantFuture,
+                    maxAge: nil,
+                    isSecure: false,
+                    isHTTPOnly: false,
+                    sameSite: .strict
+                )
+                
+                if isNewSubscription {
+                    do {
+                        try await client.subscribe.request(.init(email))
+                    } catch {
+                        logger.error("Mailgun subscription failed: \(error)")
+                        throw Abort(.internalServerError, reason: "Failed to send subscription email. Please contact support.")
+                    }
+
+                    let response = Response.json(success: true, message: "Successfully subscribed")
+
+                    response.cookies[cookieId] = cookieValue
+                    
+                    return response
+                                    
+                } else {
+                    let response = Response.json(success: true, message: "Already subscribed")
+                    response.cookies[cookieId] = cookieValue
+                    return response
                 }
-
-                let response = Response.json(success: true, message: "Successfully subscribed")
-
-                response.cookies[cookieId] = cookieValue
-                
-                return response
-                                
-            } else {
-                let response = Response.json(success: true, message: "Already subscribed")
-                response.cookies[cookieId] = cookieValue
-                return response
+            case .verify(let verify):
+                print("Hello")
+                fatalError()
             }
             
         case .unsubscribe(let emailAddress):
