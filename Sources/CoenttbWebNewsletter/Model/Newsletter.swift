@@ -20,7 +20,7 @@ public final class Newsletter: Model, @unchecked Sendable {
     public var id: UUID?
 
     @Field(key: Newsletter.FieldKeys.email)
-    var email: String
+    public var email: String
 
     @Field(key: Newsletter.FieldKeys.emailVerificationStatus)
     public var emailVerificationStatus: EmailVerificationStatus
