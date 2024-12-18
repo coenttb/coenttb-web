@@ -123,15 +123,11 @@ extension Newsletter {
             
             public func prepare(on database: Database) async throws {
                 try await database.schema(Newsletter.schema)
-                    .field(Newsletter.FieldKeys.updatedAt, .datetime)
+                    .field(Newsletter.FieldKeys.updatedAt, .datetime, .required)
                     .update()
                 
                 try await Newsletter.query(on: database)
                     .set(\.$updatedAt, to: .now)
-                    .update()
-                
-                try await database.schema(Newsletter.schema)
-                    .field(Newsletter.FieldKeys.updatedAt, .datetime, .required)
                     .update()
             }
             
@@ -150,16 +146,12 @@ extension Newsletter {
             
             public func prepare(on database: Database) async throws {
                 try await database.schema(Newsletter.schema)
-                    .field(FieldKeys.emailVerificationStatus, .string)
+                    .field(FieldKeys.emailVerificationStatus, .string, .required)
                     .update()
 
                 try await Newsletter.query(on: database)
                     .set(\.$emailVerificationStatus, to: .unverified)
-                    .update()
-
-                try await database.schema(Newsletter.schema)
-                    .field(FieldKeys.emailVerificationStatus, .string, .required, .custom("DEFAULT '\(EmailVerificationStatus.unverified.rawValue)'"))
-                    .update()
+                    .update()                
             }
             
             public func revert(on database: Database) async throws {
