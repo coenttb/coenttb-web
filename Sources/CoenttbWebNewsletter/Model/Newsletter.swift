@@ -117,6 +117,8 @@ extension Newsletter {
         
         public struct STEP_1_AddUpdatedAt: AsyncMigration {
             
+            public let name: String = "Newsletter.Migration.STEP_1_AddUpdatedAt"
+            
             public init() {}
             
             public func prepare(on database: Database) async throws {
@@ -141,6 +143,8 @@ extension Newsletter {
         }
         
         public struct STEP_2_AddEmailVerification: AsyncMigration {
+            
+            public let name: String = "Newsletter.Migration.STEP_2_AddEmailVerification"
             
             public init() {}
             

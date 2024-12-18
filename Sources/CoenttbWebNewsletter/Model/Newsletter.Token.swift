@@ -81,6 +81,9 @@ extension Newsletter.Token {
 extension Newsletter.Token {
     public enum Migration {
         public struct Create: AsyncMigration {
+            
+            public let name: String = "CoenttbWebNewsletter.Newsletter.Token.Migration.Create"
+            
             public init() {}
             
             public func prepare(on database: Database) async throws {

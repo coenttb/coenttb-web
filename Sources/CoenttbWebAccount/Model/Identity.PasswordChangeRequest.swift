@@ -42,6 +42,9 @@ public final class PasswordChangeRequest: Model, @unchecked Sendable {
     }
 
     public struct Migration: AsyncMigration {
+        
+        public let name: String = "CoenttbWebAccount.PasswordChangeRequest"
+        
         public init(){}
         public func prepare(on database: Database) async throws {
             try await database.schema(PasswordChangeRequest.schema)

@@ -50,6 +50,9 @@ package final class DeletionState: Model, @unchecked Sendable {
     }
 
     package struct Migration: AsyncMigration {
+        
+        package let name: String = "CoenttbWebAccount.DeletionState"
+        
         package func prepare(on database: Database) async throws {
             try await database.schema(CoenttbWebAccount.DeletionState.schema)
                 .id()
