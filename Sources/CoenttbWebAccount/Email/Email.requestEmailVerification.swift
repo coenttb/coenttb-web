@@ -24,8 +24,8 @@ extension Email {
         
         let html = TableEmailDocument(
             preheader: TranslatedString(
-                dutch: "Verifiëer je emailadres voor Ten Thije Boonkkamp",
-                english: "Verify your email for Ten Thije Boonkkamp"
+                dutch: "Verifiëer je emailadres voor \(businessName)",
+                english: "Verify your email for \(businessName)"
             ).description
         ) {
             tr {
