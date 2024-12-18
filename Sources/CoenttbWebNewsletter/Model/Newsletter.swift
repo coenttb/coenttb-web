@@ -119,17 +119,19 @@ extension Newsletter {
             
             public func prepare(on database: Database) async throws {
                 try await database.schema(Newsletter.schema)
+                    .field(Newsletter.FieldKeys.createdAt, .datetime)
                     .field(FieldKeys.emailVerificationStatus, .string, .required, .custom("DEFAULT \(EmailVerificationStatus.unverified.rawValue)"))
-                    .update()
-            }
-            
-            public func revert(on database: Database) async throws {
-                try await database.schema(Newsletter.schema)
-                    .deleteField(FieldKeys.emailVerificationStatus)
                     .update()
                 
                 try await Newsletter.Token.Migration.Create().prepare(on: database)
                 
+            }
+            
+            public func revert(on database: Database) async throws {
+                try await database.schema(Newsletter.schema)
+                    .deleteField(Newsletter.FieldKeys.createdAt)
+                    .deleteField(FieldKeys.emailVerificationStatus)
+                    .update()
             }
         }
     }
