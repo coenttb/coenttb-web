@@ -92,6 +92,8 @@ extension Identity {
         
         public struct Migration: AsyncMigration {
             
+            public let name: String = "CoenttbWebAccount.Identity.Token.Migration"
+            
             public init(){}
             
             public func prepare(on database: Database) async throws {

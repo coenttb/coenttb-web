@@ -97,6 +97,8 @@ extension Newsletter {
     public enum Migration {
         public struct Create: AsyncMigration {
             
+            public let name: String = "CoenttbWebNewsletter.CreateNewsletter"
+            
             public init() {}
             
             public func prepare(on database: Database) async throws {

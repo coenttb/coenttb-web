@@ -80,6 +80,9 @@ public final class Identity: Model, Content, @unchecked Sendable {
 extension Identity {
     public enum Migration {
         public struct Create: AsyncMigration {
+            
+            public let name: String = "CoenttbWebAccount.Identity.Migration"
+            
             public init() {}
 
             public func prepare(on database: Database) async throws {
