@@ -26,6 +26,8 @@ extension String {
     static let hotjar: Self = "Hotjar"
     static let postgres: Self = "Postgres"
     static let googleAnalytics: Self = "GoogleAnalytics"
+    static let rateLimiter: Self = "RateLimiter"
+    static let boundedCache: Self = "BoundedCache"
 }
 
 extension Target.Dependency {
@@ -46,6 +48,9 @@ extension Target.Dependency {
     static var coenttbWebStripeLive: Self { .target(name: .coenttbWebStripeLive) }
     static var coenttbWebBlog: Self { .target(name: .coenttbWebBlog) }
     static var coenttbWebSyndication: Self { .target(name: .coenttbWebSyndication) }
+    
+    static var boundedCache: Self { .target(name: .boundedCache) }
+    static var rateLimiter: Self { .target(name: .rateLimiter) }
     
     static var gitHub: Self { .target(name: .gitHub) }
     static var mailgun: Self { .target(name: .mailgun) }
@@ -116,6 +121,8 @@ let package = Package(
         .library(name: .coenttbWebNewsletter, targets: [.coenttbWebNewsletter]),
         .library(name: .coenttbWebBlog, targets: [.coenttbWebBlog]),
         .library(name: .coenttbWebSyndication, targets: [.coenttbWebSyndication]),
+        .library(name: .boundedCache, targets: [.boundedCache]),
+        .library(name: .rateLimiter, targets: [.rateLimiter]),
         .library(name: .mailgun, targets: [.mailgun]),
         .library(name: .gitHub, targets: [.gitHub]),
         .library(name: .hotjar, targets: [.hotjar]),
@@ -362,6 +369,7 @@ let package = Package(
                 .coenttbServerRouter,
                 .coenttbEnvVars,
                 .language,
+                .rateLimiter
             ]
         ),
         .target(
@@ -388,6 +396,18 @@ let package = Package(
                 .urlRouting,
                 .coenttbWebModels,
                 .language,
+            ]
+        ),
+        .target(
+            name: .rateLimiter,
+            dependencies: [
+                .boundedCache
+            ]
+        ),
+        .target(
+            name: .boundedCache,
+            dependencies: [
+                
             ]
         ),
         .target(
