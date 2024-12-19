@@ -201,7 +201,8 @@ let package = Package(
                 .coenttbWebHTML,
                 .coenttbEmail,
                 .coenttbWebUtils,
-                .coenttbWebVapor
+                .coenttbWebVapor,
+                .rateLimiter,
             ]
         ),
         .target(

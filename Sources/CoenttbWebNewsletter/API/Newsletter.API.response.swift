@@ -12,6 +12,7 @@ import Foundation
 import Languages
 import CoenttbVapor
 import Mailgun
+import RateLimiter
 
 extension CoenttbWebNewsletter.API {
     
