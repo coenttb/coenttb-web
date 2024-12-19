@@ -8,7 +8,7 @@
 import Vapor
 import CoenttbWebNewsletter
 import CoenttbWebHTML
-import PointFreeHtml
+import CoenttbHTML
 import Dependencies
 import Foundation
 import Languages

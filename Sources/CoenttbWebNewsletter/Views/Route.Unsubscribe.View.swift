@@ -9,7 +9,7 @@ import CoenttbWebHTML
 //import Date
 import Dependencies
 import Foundation
-import HTML
+import CoenttbHTML
 import Languages
 import CoenttbWebTranslations
 

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import HTML
+import CoenttbHTML
 
 public extension String.StringInterpolation {
     mutating func appendInterpolation(html value: some HTML) {        

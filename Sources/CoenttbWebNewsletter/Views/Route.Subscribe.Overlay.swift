@@ -12,7 +12,7 @@ import Dependencies
 import Foundation
 import Languages
 import CoenttbWebTranslations
-import HTML
+import CoenttbHTML
 
 extension Route.Subscribe {
     public struct Overlay: HTML {

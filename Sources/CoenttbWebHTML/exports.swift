@@ -6,11 +6,9 @@
 //
 
 @_exported import CoenttbHTML
-@_exported import CoenttbHTML
 @_exported import CoenttbMarkdown
 @_exported import CoenttbWebTranslations
 @_exported import EmailAddress
-@_exported import HTML
 @_exported import Languages
 @_exported import struct Mailgun.Email
 
