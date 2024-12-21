@@ -1,0 +1,17 @@
+//
+//  CoenttbWeb.swift
+//  coenttb-web
+//
+//  Created by Coen ten Thije Boonkkamp on 21/12/2024.
+//
+
+@_exported import CoenttbServerRouter
+@_exported import CoenttbWebEnvVars
+@_exported import CoenttbWebHTML
+@_exported import CoenttbWebDependencies
+@_exported import CoenttbWebModels
+@_exported import CoenttbWebTranslations
+@_exported import CoenttbVapor
+@_exported import CoenttbWebDatabase
+@_exported import CoenttbWebUtils
+@_exported import CoenttbWebLegal

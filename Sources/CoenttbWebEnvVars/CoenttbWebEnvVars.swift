@@ -17,7 +17,6 @@ import AppSecret
 import CoenttbWebModels
 import EnvironmentVariables
 
-
 extension EnvVars {
     public var appSecret: AppSecret {
         get { AppSecret(self["APP_SECRET"]!)! }

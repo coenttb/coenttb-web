@@ -7,7 +7,7 @@
 
 import Foundation
 import Testing
-@testable import CoenttbVapor
+@testable import Coenttb
 
 @Test
 func testCanonicalHostMiddleware() async throws  {
