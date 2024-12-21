@@ -1,5 +1,5 @@
 {
-  "originHash" : "17aab772b12a79e5550267b45bdd62dcb3766b48eb3ad321ace8a4dc37eeefe2",
+  "originHash" : "18c8dc4b4208ad528d693e8e0499deee3dbdceefe0f9566657c25aba2e4bc2d8",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -565,7 +565,7 @@
       "location" : "https://github.com/coenttb/swift-web",
       "state" : {
         "branch" : "main",
-        "revision" : "1e074163905e60c80d63df1bc1041c901d95169b"
+        "revision" : "85063b5ee700178566f09020bfcdda7c8f597618"
       }
     },
     {
