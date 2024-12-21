@@ -5,13 +5,15 @@
 //  Created by Coen ten Thije Boonkkamp on 17/07/2023.
 //
 
-import MemberwiseInit
 import Vapor
 import VaporRouting
 
-@MemberwiseInit(.public)
 public struct HTTPSRedirectMiddleware: AsyncMiddleware {
     public let on: Bool
+    
+    public init(on: Bool) {
+        self.on = on
+    }
     
     public func respond(to request: Request, chainingTo next: AsyncResponder) async throws -> Response {
         guard on else { return try await next.respond(to: request) }

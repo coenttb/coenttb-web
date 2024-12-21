@@ -32,17 +32,14 @@ extension Target.Dependency {
 }
 
 extension Target.Dependency {
-    
     static var swiftWeb: Self { .product(name: "SwiftWeb", package: "swift-web") }
     static var coenttbEmail: Self { .product(name: "CoenttbEmail", package: "coenttb-html") }
     static var coenttbHtml: Self { .product(name: "CoenttbHTML", package: "coenttb-html") }
     static var coenttbMarkdown: Self { .product(name: "CoenttbMarkdown", package: "coenttb-html") }
     static var casePaths: Self { .product(name: "CasePaths", package: "swift-case-paths") }
     static var fluent: Self { .product(name: "Fluent", package: "fluent") }
-    static var codable: Self { .product(name: "MacroCodableKit", package: "macro-codable-kit") }
     static var rateLimiter: Self { .product(name: "RateLimiter", package: "coenttb-utils") }
     static var language: Self { .product(name: "Languages", package: "swift-language") }
-    
     static var postgresKit: Self { .product(name: "PostgresKit", package: "postgres-kit") }
     static var vapor: Self { .product(name: "Vapor", package: "vapor") }
     static var vaporRouting: Self { .product(name: "VaporRouting", package: "vapor-routing") }
@@ -77,8 +74,6 @@ let package = Package(
         .package(url: "https://github.com/coenttb/coenttb-utils.git", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-language.git", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-environment-variables.git", branch: "main"),
-        .package(url: "https://github.com/coenttb/macro-codable-kit.git", branch: "main"),
-        .package(url: "https://github.com/gohanlon/swift-memberwise-init-macro", from: "0.3.0"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.1.5"),
         .package(url: "https://github.com/pointfreeco/swift-tagged.git", from: "0.10.0"),
         .package(url: "https://github.com/pointfreeco/swift-url-routing", from: "0.6.0"),
@@ -108,7 +103,6 @@ let package = Package(
                 .coenttbWebDatabase,
                 .coenttbWebLegal,
                 .coenttbWebUtils,
-                .codable,
                 .postgresKit,
                 .coenttbHtml,
                 .coenttbMarkdown,
@@ -125,15 +119,15 @@ let package = Package(
             ]
         ),
         
-        .target(
-            name: .coenttbWebHTML,
-            dependencies: [
-                .swiftWeb,
-                .coenttbHtml,
-                .coenttbMarkdown,
-                .coenttbWebTranslations,
-            ]
-        ),
+            .target(
+                name: .coenttbWebHTML,
+                dependencies: [
+                    .swiftWeb,
+                    .coenttbHtml,
+                    .coenttbMarkdown,
+                    .coenttbWebTranslations,
+                ]
+            ),
         .target(
             name: .coenttbWebLegal,
             dependencies: [
