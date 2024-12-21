@@ -39,13 +39,14 @@ extension Target.Dependency {
     static var coenttbMarkdown: Self { .product(name: "CoenttbMarkdown", package: "coenttb-html") }
     static var casePaths: Self { .product(name: "CasePaths", package: "swift-case-paths") }
     static var fluent: Self { .product(name: "Fluent", package: "fluent") }
-    static var fluentPostgresDriver: Self { .product(name: "FluentPostgresDriver", package: "fluent-postgres-driver") }
     static var codable: Self { .product(name: "MacroCodableKit", package: "macro-codable-kit") }
+    static var rateLimiter: Self { .product(name: "RateLimiter", package: "coenttb-utils") }
+    static var language: Self { .product(name: "Languages", package: "swift-language") }
+    
     static var postgresKit: Self { .product(name: "PostgresKit", package: "postgres-kit") }
     static var vapor: Self { .product(name: "Vapor", package: "vapor") }
     static var vaporRouting: Self { .product(name: "VaporRouting", package: "vapor-routing") }
-    static var rateLimiter: Self { .product(name: "RateLimiter", package: "coenttb-utils") }
-    static var language: Self { .product(name: "Languages", package: "swift-language") }
+    static var fluentPostgresDriver: Self { .product(name: "FluentPostgresDriver", package: "fluent-postgres-driver") }
 }
 
 let package = Package(
@@ -95,7 +96,9 @@ let package = Package(
         .target(
             name: .coenttbWeb,
             dependencies: [
+                .coenttbServerRouter,
                 .swiftWeb,
+                .coenttbEmail,
                 .coenttbWebEnvVars,
                 .coenttbWebHTML,
                 .coenttbWebDependencies,
@@ -105,16 +108,13 @@ let package = Package(
                 .coenttbWebDatabase,
                 .coenttbWebLegal,
                 .coenttbWebUtils,
-                .coenttbServerRouter,
-                
-                
-                .coenttbEmail,
                 .codable,
                 .postgresKit,
                 .coenttbHtml,
                 .coenttbMarkdown,
                 .vapor,
                 .vaporRouting,
+                .fluentPostgresDriver,
             ]
         ),
         .target(

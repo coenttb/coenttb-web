@@ -22,6 +22,8 @@
 @_exported import EnvironmentVariables
 
 @_exported import SwiftWeb
+@_exported import PostgresKit
+@_exported import FluentPostgresDriver
 
 @_exported import URLRouting
 @_exported import Vapor
