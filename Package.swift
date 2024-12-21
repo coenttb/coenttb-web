@@ -105,11 +105,12 @@ let package = Package(
                 .coenttbWebDatabase,
                 .coenttbWebLegal,
                 .coenttbWebUtils,
-                .postgresKit,
+                .rateLimiter,
                 .vapor,
                 .vaporRouting,
+                .fluent,
                 .fluentPostgresDriver,
-                .rateLimiter
+                .postgresKit,
             ]
         ),
         .target(

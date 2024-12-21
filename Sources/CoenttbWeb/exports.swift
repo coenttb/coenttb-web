@@ -27,6 +27,8 @@
 
 @_exported import URLRouting
 @_exported import Vapor
+@_exported import Fluent
+@_exported import VaporRouting
 @_exported import EmailAddress
 @_exported import RateLimiter
 
