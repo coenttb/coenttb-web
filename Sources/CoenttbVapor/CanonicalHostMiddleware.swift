@@ -7,7 +7,6 @@
 
 import Foundation
 import Vapor
-import CoenttbEnvVars
 import Dependencies
 
 public struct CanonicalHostMiddleware: AsyncMiddleware {

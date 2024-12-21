@@ -60,15 +60,13 @@ extension Target.Dependency {
     static var urlFormCoding: Self { .product(name: "UrlFormCoding", package: "swift-web") }
     static var loggingDependencies: Self { .product(name: "LoggingDependencies", package: "swift-web") }
     static var web: Self { .product(name: "Web", package: "swift-web") }
-    static var stripeKit: Self { .product(name: "StripeKit", package: "stripe-kit") }
-    static var jwt: Self { .product(name: "JWT", package: "jwt") }
-    static var sharing: Self { .product(name: "Sharing", package: "swift-sharing") }
     static var swiftDate: Self { .product(name: "Date", package: "swift-date") }
     static var decodableRequest: Self { .product(name: "DecodableRequest", package: "swift-web") }
     static var either: Self { .product(name: "Either", package: "swift-prelude") }
     static var foundationPrelude: Self { .product(name: "FoundationPrelude", package: "swift-web") }
     static var httpPipeline: Self { .product(name: "HttpPipeline", package: "swift-web") }
     static var urlFormEncoding: Self { .product(name: "UrlFormEncoding", package: "swift-web") }
+    static var rateLimiter: Self { .product(name: "RateLimiter", package: "coenttb-utils") }
 }
 
 let package = Package(
@@ -96,10 +94,10 @@ let package = Package(
         .package(url: "https://github.com/coenttb/swift-web", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-date", branch: "main"),
         .package(url: "https://github.com/coenttb/coenttb-html", branch: "main"),
-        .package(url: "https://github.com/coenttb/swift-language.git", branch: "main"),
-        .package(url: "https://github.com/coenttb/macro-codable-kit.git", branch: "main"),
-        .package(url: "https://github.com/coenttb/swift-environment-variables.git", branch: "main"),
         .package(url: "https://github.com/coenttb/coenttb-utils.git", branch: "main"),
+        .package(url: "https://github.com/coenttb/swift-language.git", branch: "main"),
+        .package(url: "https://github.com/coenttb/swift-environment-variables.git", branch: "main"),
+        .package(url: "https://github.com/coenttb/macro-codable-kit.git", branch: "main"),
         .package(url: "https://github.com/gohanlon/swift-memberwise-init-macro", from: "0.3.0"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.1.5"),
         .package(url: "https://github.com/pointfreeco/swift-tagged.git", from: "0.10.0"),
@@ -112,8 +110,6 @@ let package = Package(
         .package(url: "https://github.com/vapor/fluent.git", from: "4.8.0"),
         .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.7.2"),
         .package(url: "https://github.com/vapor/vapor.git", from: "4.102.1"),
-        .package(url: "https://github.com/vapor/jwt.git", from: "5.0.0"),
-        .package(url: "https://github.com/vapor-community/stripe-kit.git", from: "25.1.1"),
     ],
     targets: [
         
@@ -130,6 +126,39 @@ let package = Package(
                 .coenttbWebLegal,
                 .coenttbWebUtils,
                 .coenttbServerRouter,
+                
+                
+                    .appSecret,
+                .coenttbEmail,
+                .casePaths,
+                .databaseHelpers,
+                .dependencies,
+                .dependenciesMacros,
+                .language,
+                .swiftHtml,
+                .logging,
+                .codable,
+                .memberwiseInit,
+                .nioDependencies,
+                .postgresKit,
+                .coenttbHtml,
+                .coenttbMarkdown,
+                .environmentVariables,
+                .tagged,
+                .taggedMoney,
+                .urlRouting,
+                .vapor,
+                .vaporRouting,
+                .emailaddress,
+                .urlFormCoding,
+                .loggingDependencies,
+                .web,
+                .swiftDate,
+                .decodableRequest,
+                .either,
+                .foundationPrelude,
+                .httpPipeline,
+                .urlFormEncoding,
             ]
         ),
         .target(
@@ -142,7 +171,6 @@ let package = Package(
                 .logging,
                 .memberwiseInit,
                 .tagged,
-                .sharing,
                 .language,
                 .environmentVariables
             ]
@@ -203,8 +231,6 @@ let package = Package(
                 .fluent,
                 .memberwiseInit,
                 .tagged,
-                .vapor,
-                .jwt,
                 .casePaths,
                 .language,
             ]
@@ -227,7 +253,7 @@ let package = Package(
                 .coenttbServerRouter,
                 .coenttbWebEnvVars,
                 .language,
-//                .rateLimiter
+                .rateLimiter
             ]
         ),
         .target(

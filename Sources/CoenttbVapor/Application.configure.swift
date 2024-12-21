@@ -8,7 +8,6 @@
 import Foundation
 import Vapor
 import Logging
-import CoenttbEnvVars
 
 extension Application {
     public static func configure(
@@ -18,7 +17,7 @@ extension Application {
         allowedInsecureHosts: [String]?,
         baseUrl: URL
     ) async throws {
-        app.logger.log(.info, "Configuring application with environment: \(app.environment.name)")
+        app.logger.info("Configuring application with environment: \(app.environment.name)")
         app.middleware.use(ErrorMiddleware.default(environment: app.environment))
         app.middleware.use(HTTPSRedirectMiddleware(on: httpsRedirect == true))
         

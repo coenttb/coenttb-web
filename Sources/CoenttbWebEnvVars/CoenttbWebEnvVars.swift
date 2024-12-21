@@ -7,10 +7,8 @@
 
 import Dependencies
 import Foundation
-import GitHub
 import Languages
 import Logging
-import Mailgun
 import MemberwiseInit
 import Tagged
 import AppSecret

@@ -1,5 +1,5 @@
 {
-  "originHash" : "7de011ad34db860571dfc4bc678c0c155697261f6555c7f1bbe1152ccf5e781b",
+  "originHash" : "a69ee1fcee61b4c890c761c4561377b6b8b483fa8738f072f068110e5dae3a9c",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -92,24 +92,6 @@
       }
     },
     {
-      "identity" : "jwt",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/vapor/jwt.git",
-      "state" : {
-        "revision" : "ec5a9d489a73560732c7a27ce860fe799b1413be",
-        "version" : "5.1.1"
-      }
-    },
-    {
-      "identity" : "jwt-kit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/vapor/jwt-kit.git",
-      "state" : {
-        "revision" : "6f745e91e2422608fe14c9a66ee3826cb661e2a6",
-        "version" : "5.1.1"
-      }
-    },
-    {
       "identity" : "macro-codable-kit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/coenttb/macro-codable-kit.git",
@@ -173,15 +155,6 @@
       }
     },
     {
-      "identity" : "stripe-kit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/vapor-community/stripe-kit.git",
-      "state" : {
-        "revision" : "46c9f95a1b39c5fcb121605453911a605760c2b7",
-        "version" : "25.1.1"
-      }
-    },
-    {
       "identity" : "swift-algorithms",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-algorithms.git",
@@ -233,15 +206,6 @@
       "state" : {
         "revision" : "bc92c4b27f9a84bfb498cdbfdf35d5a357e9161f",
         "version" : "1.5.6"
-      }
-    },
-    {
-      "identity" : "swift-certificates",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-certificates.git",
-      "state" : {
-        "revision" : "1fbb6ef21f1525ed5faf4c95207b9c11bea27e94",
-        "version" : "1.6.1"
       }
     },
     {
