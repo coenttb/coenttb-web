@@ -14,20 +14,8 @@ import CoenttbVapor
 import Mailgun
 import RateLimiter
 
+
 extension CoenttbWebNewsletter.API {
-    
-//    public struct RateLimitContext: Sendable, Hashable {
-//        public let email: EmailAddress
-//        public let ipAddress: String
-//        public let userAgent: String?
-//        public let timestamp: Date
-//        public let requestId: String?
-//        public let geoLocation: GeoLocation?
-//    }
-    
-//    private static let subscriptionRateLimiter: RateLimiter<RateLimitContext> = .init(windows: [])
-    
-    
     private enum RateLimitKey: Hashable, Sendable {
         case email(String)
         case ip(String)
@@ -35,16 +23,16 @@ extension CoenttbWebNewsletter.API {
     
     private static let emailLimiter = RateLimiter<RateLimitKey>(
         windows: [
-            .minutes(5, maxAttempts: 3),   // 3 attempts per 5 minutes
-            .hours(24, maxAttempts: 10)    // 10 attempts per day
+            .minutes(5, maxAttempts: 3),
+            .hours(24, maxAttempts: 10)
         ],
         backoffMultiplier: 2.0
     )
     
     private static let ipLimiter = RateLimiter<RateLimitKey>(
         windows: [
-            .minutes(5, maxAttempts: 5),   // 5 attempts per 5 minutes
-            .hours(24, maxAttempts: 20)    // 20 attempts per day
+            .minutes(5, maxAttempts: 5),
+            .hours(24, maxAttempts: 20)
         ],
         backoffMultiplier: 2.0
     )
@@ -79,18 +67,84 @@ extension CoenttbWebNewsletter.API {
                         throw Abort(.tooManyRequests, reason: "Too many subscription attempts from this email. Please try again later.")
                     }
                     
-                    if !ipResult.isAllowed {
-                        throw Abort(.tooManyRequests, reason: "Too many subscription attempts from this IP. Please try again later.")
+                    if !emailResult.isAllowed || !ipResult.isAllowed {
+                        // Get the most restrictive rate limit details
+                        let mostRestrictive = !emailResult.isAllowed ? emailResult : ipResult
+                        let source = !emailResult.isAllowed ? "email" : "IP address"
+                        
+                        let response = Response(
+                            status: .tooManyRequests,
+                            body: .init(string: "Too many subscription attempts from this \(source). Please try again later.")
+                        )
+                        
+                        response.headers.add(
+                            name: .xRateLimitLimit,
+                            value: "\(mostRestrictive.currentAttempts + mostRestrictive.remainingAttempts)"
+                        )
+                        
+                        response.headers.add(
+                            name:.xRateLimitRemaining,
+                            value: "\(mostRestrictive.remainingAttempts)"
+                        )
+                        
+                        response.headers.add(
+                            name: .xRateLimitReset,
+                            value: "\(mostRestrictive.nextAllowedAttempt?.timeIntervalSince1970 ?? 0)"
+                        )
+                        
+                        response.headers.add(
+                            name: .xRateLimitSource,
+                            value: source
+                        )
+                        
+                        response.headers.add(
+                            name: .xEmailRateLimitRemaining,
+                            value: "\(emailResult.remainingAttempts)"
+                        )
+                        
+                        response.headers.add(
+                            name: .xIPRateLimitRemaining,
+                            value: "\(ipResult.remainingAttempts)"
+                        )
+                        
+                        return response
                     }
                     
                     try await client.subscribe.request(.init(email))
-                    
+
                     await emailLimiter.recordSuccess(.email(email))
                     await ipLimiter.recordSuccess(.ip(ipAddress))
+
+                    let response = Response.json(success: true, message: "Successfully subscribed")
+
+                    response.headers.add(
+                        name: .xRateLimitLimit,
+                        value: "\(emailResult.currentAttempts + emailResult.remainingAttempts)"
+                    )
                     
+                    response.headers.add(
+                        name: .xRateLimitRemaining,
+                        value: "\(min(emailResult.remainingAttempts, ipResult.remainingAttempts))"
+                    )
+                    
+                    response.headers.add(
+                        name: .xRateLimitReset,
+                        value: "\(min(emailResult.nextAllowedAttempt?.timeIntervalSince1970 ?? 0, ipResult.nextAllowedAttempt?.timeIntervalSince1970 ?? 0))"
+                    )
+                    
+                    response.headers.add(
+                        name: .xEmailRateLimitRemaining,
+                        value: "\(emailResult.remainingAttempts)"
+                    )
+                    
+                    response.headers.add(
+                        name: .xIPRateLimitRemaining,
+                        value: "\(ipResult.remainingAttempts)"
+                    )
+
                     @Dependency(\.envVars.appEnv) var appEnv
-                    
-                    let cookieValue = HTTPCookies.Value(
+
+                    response.cookies[cookieId] = HTTPCookies.Value(
                         string: "true",
                         expires: .distantFuture,
                         maxAge: nil,
@@ -99,8 +153,6 @@ extension CoenttbWebNewsletter.API {
                         sameSite: .strict
                     )
                     
-                    let response = Response.json(success: true, message: "Successfully subscribed")
-                    response.cookies[cookieId] = cookieValue
                     return response
                 }
                 catch let error as ValidationError {
@@ -186,4 +238,3 @@ extension CoenttbWebNewsletter.API {
         }
     }
 }
-

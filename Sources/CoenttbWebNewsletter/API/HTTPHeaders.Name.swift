@@ -6,3 +6,13 @@
 //
 
 import Foundation
+import Vapor
+
+extension HTTPHeaders.Name {
+    public static let xRateLimitLimit: Self = "X-RateLimit-Limit"
+    public static let xRateLimitRemaining: Self = "X-RateLimit-Remaining"
+    public static let xRateLimitReset: Self = "X-RateLimit-Reset"
+    public static let xEmailRateLimitRemaining: Self = "X-Email-RateLimit-Remaining"
+    public static let xIPRateLimitRemaining: Self = "X-IP-RateLimit-Remaining"
+    public static let xRateLimitSource: Self = "X-RateLimit-Source"
+}

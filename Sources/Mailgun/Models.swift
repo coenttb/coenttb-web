@@ -48,30 +48,6 @@ public enum TrackingOpens: String, Sendable {
 }
 
 @MemberwiseInit(.public)
-public struct Email: Sendable {
-    public var from: EmailAddress
-    public var to: [EmailAddress]
-    @Init(default: nil)
-    public var cc: [EmailAddress]?
-    @Init(default: nil)
-    public var bcc: [EmailAddress]?
-    public var subject: String
-    public var text: String?
-    public var html: String?
-    @Init(default: nil)
-    public var testMode: Bool?
-    @Init(default: nil)
-    public var tracking: Tracking?
-    @Init(default: nil)
-    public var trackingClicks: TrackingClicks?
-    @Init(default: nil)
-    public var trackingOpens: TrackingOpens?
-    public var domain: String
-    @Init(default: [])
-    public var headers: [(String, String)]
-}
-
-@MemberwiseInit(.public)
 public struct MailgunForwardPayload: Codable, Equatable, Sendable {
     public let recipient: EmailAddress
     public let timestamp: Int

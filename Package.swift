@@ -26,8 +26,6 @@ extension String {
     static let hotjar: Self = "Hotjar"
     static let postgres: Self = "Postgres"
     static let googleAnalytics: Self = "GoogleAnalytics"
-    static let rateLimiter: Self = "RateLimiter"
-    static let boundedCache: Self = "BoundedCache"
 }
 
 extension Target.Dependency {
@@ -48,10 +46,6 @@ extension Target.Dependency {
     static var coenttbWebStripeLive: Self { .target(name: .coenttbWebStripeLive) }
     static var coenttbWebBlog: Self { .target(name: .coenttbWebBlog) }
     static var coenttbWebSyndication: Self { .target(name: .coenttbWebSyndication) }
-    
-    static var boundedCache: Self { .target(name: .boundedCache) }
-    static var rateLimiter: Self { .target(name: .rateLimiter) }
-    
     static var gitHub: Self { .target(name: .gitHub) }
     static var mailgun: Self { .target(name: .mailgun) }
     static var hotjar: Self { .target(name: .hotjar) }
@@ -60,6 +54,8 @@ extension Target.Dependency {
 }
 
 extension Target.Dependency {
+    static var boundedCache: Self { .product(name: "BoundedCache", package: "coenttb-utils") }
+    static var rateLimiter: Self { .product(name: "RateLimiter", package: "coenttb-utils") }
     static var appSecret: Self { .product(name: "AppSecret", package: "swift-web") }
     static var coenttbEmail: Self { .product(name: "CoenttbEmail", package: "coenttb-html") }
     static var casePaths: Self { .product(name: "CasePaths", package: "swift-case-paths") }
@@ -77,6 +73,7 @@ extension Target.Dependency {
     static var postgresKit: Self { .product(name: "PostgresKit", package: "postgres-kit") }
     static var coenttbHtml: Self { .product(name: "CoenttbHTML", package: "coenttb-html") }
     static var coenttbMarkdown: Self { .product(name: "CoenttbMarkdown", package: "coenttb-html") }
+    static var environmentVariables: Self { .product(name: "EnvironmentVariables", package: "swift-environment-variables") }
     static var tagged: Self { .product(name: "Tagged", package: "swift-tagged") }
     static var taggedMoney: Self { .product(name: "TaggedMoney", package: "swift-tagged") }
     static var urlRouting: Self { .product(name: "URLRouting", package: "swift-url-routing") }
@@ -121,8 +118,6 @@ let package = Package(
         .library(name: .coenttbWebNewsletter, targets: [.coenttbWebNewsletter]),
         .library(name: .coenttbWebBlog, targets: [.coenttbWebBlog]),
         .library(name: .coenttbWebSyndication, targets: [.coenttbWebSyndication]),
-        .library(name: .boundedCache, targets: [.boundedCache]),
-        .library(name: .rateLimiter, targets: [.rateLimiter]),
         .library(name: .mailgun, targets: [.mailgun]),
         .library(name: .gitHub, targets: [.gitHub]),
         .library(name: .hotjar, targets: [.hotjar]),
@@ -137,6 +132,8 @@ let package = Package(
         .package(url: "https://github.com/coenttb/coenttb-html", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-language.git", branch: "main"),
         .package(url: "https://github.com/coenttb/macro-codable-kit.git", branch: "main"),
+        .package(url: "https://github.com/coenttb/swift-environment-variables.git", branch: "main"),
+        .package(url: "https://github.com/coenttb/coenttb-utils.git", branch: "main"),
         .package(url: "https://github.com/gohanlon/swift-memberwise-init-macro", from: "0.3.0"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.1.5"),
         .package(url: "https://github.com/pointfreeco/swift-tagged.git", from: "0.10.0"),
@@ -270,6 +267,7 @@ let package = Package(
                 .tagged,
                 .sharing,
                 .language,
+                .environmentVariables
             ]
         ),
         .target(
@@ -397,18 +395,6 @@ let package = Package(
                 .urlRouting,
                 .coenttbWebModels,
                 .language,
-            ]
-        ),
-        .target(
-            name: .rateLimiter,
-            dependencies: [
-                .boundedCache
-            ]
-        ),
-        .target(
-            name: .boundedCache,
-            dependencies: [
-                
             ]
         ),
         .target(

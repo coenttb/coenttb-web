@@ -6,3 +6,13 @@
 //
 
 import Foundation
+import MemberwiseInit
+
+extension Mailgun.Client {
+    @MemberwiseInit(.public)
+    public struct EnvVars: Codable {
+        public var baseUrl: String
+        public var apiKey: Mailgun.Client.ApiKey
+        public var domain: Mailgun.Client.Domain
+    }
+}
