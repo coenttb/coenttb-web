@@ -33,40 +33,19 @@ extension Target.Dependency {
 
 extension Target.Dependency {
     
-    static var appSecret: Self { .product(name: "AppSecret", package: "swift-web") }
+    static var swiftWeb: Self { .product(name: "SwiftWeb", package: "swift-web") }
     static var coenttbEmail: Self { .product(name: "CoenttbEmail", package: "coenttb-html") }
-    static var casePaths: Self { .product(name: "CasePaths", package: "swift-case-paths") }
-    static var databaseHelpers: Self { .product(name: "DatabaseHelpers", package: "swift-web") }
-    static var dependencies: Self { .product(name: "Dependencies", package: "swift-dependencies") }
-    static var dependenciesMacros: Self { .product(name: "DependenciesMacros", package: "swift-dependencies") }
-    static var fluent: Self { .product(name: "Fluent", package: "fluent") }
-    static var fluentPostgresDriver: Self { .product(name: "FluentPostgresDriver", package: "fluent-postgres-driver") }
-    static var language: Self { .product(name: "Languages", package: "swift-language") }
-    static var swiftHtml: Self { .product(name: "HTML", package: "swift-html") }
-    static var logging: Self { .product(name: "Logging", package: "swift-log") }
-    static var codable: Self { .product(name: "MacroCodableKit", package: "macro-codable-kit") }
-    static var memberwiseInit: Self { .product(name: "MemberwiseInit", package: "swift-memberwise-init-macro") }
-    static var nioDependencies: Self { .product(name: "NIODependencies", package: "swift-web") }
-    static var postgresKit: Self { .product(name: "PostgresKit", package: "postgres-kit") }
     static var coenttbHtml: Self { .product(name: "CoenttbHTML", package: "coenttb-html") }
     static var coenttbMarkdown: Self { .product(name: "CoenttbMarkdown", package: "coenttb-html") }
-    static var environmentVariables: Self { .product(name: "EnvironmentVariables", package: "swift-environment-variables") }
-    static var tagged: Self { .product(name: "Tagged", package: "swift-tagged") }
-    static var taggedMoney: Self { .product(name: "TaggedMoney", package: "swift-tagged") }
-    static var urlRouting: Self { .product(name: "URLRouting", package: "swift-url-routing") }
+    static var casePaths: Self { .product(name: "CasePaths", package: "swift-case-paths") }
+    static var fluent: Self { .product(name: "Fluent", package: "fluent") }
+    static var fluentPostgresDriver: Self { .product(name: "FluentPostgresDriver", package: "fluent-postgres-driver") }
+    static var codable: Self { .product(name: "MacroCodableKit", package: "macro-codable-kit") }
+    static var postgresKit: Self { .product(name: "PostgresKit", package: "postgres-kit") }
     static var vapor: Self { .product(name: "Vapor", package: "vapor") }
     static var vaporRouting: Self { .product(name: "VaporRouting", package: "vapor-routing") }
-    static var emailaddress: Self { .product(name: "EmailAddress", package: "swift-web") }
-    static var urlFormCoding: Self { .product(name: "UrlFormCoding", package: "swift-web") }
-    static var loggingDependencies: Self { .product(name: "LoggingDependencies", package: "swift-web") }
-    static var web: Self { .product(name: "Web", package: "swift-web") }
-    static var swiftDate: Self { .product(name: "Date", package: "swift-date") }
-    static var decodableRequest: Self { .product(name: "DecodableRequest", package: "swift-web") }
-    static var either: Self { .product(name: "Either", package: "swift-prelude") }
-    static var foundationPrelude: Self { .product(name: "FoundationPrelude", package: "swift-web") }
-    static var httpPipeline: Self { .product(name: "HttpPipeline", package: "swift-web") }
-    static var urlFormEncoding: Self { .product(name: "UrlFormEncoding", package: "swift-web") }
     static var rateLimiter: Self { .product(name: "RateLimiter", package: "coenttb-utils") }
+    static var language: Self { .product(name: "Languages", package: "swift-language") }
 }
 
 let package = Package(
@@ -116,6 +95,7 @@ let package = Package(
         .target(
             name: .coenttbWeb,
             dependencies: [
+                .swiftWeb,
                 .coenttbWebEnvVars,
                 .coenttbWebHTML,
                 .coenttbWebDependencies,
@@ -128,89 +108,49 @@ let package = Package(
                 .coenttbServerRouter,
                 
                 
-                    .appSecret,
                 .coenttbEmail,
-                .casePaths,
-                .databaseHelpers,
-                .dependencies,
-                .dependenciesMacros,
-                .language,
-                .swiftHtml,
-                .logging,
                 .codable,
-                .memberwiseInit,
-                .nioDependencies,
                 .postgresKit,
                 .coenttbHtml,
                 .coenttbMarkdown,
-                .environmentVariables,
-                .tagged,
-                .taggedMoney,
-                .urlRouting,
                 .vapor,
                 .vaporRouting,
-                .emailaddress,
-                .urlFormCoding,
-                .loggingDependencies,
-                .web,
-                .swiftDate,
-                .decodableRequest,
-                .either,
-                .foundationPrelude,
-                .httpPipeline,
-                .urlFormEncoding,
             ]
         ),
         .target(
             name: .coenttbWebEnvVars,
             dependencies: [
-                .appSecret,
-                .coenttbWebModels,
-                .dependencies,
-                .language,
-                .logging,
-                .memberwiseInit,
-                .tagged,
-                .language,
-                .environmentVariables
+                .swiftWeb,
+                .coenttbWebModels
             ]
         ),
         
         .target(
             name: .coenttbWebHTML,
             dependencies: [
+                .swiftWeb,
+                .coenttbHtml,
                 .coenttbMarkdown,
                 .coenttbWebTranslations,
-                .dependencies,
-                .language,
-                .coenttbHtml,
-                .web,
-                .swiftHtml,
             ]
         ),
         .target(
             name: .coenttbWebLegal,
             dependencies: [
+                .swiftWeb,
                 .coenttbWebHTML,
                 .coenttbMarkdown,
                 .coenttbWebTranslations,
-                .dependencies,
-                .language,
                 .coenttbHtml,
                 .vapor,
-                .web,
-                .swiftHtml,
             ]
         ),
         .target(
             name: .coenttbWebDependencies,
             dependencies: [
+                .swiftWeb,
                 .coenttbWebModels,
-                .dependencies,
                 .fluent,
-                .language,
-                .memberwiseInit,
-                .nioDependencies,
                 .postgresKit,
                 .vapor,
             ]
@@ -218,21 +158,14 @@ let package = Package(
         .target(
             name: .coenttbWebUtils,
             dependencies: [
-                .dependencies,
-                .language
+                .swiftWeb
             ]
         ),
         .target(
             name: .coenttbWebModels,
             dependencies: [
-                .dependencies,
-                .dependenciesMacros,
-                .emailaddress,
+                .swiftWeb,
                 .fluent,
-                .memberwiseInit,
-                .tagged,
-                .casePaths,
-                .language,
             ]
         ),
         .target(
@@ -244,42 +177,32 @@ let package = Package(
         .target(
             name: .coenttbWebVapor,
             dependencies: [
+                .swiftWeb,
                 .coenttbWebDependencies,
-                .memberwiseInit,
-                .loggingDependencies,
-                .coenttbHtml,
-                .vapor,
-                .vaporRouting,
                 .coenttbServerRouter,
                 .coenttbWebEnvVars,
-                .language,
+                .vapor,
+                .vaporRouting,
                 .rateLimiter
             ]
         ),
         .target(
             name: .coenttbWebDatabase,
             dependencies: [
-                .dependencies,
-                .dependenciesMacros,
+                .swiftWeb,
                 .fluent,
                 .fluentPostgresDriver,
-                .databaseHelpers,
-                .loggingDependencies,
-                .postgresKit,
-                .language,
-                .emailaddress
             ]
         ),
         .target(
             name: .coenttbServerRouter,
             dependencies: [
-                .casePaths,
+                .language,
+                .swiftWeb,
                 .coenttbWebTranslations,
                 .coenttbWebDependencies,
-                .urlFormCoding,
-                .urlRouting,
                 .coenttbWebModels,
-                .language,
+                .casePaths,
             ]
         ),
     ],

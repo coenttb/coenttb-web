@@ -1,5 +1,5 @@
 {
-  "originHash" : "a69ee1fcee61b4c890c761c4561377b6b8b483fa8738f072f068110e5dae3a9c",
+  "originHash" : "17aab772b12a79e5550267b45bdd62dcb3766b48eb3ad321ace8a4dc37eeefe2",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -116,6 +116,15 @@
       "state" : {
         "branch" : "main",
         "revision" : "3d56e6c42029c62d6913f6b623ab3036d9f30092"
+      }
+    },
+    {
+      "identity" : "pointfree-web",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/coenttb/pointfree-web",
+      "state" : {
+        "branch" : "main",
+        "revision" : "9d9c589f4dce7a98a274d56d679889a254dbbdbb"
       }
     },
     {
@@ -556,7 +565,7 @@
       "location" : "https://github.com/coenttb/swift-web",
       "state" : {
         "branch" : "main",
-        "revision" : "9f04fcf19fd08367a70de7fd1d27dced9d8946c5"
+        "revision" : "1e074163905e60c80d63df1bc1041c901d95169b"
       }
     },
     {
