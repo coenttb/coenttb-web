@@ -109,6 +109,7 @@ let package = Package(
                 .vapor,
                 .vaporRouting,
                 .fluentPostgresDriver,
+                .rateLimiter
             ]
         ),
         .target(
