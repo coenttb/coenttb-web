@@ -106,7 +106,6 @@ let package = Package(
                 .coenttbWebLegal,
                 .coenttbWebUtils,
                 .postgresKit,
-                .coenttbHtml,
                 .vapor,
                 .vaporRouting,
                 .fluentPostgresDriver,
