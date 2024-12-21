@@ -1,5 +1,5 @@
 {
-  "originHash" : "22f532cfb7df9dcb378c0af17e809cdfd9314abdeba8b69c08f0ca796eda4f6e",
+  "originHash" : "7de011ad34db860571dfc4bc678c0c155697261f6555c7f1bbe1152ccf5e781b",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -34,7 +34,7 @@
       "location" : "https://github.com/coenttb/coenttb-html",
       "state" : {
         "branch" : "main",
-        "revision" : "8c374f06e83c3d07ce2a71a69eaacded34496d18"
+        "revision" : "1ce8153312b4f78e38744858a116cadcb096bbca"
       }
     },
     {
@@ -43,7 +43,7 @@
       "location" : "https://github.com/coenttb/coenttb-utils.git",
       "state" : {
         "branch" : "main",
-        "revision" : "cce7b55d0065696cb06c668f591b2bfc6493c292"
+        "revision" : "03cdc7f28e600db96b9f3e4bc70b1a79b52a95fd"
       }
     },
     {
