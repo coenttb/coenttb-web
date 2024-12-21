@@ -8,7 +8,6 @@
 
 @_exported import DatabaseHelpers
 @_exported import Dependencies
-@_exported import DependenciesMacros
 @_exported import DatabaseHelpers
 @_exported @preconcurrency import Fluent
 @_exported import Vapor

@@ -32,6 +32,7 @@ extension Target.Dependency {
 }
 
 extension Target.Dependency {
+    static var environmentVariables: Self { .product(name: "EnvironmentVariables", package: "swift-environment-variables") }
     static var swiftWeb: Self { .product(name: "SwiftWeb", package: "swift-web") }
     static var coenttbEmail: Self { .product(name: "CoenttbEmail", package: "coenttb-html") }
     static var coenttbHtml: Self { .product(name: "CoenttbHTML", package: "coenttb-html") }
@@ -66,7 +67,6 @@ let package = Package(
         .library(name: .coenttbServerRouter, targets: [.coenttbServerRouter]),
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-log", from: "1.5.0"),
         .package(url: "https://github.com/coenttb/swift-html", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-web", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-date", branch: "main"),
@@ -91,6 +91,8 @@ let package = Package(
         .target(
             name: .coenttbWeb,
             dependencies: [
+                .coenttbHtml,
+                .coenttbMarkdown,
                 .coenttbServerRouter,
                 .swiftWeb,
                 .coenttbEmail,
@@ -105,7 +107,6 @@ let package = Package(
                 .coenttbWebUtils,
                 .postgresKit,
                 .coenttbHtml,
-                .coenttbMarkdown,
                 .vapor,
                 .vaporRouting,
                 .fluentPostgresDriver,
@@ -115,7 +116,8 @@ let package = Package(
             name: .coenttbWebEnvVars,
             dependencies: [
                 .swiftWeb,
-                .coenttbWebModels
+                .coenttbWebModels,
+                .environmentVariables,
             ]
         ),
         

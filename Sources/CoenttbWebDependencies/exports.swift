@@ -7,4 +7,3 @@
 
 import Foundation
 @_exported import Dependencies
-@_exported import DependenciesMacros
