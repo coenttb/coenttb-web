@@ -51,3 +51,5 @@
 @_exported import FoundationPrelude
 @_exported import HttpPipeline
 @_exported import UrlFormEncoding
+@_exported import RateLimiter
+
