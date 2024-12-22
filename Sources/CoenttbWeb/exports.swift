@@ -5,6 +5,11 @@
 //  Created by Coen ten Thije Boonkkamp on 21/12/2024.
 //
 
+@_exported import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
+
 @_exported import CoenttbServerRouter
 @_exported import CoenttbWebEnvVars
 @_exported import CoenttbWebHTML

@@ -21,3 +21,4 @@ public enum VaporApplicationKey: TestDependencyKey {
         Application(.testing)
     }()
 }
+
