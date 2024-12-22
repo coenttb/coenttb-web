@@ -1,5 +1,5 @@
 {
-  "originHash" : "139493dd8bc7b6bb951e5557325214df7f87499cb785cd73e0464d1e10e57759",
+  "originHash" : "1fe9eb579a50e1c52c516a04907cd7ad7a57833a86f2979e84519cc7f488e4c4",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -115,7 +115,7 @@
       "location" : "https://github.com/coenttb/pointfree-web",
       "state" : {
         "branch" : "main",
-        "revision" : "6fdb3612b3db916e87c04f27628448f56c9f4677"
+        "revision" : "5994fff00e459c2bc4277cfa57ed7a184b3c51ad"
       }
     },
     {
@@ -520,7 +520,7 @@
       "location" : "https://github.com/coenttb/swift-web",
       "state" : {
         "branch" : "main",
-        "revision" : "70a64bc0f81881a02c4f448920a9a1296145c2ca"
+        "revision" : "553a5240c5dea126b701c41076cb3f2020ce09d1"
       }
     },
     {
