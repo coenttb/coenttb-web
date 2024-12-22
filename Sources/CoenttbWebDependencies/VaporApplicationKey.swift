@@ -17,10 +17,7 @@ extension DependencyValues {
 }
 
 public enum VaporApplicationKey: TestDependencyKey {
-    public static let testValue: Vapor.Application = { fatalError() }()
+    public static let testValue: Vapor.Application = {
+        Application(.testing)
+    }()
 }
-
-extension VaporApplicationKey: DependencyKey {
-    public static let liveValue: Vapor.Application = { fatalError() }()
-}
-
