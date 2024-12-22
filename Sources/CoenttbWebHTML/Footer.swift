@@ -2,25 +2,28 @@ import Dependencies
 import Foundation
 import CoenttbHTML
 
-public struct Footer<TaglineContent: HTML>: HTML {
+public struct Footer<
+    TaglineContent: HTML,
+    CopyrightSection: HTML
+>: HTML {
     
     let foregroundColor: HTMLColor
     let backgroundColor: HTMLColor
     let tagline: Tagline
-    let copyrightHolder: (name: String, color: HTMLColor?)?
+    let copyrightSection: CopyrightSection
     let columns: [(title: String, links: [(label: String, href: String)])]
     
     public init(
         foregroundColor: HTMLColor = .black.withDarkColor(.white),
         backgroundColor: HTMLColor = .offBlack.withDarkColor(.offWhite),
         tagline: Tagline,
-        copyrightHolder: (name: String, color: HTMLColor?)?,
+        copyrightSection: CopyrightSection,
         columns: [(title: String, links: [(label: String, href: String)])]
     ) {
         self.foregroundColor = foregroundColor
         self.backgroundColor = backgroundColor
         self.tagline = tagline
-        self.copyrightHolder = copyrightHolder
+        self.copyrightSection = copyrightSection
         self.columns = columns
     }
     
@@ -84,25 +87,31 @@ public struct Footer<TaglineContent: HTML>: HTML {
                     }
                 }
                 
-                if let copyrightHolder {
-                    p {
-                        let year = Calendar(identifier: .gregorian).component(
-                            .year, from: Date.now)
-                            """
-                            © \(year)\(" " + copyrightHolder.name). \(String.all_rights_reserved.capitalizingFirstLetter()).
-                            """
-                        
-                    }
-                    .color(copyrightHolder.color ?? .white.withDarkColor(.black))
-                    .fontStyle(.body(.small))
-                    .padding(top: 2.rem, media: .mobile)
-                }
+                copyrightSection
             }
             .alignItems(.firstBaseline)
         }
         .backgroundColor(backgroundColor)
         .padding(2.rem, media: .mobile)
         .padding(4.rem, media: .desktop)
+    }
+}
+
+public struct AllRightsReserved: HTML {
+    let copyrightHolder: (name: String, color: HTMLColor?)
+    
+    public var body: some HTML {
+        p {
+            let year = Calendar(identifier: .gregorian).component(
+                .year, from: Date.now)
+                """
+                © \(year)\(" " + copyrightHolder.name). \(String.all_rights_reserved.capitalizingFirstLetter()).
+                """
+            
+        }
+        .color(copyrightHolder.color ?? .white.withDarkColor(.black))
+        .fontStyle(.body(.small))
+        .padding(top: 2.rem, media: .mobile)
     }
 }
 
@@ -149,7 +158,12 @@ import SwiftUI
             "A blog exploring business code using the Swift programming language. Hosted by Coen ten Thije Boonkkamp."
         }
     ),
-    copyrightHolder: ("Coen ten Thije Boonkkamp", nil),
+    copyrightSection: AllRightsReserved(
+        copyrightHolder: (
+            name: "Coen ten Thije Boonkkamp",
+            color: nil
+        )
+    ),
     columns: [
         (
             title: "Content",
@@ -171,7 +185,7 @@ import SwiftUI
                 (label: "General terms and conditions", href: "/"),
                 (label: "User terms", href: "/"),
             ]
-        ),
+        )
     ]
     
 )
