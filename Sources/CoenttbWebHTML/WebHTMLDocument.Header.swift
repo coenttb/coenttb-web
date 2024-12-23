@@ -8,6 +8,8 @@
 import Foundation
 import CoenttbHTML
 import Languages
+import Dependencies
+import CoenttbWebDependencies
 
 public struct WebHTMLDocumentHeader<
     Styles: HTML,
@@ -20,11 +22,12 @@ public struct WebHTMLDocumentHeader<
     let canonicalHref: URL?
     let rssXml: URL?
     let language: Language
-    let languages: [Language]
     let hreflang: (Languages.Language) -> URL
     @HTMLBuilder let styles: () -> Styles
     @HTMLBuilder let favicons: () -> Favicons
     @HTMLBuilder let scripts: () -> Scripts
+    
+    @Dependencies.Dependency(\.languages) var languages
 
     public init(
         title: String?,
@@ -33,7 +36,6 @@ public struct WebHTMLDocumentHeader<
         canonicalHref: URL?,
         rssXml: URL?,
         language: Language,
-        languages: [Language],
         hreflang: @escaping (Languages.Language) -> URL,
         @HTMLBuilder styles: @escaping  () -> Styles,
         @HTMLBuilder favicons: @escaping () -> Favicons,
@@ -43,7 +45,6 @@ public struct WebHTMLDocumentHeader<
         self.description = description
         self.themeColor = themeColor
         self.language = language
-        self.languages = languages
         self.hreflang = hreflang
         self.canonicalHref = canonicalHref
         self.rssXml = rssXml

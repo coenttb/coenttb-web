@@ -132,6 +132,7 @@ let package = Package(
                     .coenttbHtml,
                     .coenttbMarkdown,
                     .coenttbWebTranslations,
+                    .coenttbWebDependencies,
                 ]
             ),
         .target(

@@ -9,6 +9,8 @@ import Foundation
 import CoenttbHTML
 import Favicon
 import Languages
+import Dependencies
+import CoenttbWebDependencies
 
 public struct CoenttbWebHTMLDocumentHeader<
     Styles: HTML,
@@ -20,7 +22,6 @@ public struct CoenttbWebHTMLDocumentHeader<
     let rssXml: URL?
     let themeColor: HTMLColor
     let language: Languages.Language
-    let languages: [Languages.Language]
     let hreflang: (Languages.Language) -> URL
     let styles: Styles
     let scripts: Scripts
@@ -33,7 +34,6 @@ public struct CoenttbWebHTMLDocumentHeader<
         rssXml: URL?,
         themeColor: HTMLColor,
         language: Languages.Language,
-        languages: [Languages.Language] = Languages.Language.allCases,
         hreflang: @escaping (Languages.Language) -> URL,
         @HTMLBuilder styles: () -> Styles,
         @HTMLBuilder scripts: () -> Scripts,
@@ -45,12 +45,13 @@ public struct CoenttbWebHTMLDocumentHeader<
         self.rssXml = rssXml
         self.themeColor = themeColor
         self.language = language
-        self.languages = languages
         self.hreflang = hreflang
         self.styles = styles()
         self.scripts = scripts()
         self.favicons = favicons()
     }
+    
+    @Dependencies.Dependency(\.languages) var languages
     
     public var body: some HTML {
         WebHTMLDocumentHeader(
@@ -60,7 +61,6 @@ public struct CoenttbWebHTMLDocumentHeader<
             canonicalHref: canonicalHref,
             rssXml: rssXml,
             language: language,
-            languages: languages,
             hreflang: hreflang,
             styles: {
                 style { "\(renderedNormalizeCss)" }
