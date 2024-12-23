@@ -9,8 +9,8 @@ import Dependencies
 import Foundation
 import Languages
 
-private enum LanguagesKey: TestDependencyKey {
-    static let testValue: [Languages.Language] = [.dutch, .english]
+public enum LanguagesKey: TestDependencyKey {
+    public static let testValue: [Languages.Language] = [.dutch, .english]
 }
 
 extension DependencyValues {
