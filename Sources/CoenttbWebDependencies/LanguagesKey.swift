@@ -9,8 +9,7 @@ import Dependencies
 import Foundation
 import Languages
 
-private enum LanguagesKey: DependencyKey {
-    static let liveValue: [Languages.Language] = []
+private enum LanguagesKey: TestDependencyKey {
     static let testValue: [Languages.Language] = [.dutch, .english]
 }
 
