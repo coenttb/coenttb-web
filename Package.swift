@@ -45,6 +45,7 @@ extension Target.Dependency {
     static var vapor: Self { .product(name: "Vapor", package: "vapor") }
     static var vaporRouting: Self { .product(name: "VaporRouting", package: "vapor-routing") }
     static var fluentPostgresDriver: Self { .product(name: "FluentPostgresDriver", package: "fluent-postgres-driver") }
+    static var issueReporting: Self { .product(name: "IssueReporting", package: "xctest-dynamic-overlay") }
 }
 
 let package = Package(
@@ -81,6 +82,7 @@ let package = Package(
         .package(url: "https://github.com/pointfreeco/swift-sharing.git", from: "1.0.4"),
         .package(url: "https://github.com/pointfreeco/swift-case-paths.git", from: "1.5.6"),
         .package(url: "https://github.com/pointfreeco/swift-prelude.git", branch: "main"),
+        .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay.git", from: "1.4.3"),
         .package(url: "https://github.com/vapor/postgres-kit", from: "2.12.0"),
         .package(url: "https://github.com/vapor/fluent.git", from: "4.8.0"),
         .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.7.2"),
@@ -110,6 +112,7 @@ let package = Package(
                 .vaporRouting,
                 .fluent,
                 .fluentPostgresDriver,
+                .issueReporting,
                 .postgresKit,
             ]
         ),
@@ -150,6 +153,7 @@ let package = Package(
                 .fluent,
                 .postgresKit,
                 .vapor,
+                .issueReporting,
             ]
         ),
         .target(

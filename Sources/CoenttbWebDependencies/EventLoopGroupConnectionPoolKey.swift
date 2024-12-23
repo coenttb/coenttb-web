@@ -20,6 +20,12 @@ extension DependencyValues {
 
 public enum EventLoopGroupConnectionPoolKey: TestDependencyKey {
     public static var testValue: EventLoopGroupConnectionPool<PostgresConnectionSource> {
-        fatalError()
+        @Dependency(\.mainEventLoopGroup) var mainEventLoopGroup
+        @Dependency(\.sqlConfiguration) var sqlConfiguration
+        
+        return .init(
+            source: PostgresConnectionSource(sqlConfiguration: sqlConfiguration),
+            on: mainEventLoopGroup
+        )
     }
 }

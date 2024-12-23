@@ -10,6 +10,7 @@ import Dependencies
 @preconcurrency import FluentKit
 import Foundation
 @preconcurrency import PostgresKit
+import IssueReporting
 
 extension DependencyValues {
     public var sqlConfiguration: SQLPostgresConfiguration {
@@ -19,9 +20,19 @@ extension DependencyValues {
 }
 
 public enum SQLPostgresConfigurationKey: TestDependencyKey {
-    public static var testValue: SQLPostgresConfiguration {
+    public static let testValue: SQLPostgresConfiguration = {
+        reportIssue(
+          """
+          You need to provide a custom SQLPostgresConfiguration.
+          """,
+          fileID: #fileID,
+          filePath: #filePath,
+          line: #line,
+          column: #column
+        )
+        
         fatalError()
-    }
+    }()
 }
 
 extension SQLPostgresConfiguration {
