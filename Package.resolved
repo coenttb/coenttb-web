@@ -1,5 +1,5 @@
 {
-  "originHash" : "733e2545acc551c5f332c9ce210c141e8a0fbe76c3751d66d73c73502718069a",
+  "originHash" : "51a52c8990968d2c5b067971d08c38461e4c3f03c0eeaba726080907bc704000",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -268,7 +268,7 @@
       "location" : "https://github.com/coenttb/swift-date",
       "state" : {
         "branch" : "main",
-        "revision" : "b13f34f8475e2cbece64a840bb03f65fa6ef681f"
+        "revision" : "8f433af24df277c79c2cc7d1e01b9719fbff3fe2"
       }
     },
     {
@@ -295,7 +295,7 @@
       "location" : "https://github.com/coenttb/swift-environment-variables.git",
       "state" : {
         "branch" : "main",
-        "revision" : "d9413bf1dac21f03536d21b4877aea32700b3307"
+        "revision" : "8755643cb24d770fa2291da61881ff35ca2f4421"
       }
     },
     {
@@ -520,7 +520,7 @@
       "location" : "https://github.com/coenttb/swift-web",
       "state" : {
         "branch" : "main",
-        "revision" : "d8f6b42e1e551f34529c9ee463e394ed2cc12d35"
+        "revision" : "f3fdf8a32446c8b0b1426d9bc015f73fcf0bc874"
       }
     },
     {

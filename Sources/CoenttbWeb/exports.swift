@@ -10,6 +10,9 @@
 import FoundationNetworking
 #endif
 
+
+@_exported import RFC2822
+
 @_exported import CoenttbServerRouter
 @_exported import CoenttbWebEnvVars
 @_exported import CoenttbWebHTML
