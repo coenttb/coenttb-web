@@ -12,6 +12,7 @@ import FoundationNetworking
 
 
 @_exported import RFC2822
+@_exported import Domain
 
 @_exported import CoenttbServerRouter
 @_exported import CoenttbWebEnvVars
