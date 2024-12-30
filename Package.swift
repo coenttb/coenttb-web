@@ -53,17 +53,9 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/coenttb/coenttb-html", branch: "main"),
-        .package(url: "https://github.com/coenttb/coenttb-utils.git", branch: "main"),
-        .package(url: "https://github.com/coenttb/swift-date", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-environment-variables.git", branch: "main"),
-        .package(url: "https://github.com/coenttb/swift-html", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-language.git", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-web", branch: "main"),
-        .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.1.5"),
-        .package(url: "https://github.com/pointfreeco/swift-tagged.git", from: "0.10.0"),
-        .package(url: "https://github.com/pointfreeco/swift-url-routing", from: "0.6.0"),
-        .package(url: "https://github.com/pointfreeco/swift-case-paths.git", from: "1.5.6"),
-        .package(url: "https://github.com/pointfreeco/swift-prelude.git", branch: "main"),
     ],
     targets: [
         
