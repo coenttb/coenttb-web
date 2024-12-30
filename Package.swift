@@ -42,7 +42,19 @@ let package = Package(
         .iOS(.v17)
     ],
     products: [
-        .library(name: .coenttbWeb, targets: [.coenttbWeb]),
+        .library(
+            name: .coenttbWeb,
+            targets: [
+                .coenttbWeb,
+                .coenttbWebEnvVars,
+                .coenttbWebHTML,
+                .coenttbWebDependencies,
+                .coenttbWebModels,
+                .coenttbWebTranslations,
+                .coenttbWebUtils,
+                .coenttbWebLegal,
+            ]
+        ),
         .library(name: .coenttbWebEnvVars, targets: [.coenttbWebEnvVars]),
         .library(name: .coenttbWebHTML, targets: [.coenttbWebHTML]),
         .library(name: .coenttbWebDependencies, targets: [.coenttbWebDependencies]),
