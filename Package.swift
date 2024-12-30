@@ -4,14 +4,14 @@ import Foundation
 import PackageDescription
 
 extension String {
-    static let coenttbWeb: Self = "CoenttbWeb"
-    static let coenttbWebEnvVars: Self = "CoenttbWebEnvVars"
-    static let coenttbWebHTML: Self = "CoenttbWebHTML"
-    static let coenttbWebDependencies: Self = "CoenttbWebDependencies"
-    static let coenttbWebModels: Self = "CoenttbWebModels"
-    static let coenttbWebTranslations: Self = "CoenttbWebTranslations"
-    static let coenttbWebUtils: Self = "CoenttbWebUtils"
-    static let coenttbWebLegal: Self = "CoenttbWebLegal"
+    static let coenttbWeb: Self = "Coenttb Web"
+    static let coenttbWebEnvVars: Self = "Coenttb Web EnvVars"
+    static let coenttbWebHTML: Self = "Coenttb Web HTML"
+    static let coenttbWebDependencies: Self = "Coenttb Web Dependencies"
+    static let coenttbWebModels: Self = "Coenttb Web Models"
+    static let coenttbWebTranslations: Self = "Coenttb Web Translations"
+    static let coenttbWebUtils: Self = "Coenttb Web Utils"
+    static let coenttbWebLegal: Self = "Coenttb Web Legal"
 }
 
 extension Target.Dependency {

@@ -13,13 +13,13 @@
 @_exported import RFC2822
 @_exported import Domain
 
-@_exported import CoenttbWebEnvVars
-@_exported import CoenttbWebHTML
-@_exported import CoenttbWebDependencies
-@_exported import CoenttbWebModels
-@_exported import CoenttbWebTranslations
-@_exported import CoenttbWebUtils
-@_exported import CoenttbWebLegal
+@_exported import Coenttb_Web_EnvVars
+@_exported import Coenttb_Web_HTML
+@_exported import Coenttb_Web_Dependencies
+@_exported import Coenttb_Web_Models
+@_exported import Coenttb_Web_Translations
+@_exported import Coenttb_Web_Utils
+@_exported import Coenttb_Web_Legal
 
 @_exported import CoenttbEmail
 @_exported import CoenttbHTML

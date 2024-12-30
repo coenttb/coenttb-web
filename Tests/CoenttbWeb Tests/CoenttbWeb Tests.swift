@@ -7,7 +7,7 @@
 
 import Foundation
 import Testing
-@testable import CoenttbWeb
+@testable import Coenttb_Web
 
 @Test
 func test() async throws  {

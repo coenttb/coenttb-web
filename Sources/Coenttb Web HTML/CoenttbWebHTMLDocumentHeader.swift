@@ -10,7 +10,7 @@ import CoenttbHTML
 import Favicon
 import Languages
 import Dependencies
-import CoenttbWebDependencies
+import Coenttb_Web_Dependencies
 
 public struct CoenttbWebHTMLDocumentHeader<
     Styles: HTML,

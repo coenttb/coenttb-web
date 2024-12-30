@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CoenttbWebTranslations
+import Coenttb_Web_Translations
 
 public struct IdentityFooter: HTML {
     
