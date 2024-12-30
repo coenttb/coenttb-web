@@ -93,7 +93,6 @@ extension InMemoryStore {
     }
 }
 
-
 enum InMemoryStoreKey: DependencyKey {
     static public let testValue: InMemoryStore = .init()
     static public let liveValue: InMemoryStore = .init()
