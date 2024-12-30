@@ -6,17 +6,18 @@
 //
 
 import Foundation
+import EmailAddress
 import CoenttbHTML
 
 public struct EmailLink {
-    public let to: [String]
+    public let to: [EmailAddress]
     public let subject: String?
     public let body: String?
     public let cc: [String]?
     public let bcc: [String]?
     
     public init(
-        to: [String],
+        to: [EmailAddress],
         subject: String? = nil,
         body: String? = nil,
         cc: [String]? = nil,
@@ -31,7 +32,7 @@ public struct EmailLink {
     
     // Convenience initializer for single recipient
     public init(
-        to: String,
+        to: EmailAddress,
         subject: String? = nil,
         body: String? = nil,
         cc: [String]? = nil,
@@ -68,7 +69,7 @@ extension HTML {
         }
         
         // Create the complete mailto URL
-        let mailtoUrl = "mailto:\(email.to.joined(separator: ","))"
+        let mailtoUrl = "mailto:\(email.to.map(\.description).joined(separator: ","))"
         let queryString = components.isEmpty ? "" : "?\(components.joined(separator: "&"))"
         
         return attribute("href", mailtoUrl + queryString)
