@@ -19,7 +19,6 @@
 @_exported import Coenttb_Web_Models
 @_exported import Coenttb_Web_Translations
 @_exported import Coenttb_Web_Utils
-@_exported import Coenttb_Web_Legal
 
 @_exported import CoenttbEmail
 @_exported import CoenttbHTML
