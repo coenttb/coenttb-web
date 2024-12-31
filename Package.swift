@@ -32,7 +32,7 @@ extension Target.Dependency {
     static var coenttbHtml: Self { .product(name: "CoenttbHTML", package: "coenttb-html") }
     static var coenttbMarkdown: Self { .product(name: "CoenttbMarkdown", package: "coenttb-html") }
     static var casePaths: Self { .product(name: "CasePaths", package: "swift-case-paths") }
-    static var language: Self { .product(name: "Languages", package: "swift-language") }
+    static var languages: Self { .product(name: "Languages", package: "swift-language") }
 }
 
 let package = Package(
@@ -74,6 +74,7 @@ let package = Package(
         .target(
             name: .coenttbWeb,
             dependencies: [
+                .languages,
                 .coenttbHtml,
                 .coenttbMarkdown,
                 .swiftWeb,
@@ -138,7 +139,7 @@ let package = Package(
         .target(
             name: .coenttbWebTranslations,
             dependencies: [
-                .language
+                .languages
             ]
         ),
     ],

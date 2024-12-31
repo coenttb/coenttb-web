@@ -30,4 +30,5 @@
 
 @_exported import URLRouting
 @_exported import EmailAddress
+@_exported import Languages
 
