@@ -91,25 +91,27 @@ let package = Package(
         .target(
             name: .coenttbWebEnvVars,
             dependencies: [
+                .languages,
                 .swiftWeb,
                 .coenttbWebModels,
                 .environmentVariables,
             ]
         ),
-        
-            .target(
-                name: .coenttbWebHTML,
-                dependencies: [
-                    .swiftWeb,
-                    .coenttbHtml,
-                    .coenttbMarkdown,
-                    .coenttbWebTranslations,
-                    .coenttbWebDependencies,
-                ]
-            ),
+        .target(
+            name: .coenttbWebHTML,
+            dependencies: [
+                .languages,
+                .swiftWeb,
+                .coenttbHtml,
+                .coenttbMarkdown,
+                .coenttbWebTranslations,
+                .coenttbWebDependencies,
+            ]
+        ),
         .target(
             name: .coenttbWebLegal,
             dependencies: [
+                .languages,
                 .swiftWeb,
                 .coenttbWebHTML,
                 .coenttbMarkdown,
@@ -120,6 +122,7 @@ let package = Package(
         .target(
             name: .coenttbWebDependencies,
             dependencies: [
+                .languages,
                 .swiftWeb,
                 .coenttbWebModels,
             ]
@@ -127,19 +130,21 @@ let package = Package(
         .target(
             name: .coenttbWebUtils,
             dependencies: [
+                .languages,
                 .swiftWeb
             ]
         ),
         .target(
             name: .coenttbWebModels,
             dependencies: [
+                .languages,
                 .swiftWeb,
             ]
         ),
         .target(
             name: .coenttbWebTranslations,
             dependencies: [
-                .languages
+                .languages,
             ]
         ),
     ],
