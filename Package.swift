@@ -11,7 +11,6 @@ extension String {
     static let coenttbWebModels: Self = "Coenttb Web Models"
     static let coenttbWebTranslations: Self = "Coenttb Web Translations"
     static let coenttbWebUtils: Self = "Coenttb Web Utils"
-    static let coenttbWebLegal: Self = "Coenttb Web Legal"
 }
 
 extension Target.Dependency {
@@ -21,7 +20,6 @@ extension Target.Dependency {
     static var coenttbWebDependencies: Self { .target(name: .coenttbWebDependencies) }
     static var coenttbWebModels: Self { .target(name: .coenttbWebModels) }
     static var coenttbWebTranslations: Self { .target(name: .coenttbWebTranslations) }
-    static var coenttbWebLegal: Self { .target(name: .coenttbWebLegal) }
     static var coenttbWebUtils: Self { .target(name: .coenttbWebUtils) }
 }
 
@@ -52,7 +50,6 @@ let package = Package(
                 .coenttbWebModels,
                 .coenttbWebTranslations,
                 .coenttbWebUtils,
-                .coenttbWebLegal,
             ]
         ),
         .library(name: .coenttbWebEnvVars, targets: [.coenttbWebEnvVars]),
@@ -61,7 +58,6 @@ let package = Package(
         .library(name: .coenttbWebModels, targets: [.coenttbWebModels]),
         .library(name: .coenttbWebTranslations, targets: [.coenttbWebTranslations]),
         .library(name: .coenttbWebUtils, targets: [.coenttbWebUtils]),
-        .library(name: .coenttbWebLegal, targets: [.coenttbWebLegal]),
     ],
     dependencies: [
         .package(url: "https://github.com/coenttb/coenttb-html", branch: "main"),
@@ -84,7 +80,6 @@ let package = Package(
                 .coenttbWebDependencies,
                 .coenttbWebModels,
                 .coenttbWebTranslations,
-                .coenttbWebLegal,
                 .coenttbWebUtils,
             ]
         ),
@@ -106,17 +101,6 @@ let package = Package(
                 .coenttbMarkdown,
                 .coenttbWebTranslations,
                 .coenttbWebDependencies,
-            ]
-        ),
-        .target(
-            name: .coenttbWebLegal,
-            dependencies: [
-                .languages,
-                .swiftWeb,
-                .coenttbWebHTML,
-                .coenttbMarkdown,
-                .coenttbWebTranslations,
-                .coenttbHtml,
             ]
         ),
         .target(
