@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoenttbHTML
 
 public struct SectionCard: HTML {
     let title: String
@@ -46,6 +47,7 @@ public struct SectionCard: HTML {
                             .padding(Padding?.none)
                             .color(color)
                             .fontSize(.primary)
+                        
                         p { HTMLText(subtitle) }
                             .margin(.all(.zero))
                             .padding(Padding?.none)
