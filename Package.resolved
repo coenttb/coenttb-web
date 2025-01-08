@@ -1,5 +1,5 @@
 {
-  "originHash" : "0114b4d4ac92c335890485140cb9c640f21c9d79c2c48f2a84f8ec2b394f8455",
+  "originHash" : "c73aa103c1cca1064fa0753173bb226e0b585ec1fd3030b3e945498f821012ca",
   "pins" : [
     {
       "identity" : "coenttb-html",
@@ -34,7 +34,7 @@
       "location" : "https://github.com/coenttb/pointfree-web",
       "state" : {
         "branch" : "main",
-        "revision" : "7f6bd15f23cc4495efc441327416217442c4fb09"
+        "revision" : "c77bb14402a3112e9c4cca631ad2f8f320c1d4a5"
       }
     },
     {
@@ -88,7 +88,7 @@
       "location" : "https://github.com/coenttb/swift-css.git",
       "state" : {
         "branch" : "main",
-        "revision" : "1d6fa6441c9cfd56b9ec55fc7c7c76154f162d94"
+        "revision" : "29fea42c6b57178e4d3be680ca0e15241df24498"
       }
     },
     {
@@ -121,10 +121,10 @@
     {
       "identity" : "swift-html",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/coenttb/swift-html",
+      "location" : "https://github.com/coenttb/swift-html.git",
       "state" : {
         "branch" : "main",
-        "revision" : "cb8d1b8fe55fd827df971a2982f09aa096394796"
+        "revision" : "186dad2bc33d648bf8cfe9d39fff119fb5752784"
       }
     },
     {
@@ -133,7 +133,7 @@
       "location" : "https://github.com/coenttb/swift-html-to-pdf.git",
       "state" : {
         "branch" : "main",
-        "revision" : "e9502908acecfc71399c4009475f5ffc8e2c2189"
+        "revision" : "142d9e9d7cb817e73f691428e00c6f465b821b21"
       }
     },
     {
@@ -191,6 +191,15 @@
       }
     },
     {
+      "identity" : "swift-tagged",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-tagged",
+      "state" : {
+        "branch" : "main",
+        "revision" : "7061233809f745e2ba6c3e8c6f984a8f36257226"
+      }
+    },
+    {
       "identity" : "swift-url-routing",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-url-routing",
@@ -205,7 +214,7 @@
       "location" : "https://github.com/coenttb/swift-web",
       "state" : {
         "branch" : "main",
-        "revision" : "b766b09bb7fe9538e8b73d33373ba9edc76e0d37"
+        "revision" : "7c97c959ff25c31cba92224fb379e72dd432c3a5"
       }
     },
     {

@@ -31,3 +31,7 @@
 @_exported import EmailAddress
 @_exported import Languages
 
+
+@_exported import Tagged
+@_exported import CasePaths
+
