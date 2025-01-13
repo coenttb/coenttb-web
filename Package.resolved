@@ -166,10 +166,10 @@
     {
       "identity" : "swift-parsing",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/swift-parsing",
+      "location" : "https://github.com/pointfreeco/swift-parsing.git",
       "state" : {
-        "revision" : "a0e7d73f462c1c38c59dc40a3969ac40cea42950",
-        "version" : "0.13.0"
+        "branch" : "main",
+        "revision" : "fda02264a411776236c8efc035571915b238a815"
       }
     },
     {
@@ -214,7 +214,7 @@
       "location" : "https://github.com/coenttb/swift-web",
       "state" : {
         "branch" : "main",
-        "revision" : "7c97c959ff25c31cba92224fb379e72dd432c3a5"
+        "revision" : "8b39455989a1f8c7595e898e69e4bb2819770577"
       }
     },
     {
