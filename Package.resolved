@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-case-paths",
       "state" : {
-        "revision" : "bc92c4b27f9a84bfb498cdbfdf35d5a357e9161f",
-        "version" : "1.5.6"
+        "revision" : "e7039aaa4d9cf386fa8324a89f258c3f2c54d751",
+        "version" : "1.6.0"
       }
     },
     {
@@ -124,7 +124,7 @@
       "location" : "https://github.com/coenttb/swift-html.git",
       "state" : {
         "branch" : "main",
-        "revision" : "186dad2bc33d648bf8cfe9d39fff119fb5752784"
+        "revision" : "be86a6e0a5f59f2581d3eda7dda053e757485b51"
       }
     },
     {
@@ -169,7 +169,7 @@
       "location" : "https://github.com/pointfreeco/swift-parsing.git",
       "state" : {
         "branch" : "main",
-        "revision" : "fda02264a411776236c8efc035571915b238a815"
+        "revision" : "3432cb81164dd3d69a75d0d63205be5fbae2c34b"
       }
     },
     {
@@ -214,7 +214,7 @@
       "location" : "https://github.com/coenttb/swift-web",
       "state" : {
         "branch" : "main",
-        "revision" : "8b39455989a1f8c7595e898e69e4bb2819770577"
+        "revision" : "7f75b19ca943d7994574028c8d6c2b9730dd10b3"
       }
     },
     {

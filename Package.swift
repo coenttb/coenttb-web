@@ -117,7 +117,8 @@ let package = Package(
             name: .coenttbWebUtils,
             dependencies: [
                 .languages,
-                .swiftWeb
+                .swiftWeb,
+                .tagged
             ]
         ),
         .target(
@@ -125,6 +126,7 @@ let package = Package(
             dependencies: [
                 .languages,
                 .swiftWeb,
+                .tagged,
             ]
         ),
         .target(
