@@ -1,0 +1,21 @@
+//
+//  File.swift
+//  coenttb-web
+//
+//  Created by Coen ten Thije Boonkkamp on 23/12/2024.
+//
+
+import Dependencies
+import Foundation
+
+public enum DefaultSessionKey: DependencyKey {
+    public static let testValue: @Sendable (URLRequest) async throws -> (Data, URLResponse) = Self.liveValue
+    public static let liveValue: @Sendable (URLRequest) async throws -> (Data, URLResponse) = { request in try await URLSession.shared.data(for: request) }
+}
+
+extension DependencyValues {
+    public var defaultSession: @Sendable (URLRequest) async throws -> (Data, URLResponse) {
+        get { self[DefaultSessionKey.self] }
+        set { self[DefaultSessionKey.self] = newValue }
+    }
+}
