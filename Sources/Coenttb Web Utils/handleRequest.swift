@@ -7,6 +7,7 @@
 
 import Foundation
 import IssueReporting
+import Coenttb_Web_Dependencies
 
 #if canImport(FoundationNetworking)
 import FoundationNetworking
@@ -16,7 +17,6 @@ import FoundationNetworking
 public func handleRequest<ResponseType: Decodable>(
     for request: URLRequest,
     decodingTo type: ResponseType.Type,
-    session: @escaping @Sendable (URLRequest) async throws -> (Data, URLResponse),
     debug: Bool = {
 #if DEBUG
         return true
@@ -25,6 +25,8 @@ public func handleRequest<ResponseType: Decodable>(
 #endif
     }()
 ) async throws -> ResponseType {
+    @Dependency(\.defaultSession) var session
+    
     if debug {
         print("\n🌐 Request Details:")
         print("URL: \(request.url?.absoluteString ?? "nil")")
