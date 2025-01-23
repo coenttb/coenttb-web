@@ -20,7 +20,7 @@ extension EnvVars {
 }
 
 extension EnvVars {
-    public enum AppEnv: String, Codable {
+    public enum AppEnv: String, Sendable, Codable {
         case development
         case production
         case testing

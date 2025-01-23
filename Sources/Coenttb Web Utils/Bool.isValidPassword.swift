@@ -43,7 +43,7 @@ extension Bool {
     }
 }
 
-public enum PasswordValidationError: Error, CustomStringConvertible {
+public enum PasswordValidationError: Error, CustomStringConvertible, Sendable {
     case tooShort(minLength: Int)
     case tooLong(maxLength: Int)
     case missingUppercase

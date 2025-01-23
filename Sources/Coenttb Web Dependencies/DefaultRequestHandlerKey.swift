@@ -150,7 +150,7 @@ struct ErrorResponse: Decodable {
 }
 
 
-public enum RequestError: LocalizedError, Equatable {
+public enum RequestError: Sendable, LocalizedError, Equatable {
     case invalidResponse
     case httpError(statusCode: Int, message: String)
     

@@ -8,7 +8,7 @@
 import Dependencies
 import Foundation
 
-public enum ProjectRootKey: TestDependencyKey {
+public enum ProjectRootKey: Sendable, TestDependencyKey {
     public static let testValue: URL = {
         URL(fileURLWithPath: #filePath)
             .deletingLastPathComponent()

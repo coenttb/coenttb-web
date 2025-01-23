@@ -51,7 +51,7 @@ extension FontAwesomeIcon: ExpressibleByStringLiteral {
 }
 
 extension FontAwesomeIcon {
-    public enum Size: String, CaseIterable {
+    public enum Size: String, Sendable, CaseIterable {
         case extraSmall, small, normal, large, extraLarge
         case x2, x3, x4, x5, x6, x7, x8, x9, x10
 
@@ -67,7 +67,7 @@ extension FontAwesomeIcon {
         }
     }
 
-    public enum Style: String {
+    public enum Style: String, Sendable {
         case solid, regular, light, thin, duotone, brands
 
         var description: String {

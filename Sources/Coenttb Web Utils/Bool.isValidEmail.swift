@@ -19,7 +19,7 @@ extension Bool {
     }
 }
 
-public enum EmailValidationError: Error, CustomStringConvertible {
+public enum EmailValidationError: Error, CustomStringConvertible, Sendable {
     case invalidEmailFormat
     
     public var description: String {
