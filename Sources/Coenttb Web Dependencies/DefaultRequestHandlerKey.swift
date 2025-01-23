@@ -15,17 +15,21 @@ import FoundationNetworking
 #endif
 
 extension URLRequest {
-    public enum Handler<ResponseType: Decodable> {}
+    public struct Handler<ResponseType: Decodable>: Sendable {
+        private let closure: @Sendable (URLRequest, ResponseType.Type) async throws -> ResponseType
+        
+        public func callAsFuntion(
+            for request: URLRequest,
+            decodingTo type: ResponseType.Type
+        ) async throws -> ResponseType {
+            try await closure(request, type)
+        }
+    }
 }
 
 extension URLRequest.Handler: DependencyKey {
-    public static var testValue: @Sendable (URLRequest, ResponseType.Type, Bool) async throws -> ResponseType {
-        handleRequest
-    }
-    
-    public static var liveValue: @Sendable (URLRequest, ResponseType.Type, Bool) async throws -> ResponseType {
-        handleRequest
-    }
+    public static var testValue: Self { .init(closure: { try await handleRequest(for: $0, decodingTo: $1, debug: true) }) }
+    public static var liveValue: Self { .init(closure: { try await handleRequest(for: $0, decodingTo: $1, debug: false) }) }
 }
 
 @Sendable
