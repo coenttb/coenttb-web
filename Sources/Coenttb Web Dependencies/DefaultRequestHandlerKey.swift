@@ -41,7 +41,7 @@ extension URLRequest.Handler: DependencyKey {
 }
 
 @Sendable
-public func handleRequest<ResponseType: Decodable>(
+package func handleRequest<ResponseType: Decodable>(
     for request: URLRequest,
     decodingTo type: ResponseType.Type,
     debug: Bool = {
