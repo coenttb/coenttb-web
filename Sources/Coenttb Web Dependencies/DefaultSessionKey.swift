@@ -8,7 +8,7 @@
 import Dependencies
 import Foundation
 
-public enum DefaultSessionKey: DependencyKey {
+public enum DefaultSessionKey: Sendable, DependencyKey {
     public static let testValue: @Sendable (URLRequest) async throws -> (Data, URLResponse) = Self.liveValue
     public static let liveValue: @Sendable (URLRequest) async throws -> (Data, URLResponse) = { request in try await URLSession.shared.data(for: request) }
 }
