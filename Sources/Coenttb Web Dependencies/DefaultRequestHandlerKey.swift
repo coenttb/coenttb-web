@@ -27,6 +27,14 @@ extension URLRequest {
     }
 }
 
+extension DependencyValues {
+    public var defaultRequestHandler: URLRequest.Handler {
+        get { self[URLRequest.Handler.self] }
+        set { self[URLRequest.Handler.self] = newValue }
+    }
+}
+
+
 extension URLRequest.Handler: DependencyKey {
     public static var testValue: Self { .init(debug: true) }
     public static var liveValue: Self { .init(debug: false) }
