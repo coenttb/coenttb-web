@@ -18,7 +18,7 @@ extension URLRequest {
     public struct Handler<ResponseType: Decodable>: Sendable {
         private let closure: @Sendable (URLRequest, ResponseType.Type) async throws -> ResponseType
         
-        public func callAsFuntion(
+        public func callAsFunction(
             for request: URLRequest,
             decodingTo type: ResponseType.Type
         ) async throws -> ResponseType {
