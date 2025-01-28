@@ -22,7 +22,102 @@ extension URLRequest {
             for request: URLRequest,
             decodingTo type: ResponseType.Type
         ) async throws -> ResponseType {
-            try await handleRequest(for: request, decodingTo: type, debug: debug)
+            let (data, _) = try await performRequest(request)
+            return try decodeResponse(data: data, as: type)
+        }
+        
+        public func callAsFunction(
+            for request: URLRequest
+        ) async throws {
+            let (_, _) = try await performRequest(request)
+        }
+        
+        private func performRequest(_ request: URLRequest) async throws -> (Data, HTTPURLResponse) {
+            if debug { logRequest(request) }
+            
+            @Dependency(\.defaultSession) var session
+            let (data, response) = try await session(request)
+            
+            if debug { logResponse(response, data: data) }
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                if debug {
+                    print("\n❌ Error: Invalid Response")
+                    print("Expected HTTPURLResponse but got: \(String(describing: response))")
+                }
+                throw RequestError.invalidResponse
+            }
+            
+            try validateResponse(httpResponse, data: data)
+            return (data, httpResponse)
+        }
+        
+        private func decodeResponse<T: Decodable>(data: Data, as type: T.Type) throws -> T {
+            do {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .secondsSince1970
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                return try decoder.decode(type, from: data)
+            } catch {
+                if debug {
+                    print("\n❌ Decoding Error:")
+                    print("Error: \(error)")
+                    print("Raw Data: \(String(data: data, encoding: .utf8) ?? "Unable to show raw data")")
+                    
+                    if let json = try? JSONSerialization.jsonObject(with: data) {
+                        print("JSON Structure:")
+                        print(json)
+                    }
+                }
+                reportIssue(error)
+                throw error
+            }
+        }
+        
+        private func validateResponse(_ response: HTTPURLResponse, data: Data) throws {
+            guard (200...299).contains(response.statusCode) else {
+                let errorMessage = (try? JSONDecoder().decode(ErrorResponse.self, from: data).message)
+                    ?? String(decoding: data, as: UTF8.self)
+                
+                let error = RequestError.httpError(
+                    statusCode: response.statusCode,
+                    message: errorMessage
+                )
+                
+                if debug {
+                    print("\n❌ HTTP Error:")
+                    print("Status Code: \(response.statusCode)")
+                    print("Error Message: \(errorMessage)")
+                    print("Raw Response: \(String(data: data, encoding: .utf8) ?? "Unable to decode error response")")
+                }
+                
+                throw error
+            }
+        }
+        
+        private func logRequest(_ request: URLRequest) {
+            print("\n🌐 Request Details:")
+            print("URL: \(request.url?.absoluteString ?? "nil")")
+            print("Method: \(request.httpMethod ?? "nil")")
+            print("Headers:")
+            request.allHTTPHeaderFields?.forEach { key, value in
+                print("  \(key): \(key.lowercased() == "authorization" ? "*****" : value)")
+            }
+            if let body = request.httpBody {
+                print("Body: \(String(data: body, encoding: .utf8) ?? "Unable to decode body")")
+            }
+        }
+        
+        private func logResponse(_ response: URLResponse, data: Data) {
+            print("\n📥 Response Details:")
+            if let httpResponse = response as? HTTPURLResponse {
+                print("Status Code: \(httpResponse.statusCode)")
+                print("Headers:")
+                httpResponse.allHeaderFields.forEach { key, value in
+                    print("  \(key): \(value)")
+                }
+            }
+            print("Body: \(String(data: data, encoding: .utf8) ?? "Unable to decode response body")")
         }
     }
 }
@@ -34,121 +129,14 @@ extension DependencyValues {
     }
 }
 
-
 extension URLRequest.Handler: DependencyKey {
     public static var testValue: Self { .init(debug: true) }
     public static var liveValue: Self { .init(debug: false) }
 }
 
-@Sendable
-package func handleRequest<ResponseType: Decodable>(
-    for request: URLRequest,
-    decodingTo type: ResponseType.Type,
-    debug: Bool = {
-#if DEBUG
-        return true
-#else
-        return false
-#endif
-    }()
-) async throws -> ResponseType {
-    @Dependency(\.defaultSession) var session
-    
-    if debug {
-        print("\n🌐 Request Details:")
-        print("URL: \(request.url?.absoluteString ?? "nil")")
-        print("Method: \(request.httpMethod ?? "nil")")
-        print("Headers:")
-        if let headers = request.allHTTPHeaderFields {
-            for (key, value) in headers {
-                if key.lowercased() == "authorization" {
-                    print("  \(key): *****")
-                } else {
-                    print("  \(key): \(value)")
-                }
-            }
-        }
-        if let body = request.httpBody {
-            print("Body: \(String(data: body, encoding: .utf8) ?? "Unable to decode body")")
-        }
-    }
-    
-    let (data, response) = try await session(request)
-    
-    if debug {
-        print("\n📥 Response Details:")
-        if let httpResponse = response as? HTTPURLResponse {
-            print("Status Code: \(httpResponse.statusCode)")
-            print("Headers:")
-            for (key, value) in httpResponse.allHeaderFields {
-                print("  \(key): \(value)")
-            }
-        }
-        print("Body: \(String(data: data, encoding: .utf8) ?? "Unable to decode response body")")
-    }
-    
-    guard let httpResponse = response as? HTTPURLResponse else {
-        let error = RequestError.invalidResponse
-        if debug {
-            print("\n❌ Error: Invalid Response")
-            print("Expected HTTPURLResponse but got: \(String(describing: response))")
-        }
-        throw error
-    }
-    
-    guard (200...299).contains(httpResponse.statusCode) else {
-        let errorMessage: String
-        
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .secondsSince1970
-//        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        
-        if let errorResponse = try? decoder.decode(ErrorResponse.self, from: data) {
-            errorMessage = errorResponse.message
-        } else {
-            errorMessage = String(decoding: data, as: UTF8.self)
-        }
-        
-        let error = RequestError.httpError(
-            statusCode: httpResponse.statusCode,
-            message: errorMessage
-        )
-        
-        if debug {
-            print("\n❌ HTTP Error:")
-            print("Status Code: \(httpResponse.statusCode)")
-            print("Error Message: \(errorMessage)")
-            print("Raw Response: \(String(data: data, encoding: .utf8) ?? "Unable to decode error response")")
-        }
-        
-        throw error
-    }
-    
-    do {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .secondsSince1970
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        return try decoder.decode(type, from: data)
-    } catch {
-        if debug {
-            print("\n❌ Decoding Error:")
-            print("Error: \(error)")
-            print("Raw Data: \(String(data: data, encoding: .utf8) ?? "Unable to show raw data")")
-            
-            if let json = try? JSONSerialization.jsonObject(with: data) {
-                print("JSON Structure:")
-                print(json)
-            }
-        }
-        reportIssue(error)
-        throw error
-    }
-}
-
 struct ErrorResponse: Decodable {
     let message: String
 }
-
 
 public enum RequestError: Sendable, LocalizedError, Equatable {
     case invalidResponse
@@ -163,7 +151,3 @@ public enum RequestError: Sendable, LocalizedError, Equatable {
         }
     }
 }
-
-
-
-
