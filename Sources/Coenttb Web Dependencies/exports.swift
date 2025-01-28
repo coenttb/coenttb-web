@@ -5,5 +5,5 @@
 //  Created by Coen ten Thije Boonkkamp on 18/12/2024.
 //
 
-import Foundation
 @_exported import Dependencies
+@_exported import Coenttb_Web_Models

@@ -7,8 +7,8 @@
 
 import Dependencies
 import Foundation
-import Foundation
 import IssueReporting
+import Coenttb_Web_Models
 
 #if canImport(FoundationNetworking)
 import FoundationNetworking
@@ -18,6 +18,7 @@ extension URLRequest {
     public struct Handler: Sendable {
         var debug = false
         
+        @_disfavoredOverload
         public func callAsFunction<ResponseType: Decodable>(
             for request: URLRequest,
             decodingTo type: ResponseType.Type
@@ -25,7 +26,17 @@ extension URLRequest {
             let (data, _) = try await performRequest(request)
             return try decodeResponse(data: data, as: type)
         }
+                
+        public func callAsFunction<T: Codable>(
+            for request: URLRequest,
+            decodingTo type: T.Type
+        ) async throws -> T? {
+            let (data, _) = try await performRequest(request)
+            let envelope = try decodeResponse(data: data, as: Envelope<T>.self)
+            return envelope.data
+        }
         
+        // For Void requests
         public func callAsFunction(
             for request: URLRequest
         ) async throws {
@@ -77,7 +88,7 @@ extension URLRequest {
         private func validateResponse(_ response: HTTPURLResponse, data: Data) throws {
             guard (200...299).contains(response.statusCode) else {
                 let errorMessage = (try? JSONDecoder().decode(ErrorResponse.self, from: data).message)
-                    ?? String(decoding: data, as: UTF8.self)
+                ?? String(decoding: data, as: UTF8.self)
                 
                 let error = RequestError.httpError(
                     statusCode: response.statusCode,
@@ -151,3 +162,5 @@ public enum RequestError: Sendable, LocalizedError, Equatable {
         }
     }
 }
+
+
