@@ -10,7 +10,6 @@
 @_exported import FoundationNetworking
 #endif
 
-@_exported import RFC2822
 @_exported import Domain
 
 @_exported import Coenttb_Web_EnvVars
