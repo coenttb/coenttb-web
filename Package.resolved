@@ -214,7 +214,7 @@
       "location" : "https://github.com/coenttb/swift-web",
       "state" : {
         "branch" : "main",
-        "revision" : "6e2a363a7e120eb54ea847c4ef720782694867ba"
+        "revision" : "d1cef74828261e0848153580d57e1745f9c37ce6"
       }
     },
     {
@@ -223,7 +223,7 @@
       "location" : "https://github.com/coenttb/swift-web-standards",
       "state" : {
         "branch" : "main",
-        "revision" : "7d68e4e8b99aef6e0e1479c2c4f04b54d6782c36"
+        "revision" : "06c08d7b6b6f86a8db2cf4ec8b02c42162f3045e"
       }
     },
     {
