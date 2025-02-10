@@ -63,7 +63,14 @@ extension URLRequest {
             return (data, httpResponse)
         }
         
-        private func decodeResponse<T: Decodable>(data: Data, as type: T.Type) throws -> T {
+        private func decodeResponse<T: Decodable>(
+            data: Data,
+            as type: T.Type,
+            fileID: StaticString = #fileID,
+            filePath: StaticString = #filePath,
+            line: UInt = #line,
+            column: UInt = #column
+        ) throws -> T {
             do {
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .secondsSince1970
@@ -80,7 +87,13 @@ extension URLRequest {
                         print(json)
                     }
                 }
-                reportIssue(error)
+                reportIssue(
+                    error,
+                    fileID: fileID,
+                    filePath: filePath,
+                    line: line,
+                    column: column
+                )
                 throw error
             }
         }
