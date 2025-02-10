@@ -16,7 +16,7 @@ import FoundationNetworking
 
 extension URLRequest {
     public struct Handler: Sendable {
-        var debug = false
+        public var debug = false
         
         @_disfavoredOverload
         public func callAsFunction<ResponseType: Decodable>(
