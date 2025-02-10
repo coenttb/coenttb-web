@@ -80,21 +80,34 @@ extension URLRequest {
                 )
             }
             catch {
-                if debug { print("Direct decode failed, attempting Envelope<\(String(describing: type))>") }
-                let response = try decodeResponse(
-                    data: data,
-                    as: Envelope<ResponseType>.self,
-                    fileID: fileID,
-                    filePath: filePath,
-                    line: line,
-                    column: column
-                )
-                
-                guard let data = response.data else {
-                    if debug { print("Envelope decoded but data was nil") }
-                    throw URLError(.cannotDecodeRawData)
+                if debug {
+                    print("Direct decode failed, attempting Envelope<\(String(describing: type))>")
                 }
-                return data
+                do {
+                    if debug { print("Starting envelope decode...") }
+                    let response = try decodeResponse(
+                        data: data,
+                        as: Envelope<ResponseType>.self,
+                        fileID: fileID,
+                        filePath: filePath,
+                        line: line,
+                        column: column
+                    )
+                    if debug { print("Envelope decode successful, checking data...") }
+                    
+                    guard let data = response.data else {
+                        if debug { print("Envelope decoded but data was nil") }
+                        throw URLError(.cannotDecodeRawData)
+                    }
+                    if debug { print("Successfully extracted data from envelope") }
+                    return data
+                } catch let envelopeError {
+                    if debug {
+                        print("Envelope decode failed with error:")
+                        print(envelopeError)
+                    }
+                    throw error  // Re-throw original error if envelope decode fails
+                }
             }
         }
         
