@@ -69,6 +69,7 @@ extension URLRequest {
         ) async throws -> ResponseType {
             let (data, _) = try await performRequest(request)
             do {
+                if debug { print("Attempting direct decode to \(String(describing: type))") }
                 return try decodeResponse(
                     data: data,
                     as: type,
@@ -79,6 +80,7 @@ extension URLRequest {
                 )
             }
             catch {
+                if debug { print("Direct decode failed, attempting Envelope<\(String(describing: type))>") }
                 let response = try decodeResponse(
                     data: data,
                     as: Envelope<ResponseType>.self,
@@ -88,7 +90,10 @@ extension URLRequest {
                     column: column
                 )
                 
-                guard let data = response.data else { throw URLError(.cannotDecodeRawData) }
+                guard let data = response.data else {
+                    if debug { print("Envelope decoded but data was nil") }
+                    throw URLError(.cannotDecodeRawData)
+                }
                 return data
             }
         }
