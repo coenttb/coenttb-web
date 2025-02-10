@@ -123,15 +123,18 @@ extension URLRequest {
         private func decodeResponse<T: Decodable>(
             data: Data,
             as type: T.Type,
+            decoder: JSONDecoder = {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                return decoder
+            }(),
             fileID: StaticString = #fileID,
             filePath: StaticString = #filePath,
             line: UInt = #line,
             column: UInt = #column
         ) throws -> T {
             do {
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .secondsSince1970
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 return try decoder.decode(type, from: data)
             } catch {
                 if debug {
