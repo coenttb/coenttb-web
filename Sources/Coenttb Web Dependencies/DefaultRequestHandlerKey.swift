@@ -14,12 +14,14 @@ import Coenttb_Web_Models
 import FoundationNetworking
 #endif
 
+
+
 extension URLRequest {
     public struct Handler: Sendable {
         var debug = false
         
         @_disfavoredOverload
-        public func callAsFunction<ResponseType: Decodable>(
+        public func callAsFunction<ResponseType: Codable>(
             for request: URLRequest,
             decodingTo type: ResponseType.Type,
             fileID: StaticString = #fileID,
@@ -28,34 +30,29 @@ extension URLRequest {
             column: UInt = #column
         ) async throws -> ResponseType {
             let (data, _) = try await performRequest(request)
-            return try decodeResponse(
-                data: data,
-                as: type,
-                fileID: fileID,
-                filePath: filePath,
-                line: line,
-                column: column
-            )
-        }
+            do {
+                return try decodeResponse(
+                    data: data,
+                    as: type,
+                    fileID: fileID,
+                    filePath: filePath,
+                    line: line,
+                    column: column
+                )
+            }
+            catch {
+                let response = try decodeResponse(
+                    data: data,
+                    as: Envelope<ResponseType>.self,
+                    fileID: fileID,
+                    filePath: filePath,
+                    line: line,
+                    column: column
+                )
                 
-        public func callAsFunction<T: Codable>(
-            for request: URLRequest,
-            decodingTo type: T.Type,
-            fileID: StaticString = #fileID,
-            filePath: StaticString = #filePath,
-            line: UInt = #line,
-            column: UInt = #column
-        ) async throws -> T? {
-            let (data, _) = try await performRequest(request)
-            let envelope = try decodeResponse(
-                data: data,
-                as: Envelope<T>.self,
-                fileID: fileID,
-                filePath: filePath,
-                line: line,
-                column: column
-            )
-            return envelope.data
+                guard let data = response.data else { throw URLError(.cannotDecodeRawData) }
+                return data
+            }
         }
         
         // For Void requests
