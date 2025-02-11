@@ -78,7 +78,7 @@ extension URLRequest {
                     column: column
                 )
             } catch let directError {
-                // If direct decode fails, try envelope decode
+                // If direct decode fails, try envelope decode silently
                 do {
                     let response = try decodeResponse(
                         data: data,
@@ -95,19 +95,7 @@ extension URLRequest {
                     return responseData
                     
                 } catch {
-                    // Both decoding attempts failed, now we can log and throw the original error
-                    if debug {
-                        print("\n❌ Decoding Error: Both direct and envelope decoding failed")
-                        print("Direct decode error: \(directError)")
-                        print("Envelope decode error: \(error)")
-                        print("Raw Data: \(String(data: data, encoding: .utf8) ?? "Unable to show raw data")")
-                        
-                        if let json = try? JSONSerialization.jsonObject(with: data) {
-                            print("JSON Structure:")
-                            print(json)
-                        }
-                    }
-                    throw directError
+                    throw directError  // Just throw without logging since this is an expected fallback path
                 }
             }
         }
