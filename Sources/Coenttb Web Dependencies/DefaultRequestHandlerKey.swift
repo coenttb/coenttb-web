@@ -19,6 +19,46 @@ extension URLRequest {
         public var debug = false
         
         @_disfavoredOverload
+        public func callAsFunction<ResponseType: Decodable>(
+            for request: URLRequest,
+            decodingTo type: ResponseType.Type,
+            fileID: StaticString = #fileID,
+            filePath: StaticString = #filePath,
+            line: UInt = #line,
+            column: UInt = #column
+        ) async throws -> ResponseType {
+            let (data, _) = try await performRequest(request)
+            return try decodeResponse(
+                data: data,
+                as: type,
+                fileID: fileID,
+                filePath: filePath,
+                line: line,
+                column: column
+            )
+        }
+                
+//        public func callAsFunction<T: Codable>(
+//            for request: URLRequest,
+//            decodingTo type: T.Type,
+//            fileID: StaticString = #fileID,
+//            filePath: StaticString = #filePath,
+//            line: UInt = #line,
+//            column: UInt = #column
+//        ) async throws -> T? {
+//            let (data, _) = try await performRequest(request)
+//            let envelope = try decodeResponse(
+//                data: data,
+//                as: Envelope<T>.self,
+//                fileID: fileID,
+//                filePath: filePath,
+//                line: line,
+//                column: column
+//            )
+//            return envelope.data
+//        }
+        
+        @_disfavoredOverload
         public func callAsFunction<ResponseType: Codable>(
             for request: URLRequest,
             decodingTo type: ResponseType.Type,
@@ -28,14 +68,11 @@ extension URLRequest {
             column: UInt = #column
         ) async throws -> ResponseType {
             let (data, _) = try await performRequest(request)
-            
-            // First attempt direct decode silently
             do {
                 if debug { print("Attempting direct decode to \(String(describing: type))") }
                 return try decodeResponse(
                     data: data,
                     as: type,
-                    suppressErrors: true,
                     fileID: fileID,
                     filePath: filePath,
                     line: line,
@@ -43,14 +80,14 @@ extension URLRequest {
                 )
             }
             catch {
-                // If direct decode fails, try envelope decode
-                if debug { print("Direct decode failed, attempting Envelope<\(String(describing: type))>") }
+                if debug {
+                    print("Direct decode failed, attempting Envelope<\(String(describing: type))>")
+                }
                 do {
                     if debug { print("Starting envelope decode...") }
                     let response = try decodeResponse(
                         data: data,
                         as: Envelope<ResponseType>.self,
-                        suppressErrors: false,
                         fileID: fileID,
                         filePath: filePath,
                         line: line,
@@ -65,26 +102,11 @@ extension URLRequest {
                     if debug { print("Successfully extracted data from envelope") }
                     return data
                 } catch let envelopeError {
-                    // Only log error details if both approaches fail
                     if debug {
-                        print("\n❌ Decoding Errors:")
-                        print("Direct decode error: \(error)")
-                        print("Envelope decode error: \(envelopeError)")
-                        print("Raw Data: \(String(data: data, encoding: .utf8) ?? "Unable to show raw data")")
-                        
-                        if let json = try? JSONSerialization.jsonObject(with: data) {
-                            print("JSON Structure:")
-                            print(json)
-                        }
+                        print("Envelope decode failed with error:")
+                        print(envelopeError)
                     }
-                    reportIssue(
-                        envelopeError,
-                        fileID: fileID,
-                        filePath: filePath,
-                        line: line,
-                        column: column
-                    )
-                    throw envelopeError
+                    throw error  // Re-throw original error if envelope decode fails
                 }
             }
         }
@@ -119,7 +141,6 @@ extension URLRequest {
         private func decodeResponse<T: Decodable>(
             data: Data,
             as type: T.Type,
-            suppressErrors: Bool = false,
             decoder: JSONDecoder = {
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .iso8601
@@ -134,7 +155,7 @@ extension URLRequest {
             do {
                 return try decoder.decode(type, from: data)
             } catch {
-                if !suppressErrors && debug {
+                if debug {
                     print("\n❌ Decoding Error:")
                     print("Error: \(error)")
                     print("Raw Data: \(String(data: data, encoding: .utf8) ?? "Unable to show raw data")")
@@ -144,15 +165,13 @@ extension URLRequest {
                         print(json)
                     }
                 }
-                if !suppressErrors {
-                    reportIssue(
-                        error,
-                        fileID: fileID,
-                        filePath: filePath,
-                        line: line,
-                        column: column
-                    )
-                }
+                reportIssue(
+                    error,
+                    fileID: fileID,
+                    filePath: filePath,
+                    line: line,
+                    column: column
+                )
                 throw error
             }
         }
