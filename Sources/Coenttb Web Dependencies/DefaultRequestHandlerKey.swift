@@ -58,7 +58,6 @@ extension URLRequest {
 //            return envelope.data
 //        }
         
-        @_disfavoredOverload
         public func callAsFunction<ResponseType: Codable>(
             for request: URLRequest,
             decodingTo type: ResponseType.Type,
@@ -68,6 +67,8 @@ extension URLRequest {
             column: UInt = #column
         ) async throws -> ResponseType {
             let (data, _) = try await performRequest(request)
+            
+            // Try direct decode first
             do {
                 if debug { print("Attempting direct decode to \(String(describing: type))") }
                 return try decodeResponse(
@@ -78,13 +79,11 @@ extension URLRequest {
                     line: line,
                     column: column
                 )
-            }
-            catch {
-                if debug {
-                    print("Direct decode failed, attempting Envelope<\(String(describing: type))>")
-                }
+            } catch let directError {
+                // If direct decode fails, try envelope decode
+                if debug { print("Direct decode failed, attempting Envelope<\(String(describing: type))>") }
+                
                 do {
-                    if debug { print("Starting envelope decode...") }
                     let response = try decodeResponse(
                         data: data,
                         as: Envelope<ResponseType>.self,
@@ -93,20 +92,20 @@ extension URLRequest {
                         line: line,
                         column: column
                     )
-                    if debug { print("Envelope decode successful, checking data...") }
                     
-                    guard let data = response.data else {
-                        if debug { print("Envelope decoded but data was nil") }
+                    guard let responseData = response.data else {
                         throw URLError(.cannotDecodeRawData)
                     }
-                    if debug { print("Successfully extracted data from envelope") }
-                    return data
-                } catch let envelopeError {
+                    return responseData
+                    
+                } catch {
+                    // Both decoding attempts failed, now we can log and throw the original error
                     if debug {
-                        print("Envelope decode failed with error:")
-                        print(envelopeError)
+                        print("Both direct and envelope decoding failed:")
+                        print("Direct decode error: \(directError)")
+                        print("Envelope decode error: \(error)")
                     }
-                    throw error  // Re-throw original error if envelope decode fails
+                    throw directError
                 }
             }
         }
