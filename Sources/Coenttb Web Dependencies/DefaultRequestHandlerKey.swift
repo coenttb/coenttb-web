@@ -52,6 +52,88 @@ extension URLRequest {
             }
         }
         
+        @_disfavoredOverload
+        public func callAsFunction<ResponseType: Decodable>(
+            for request: URLRequest,
+            decodingTo type: ResponseType.Type,
+            fileID: StaticString = #fileID,
+            filePath: StaticString = #filePath,
+            line: UInt = #line,
+            column: UInt = #column
+        ) async throws -> ResponseType {
+            let (data, _) = try await performRequest(request)
+            
+            // First try direct decode without error logging
+            do {
+                if debug { print("Attempting direct decode...") }
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                return try decoder.decode(type, from: data)
+            } catch {
+                // Don't log the error, just proceed to envelope decode
+                if debug { print("Direct decode not applicable, trying envelope format...") }
+                
+                let response = try decodeResponse(
+                    data: data,
+                    as: Envelope<ResponseType>.self,
+                    fileID: fileID,
+                    filePath: filePath,
+                    line: line,
+                    column: column,
+                    silent: true
+                )
+                
+                guard let data = response.data else {
+                    if debug { print("Envelope decoded but data was nil") }
+                    throw URLError(.cannotDecodeRawData)
+                }
+                if debug { print("Successfully extracted data from envelope") }
+                return data
+            }
+        }
+        
+        @_disfavoredOverload
+        public func callAsFunction<ResponseType: Decodable>(
+            for request: URLRequest,
+            decodingTo type: ResponseType.Type,
+            fileID: StaticString = #fileID,
+            filePath: StaticString = #filePath,
+            line: UInt = #line,
+            column: UInt = #column
+        ) async throws -> ResponseType {
+            let (data, _) = try await performRequest(request)
+            
+            // First try direct decode without error logging
+            do {
+                if debug { print("Attempting direct decode...") }
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                return try decoder.decode(type, from: data)
+            } catch {
+                // Don't log the error, just proceed to envelope decode
+                if debug { print("Direct decode not applicable, trying envelope format...") }
+                
+                let response = try decodeResponse(
+                    data: data,
+                    as: Envelope<ResponseType>.self,
+                    fileID: fileID,
+                    filePath: filePath,
+                    line: line,
+                    column: column,
+                    silent: true
+                )
+                
+                guard let data = response.data else {
+                    if debug { print("Envelope decoded but data was nil") }
+                    throw URLError(.cannotDecodeRawData)
+                }
+                if debug { print("Successfully extracted data from envelope") }
+                return data
+            }
+        }
+        
         // For Void requests
         public func callAsFunction(
             for request: URLRequest
