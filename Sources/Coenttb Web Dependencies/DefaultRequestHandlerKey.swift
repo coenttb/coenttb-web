@@ -1,3 +1,10 @@
+//
+//  File.swift
+//  coenttb-web
+//
+//  Created by Coen ten Thije Boonkkamp on 23/12/2024.
+//
+
 import Dependencies
 import Foundation
 import IssueReporting
@@ -12,6 +19,46 @@ extension URLRequest {
         public var debug = false
         
         @_disfavoredOverload
+        public func callAsFunction<ResponseType: Decodable>(
+            for request: URLRequest,
+            decodingTo type: ResponseType.Type,
+            fileID: StaticString = #fileID,
+            filePath: StaticString = #filePath,
+            line: UInt = #line,
+            column: UInt = #column
+        ) async throws -> ResponseType {
+            let (data, _) = try await performRequest(request)
+            return try decodeResponse(
+                data: data,
+                as: type,
+                fileID: fileID,
+                filePath: filePath,
+                line: line,
+                column: column
+            )
+        }
+                
+//        public func callAsFunction<T: Codable>(
+//            for request: URLRequest,
+//            decodingTo type: T.Type,
+//            fileID: StaticString = #fileID,
+//            filePath: StaticString = #filePath,
+//            line: UInt = #line,
+//            column: UInt = #column
+//        ) async throws -> T? {
+//            let (data, _) = try await performRequest(request)
+//            let envelope = try decodeResponse(
+//                data: data,
+//                as: Envelope<T>.self,
+//                fileID: fileID,
+//                filePath: filePath,
+//                line: line,
+//                column: column
+//            )
+//            return envelope.data
+//        }
+        
+        @_disfavoredOverload
         public func callAsFunction<ResponseType: Codable>(
             for request: URLRequest,
             decodingTo type: ResponseType.Type,
@@ -21,34 +68,46 @@ extension URLRequest {
             column: UInt = #column
         ) async throws -> ResponseType {
             let (data, _) = try await performRequest(request)
-            
-            // First try direct decode without error logging
             do {
-                if debug { print("Attempting direct decode...") }
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .iso8601
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                return try decoder.decode(type, from: data)
-            } catch {
-                // Don't log the error, just proceed to envelope decode
-                if debug { print("Direct decode not applicable, trying envelope format...") }
-                
-                let response = try decodeResponse(
+                if debug { print("Attempting direct decode to \(String(describing: type))") }
+                return try decodeResponse(
                     data: data,
-                    as: Envelope<ResponseType>.self,
+                    as: type,
                     fileID: fileID,
                     filePath: filePath,
                     line: line,
-                    column: column,
-                    silent: true
+                    column: column
                 )
-                
-                guard let data = response.data else {
-                    if debug { print("Envelope decoded but data was nil") }
-                    throw URLError(.cannotDecodeRawData)
+            }
+            catch {
+                if debug {
+                    print("Direct decode failed, attempting Envelope<\(String(describing: type))>")
                 }
-                if debug { print("Successfully extracted data from envelope") }
-                return data
+                do {
+                    if debug { print("Starting envelope decode...") }
+                    let response = try decodeResponse(
+                        data: data,
+                        as: Envelope<ResponseType>.self,
+                        fileID: fileID,
+                        filePath: filePath,
+                        line: line,
+                        column: column
+                    )
+                    if debug { print("Envelope decode successful, checking data...") }
+                    
+                    guard let data = response.data else {
+                        if debug { print("Envelope decoded but data was nil") }
+                        throw URLError(.cannotDecodeRawData)
+                    }
+                    if debug { print("Successfully extracted data from envelope") }
+                    return data
+                } catch let envelopeError {
+                    if debug {
+                        print("Envelope decode failed with error:")
+                        print(envelopeError)
+                    }
+                    throw error  // Re-throw original error if envelope decode fails
+                }
             }
         }
         
@@ -173,13 +232,12 @@ extension URLRequest {
             fileID: StaticString = #fileID,
             filePath: StaticString = #filePath,
             line: UInt = #line,
-            column: UInt = #column,
-            silent: Bool = false
+            column: UInt = #column
         ) throws -> T {
             do {
                 return try decoder.decode(type, from: data)
             } catch {
-                if debug && !silent {
+                if debug {
                     print("\n❌ Decoding Error:")
                     print("Error: \(error)")
                     print("Raw Data: \(String(data: data, encoding: .utf8) ?? "Unable to show raw data")")
@@ -203,7 +261,7 @@ extension URLRequest {
         private func validateResponse(_ response: HTTPURLResponse, data: Data) throws {
             guard (200...299).contains(response.statusCode) else {
                 let errorMessage = (try? JSONDecoder().decode(ErrorResponse.self, from: data).message)
-                    ?? String(decoding: data, as: UTF8.self)
+                ?? String(decoding: data, as: UTF8.self)
                 
                 let error = RequestError.httpError(
                     statusCode: response.statusCode,
@@ -277,3 +335,5 @@ public enum RequestError: Sendable, LocalizedError, Equatable {
         }
     }
 }
+
+
