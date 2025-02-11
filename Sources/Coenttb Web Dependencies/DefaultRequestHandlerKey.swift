@@ -156,16 +156,6 @@ extension URLRequest {
             do {
                 return try decoder.decode(type, from: data)
             } catch {
-                if debug {
-                    print("\n❌ Decoding Error:")
-                    print("Error: \(error)")
-                    print("Raw Data: \(String(data: data, encoding: .utf8) ?? "Unable to show raw data")")
-                    
-                    if let json = try? JSONSerialization.jsonObject(with: data) {
-                        print("JSON Structure:")
-                        print(json)
-                    }
-                }
                 reportIssue(
                     error,
                     fileID: fileID,
