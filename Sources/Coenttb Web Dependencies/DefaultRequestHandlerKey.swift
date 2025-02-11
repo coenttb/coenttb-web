@@ -68,9 +68,7 @@ extension URLRequest {
         ) async throws -> ResponseType {
             let (data, _) = try await performRequest(request)
             
-            // Try direct decode first
             do {
-                if debug { print("Attempting direct decode to \(String(describing: type))") }
                 return try decodeResponse(
                     data: data,
                     as: type,
@@ -81,8 +79,6 @@ extension URLRequest {
                 )
             } catch let directError {
                 // If direct decode fails, try envelope decode
-                if debug { print("Direct decode failed, attempting Envelope<\(String(describing: type))>") }
-                
                 do {
                     let response = try decodeResponse(
                         data: data,
@@ -101,9 +97,15 @@ extension URLRequest {
                 } catch {
                     // Both decoding attempts failed, now we can log and throw the original error
                     if debug {
-                        print("Both direct and envelope decoding failed:")
+                        print("\n❌ Decoding Error: Both direct and envelope decoding failed")
                         print("Direct decode error: \(directError)")
                         print("Envelope decode error: \(error)")
+                        print("Raw Data: \(String(data: data, encoding: .utf8) ?? "Unable to show raw data")")
+                        
+                        if let json = try? JSONSerialization.jsonObject(with: data) {
+                            print("JSON Structure:")
+                            print(json)
+                        }
                     }
                     throw directError
                 }
