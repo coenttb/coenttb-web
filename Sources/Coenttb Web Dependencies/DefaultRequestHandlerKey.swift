@@ -170,6 +170,7 @@ extension URLRequest {
                     print("Status Code: \(response.statusCode)")
                     print("Error Message: \(errorMessage)")
                     print("Raw Response: \(String(data: data, encoding: .utf8) ?? "Unable to decode error response")")
+                    print(String(reflecting: error))
                 }
                 
                 throw error
