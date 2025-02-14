@@ -11,7 +11,6 @@ extension URLRequest {
     public struct Handler: Sendable {
         public var debug = false
         
-        // For types that are only Decodable
         public func callAsFunction<ResponseType: Decodable>(
             for request: URLRequest,
             decodingTo type: ResponseType.Type,
@@ -22,30 +21,15 @@ extension URLRequest {
         ) async throws -> ResponseType {
             let (data, _) = try await performRequest(request)
             
-            // For Decodable-only types, we can only try direct decode
-            return try decodeResponse(
-                data: data,
-                as: type,
-                fileID: fileID,
-                filePath: filePath,
-                line: line,
-                column: column
-            )
-        }
-        
-        // For types that are Codable (can be wrapped in Envelope)
-        public func callAsFunction<ResponseType: Codable>(
-            for request: URLRequest,
-            decodingToEnvelope type: ResponseType.Type,
-            fileID: StaticString = #fileID,
-            filePath: StaticString = #filePath,
-            line: UInt = #line,
-            column: UInt = #column
-        ) async throws -> ResponseType {
-            let (data, _) = try await performRequest(request)
+            if debug {
+                print("\nTrying to decode response data:")
+                print(String(data: data, encoding: .utf8) ?? "Unable to decode response data")
+            }
             
-            // Try to decode as Envelope first
+            // First try to decode as Envelope
             do {
+                if debug { print("\nAttempting to decode as Envelope<\(String(describing: ResponseType.self))>") }
+                
                 let envelope = try decodeResponse(
                     data: data,
                     as: Envelope<ResponseType>.self,
@@ -55,20 +39,38 @@ extension URLRequest {
                     column: column
                 )
                 
-                guard let envelopeData = envelope.data else {
-                    throw URLError(.cannotDecodeRawData)
+                if debug { print("\nEnvelope decoded successfully. Success: \(envelope.success)") }
+                
+                if let envelopeData = envelope.data {
+                    if debug { print("\nReturning envelope data") }
+                    return envelopeData
                 }
-                return envelopeData
+                
+                if debug { print("\nEnvelope data is nil, trying direct decode") }
+                throw URLError(.cannotDecodeRawData)
             } catch {
+                if debug {
+                    print("\nEnvelope decode failed, attempting direct decode")
+                    print("Error was: \(error)")
+                }
+                
                 // If envelope decode fails, try direct decode
-                return try decodeResponse(
-                    data: data,
-                    as: type,
-                    fileID: fileID,
-                    filePath: filePath,
-                    line: line,
-                    column: column
-                )
+                do {
+                    let response = try decodeResponse(
+                        data: data,
+                        as: type,
+                        fileID: fileID,
+                        filePath: filePath,
+                        line: line,
+                        column: column
+                    )
+                    
+                    if debug { print("\nDirect decode successful") }
+                    return response
+                } catch let decodeError {
+                    if debug { print("\nDirect decode failed: \(decodeError)") }
+                    throw decodeError
+                }
             }
         }
         
