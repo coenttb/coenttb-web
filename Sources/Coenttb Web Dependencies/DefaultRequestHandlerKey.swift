@@ -131,16 +131,29 @@ extension URLRequest {
             column: UInt = #column
         ) throws -> T {
             do {
-                return try decoder.decode(type, from: data)
-            } catch {
-                reportIssue(
-                    error,
-                    fileID: fileID,
-                    filePath: filePath,
-                    line: line,
-                    column: column
-                )
-                throw error
+                if debug { print("Attempting direct decode...") }
+                let result = try decoder.decode(type, from: data)
+                if debug { print("Direct decode succeeded with type: \(String(describing: result))") }
+                return result
+            } catch let decodingError as DecodingError {
+                if debug { print("Direct decode failed with DecodingError:") }
+                switch decodingError {
+                case .keyNotFound(let key, let context):
+                    if debug { print("- Key '\(key.stringValue)' not found") }
+                    if debug { print("- Context: \(context.debugDescription)") }
+                    if debug { print("- Coding path: \(context.codingPath.map { $0.stringValue })") }
+                case .typeMismatch(let type, let context):
+                    if debug { print("- Type '\(type)' mismatch") }
+                    if debug { print("- Context: \(context.debugDescription)") }
+                case .valueNotFound(let type, let context):
+                    if debug { print("- Value of type '\(type)' not found") }
+                    if debug { print("- Context: \(context.debugDescription)") }
+                case .dataCorrupted(let context):
+                    if debug { print("- Data corrupted: \(context.debugDescription)") }
+                @unknown default:
+                    if debug { print("- Unknown decoding error: \(decodingError)") }
+                }
+                throw decodingError
             }
         }
         
