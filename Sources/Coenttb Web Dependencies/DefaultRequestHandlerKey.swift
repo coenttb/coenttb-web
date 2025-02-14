@@ -38,26 +38,6 @@ extension URLRequest {
             )
         }
                 
-        public func callAsFunction<T: Codable>(
-            for request: URLRequest,
-            decodingTo type: T.Type,
-            fileID: StaticString = #fileID,
-            filePath: StaticString = #filePath,
-            line: UInt = #line,
-            column: UInt = #column
-        ) async throws -> T? {
-            let (data, _) = try await performRequest(request)
-            let envelope = try decodeResponse(
-                data: data,
-                as: Envelope<T>.self,
-                fileID: fileID,
-                filePath: filePath,
-                line: line,
-                column: column
-            )
-            return envelope.data
-        }
-        
         public func callAsFunction<ResponseType: Codable>(
             for request: URLRequest,
             decodingTo type: ResponseType.Type,
@@ -69,6 +49,8 @@ extension URLRequest {
             let (data, _) = try await performRequest(request)
             
             do {
+                if debug { print("Attempting direct decode...") }
+
                 return try decodeResponse(
                     data: data,
                     as: type,
@@ -78,8 +60,10 @@ extension URLRequest {
                     column: column
                 )
             } catch let directError {
-                // If direct decode fails, try envelope decode silently
+                if debug { print("Direct decode failed with error: \(directError)") }
                 do {
+                    
+                    if debug { print("Attempting envelope decode...") }
                     let response = try decodeResponse(
                         data: data,
                         as: Envelope<ResponseType>.self,
@@ -90,12 +74,17 @@ extension URLRequest {
                     )
                     
                     guard let responseData = response.data else {
+                        if debug { print("Envelope decode succeeded but data was nil") }
                         throw URLError(.cannotDecodeRawData)
                     }
+                    
+                    if debug { print("Envelope decode succeeded") }
+                    
                     return responseData
                     
-                } catch {
-                    throw directError  // Just throw without logging since this is an expected fallback path
+                } catch let envelopeError  {
+                    if debug { print("Envelope decode failed with error: \(envelopeError)") }
+                    throw directError 
                 }
             }
         }
@@ -235,3 +224,25 @@ public enum RequestError: Sendable, LocalizedError, Equatable {
 }
 
 
+
+
+//        public func callAsFunction<T: Codable>(
+//            for request: URLRequest,
+//            decodingTo type: T.Type,
+//            fileID: StaticString = #fileID,
+//            filePath: StaticString = #filePath,
+//            line: UInt = #line,
+//            column: UInt = #column
+//        ) async throws -> T? {
+//            let (data, _) = try await performRequest(request)
+//            let envelope = try decodeResponse(
+//                data: data,
+//                as: Envelope<T>.self,
+//                fileID: fileID,
+//                filePath: filePath,
+//                line: line,
+//                column: column
+//            )
+//            return envelope.data
+//        }
+        
