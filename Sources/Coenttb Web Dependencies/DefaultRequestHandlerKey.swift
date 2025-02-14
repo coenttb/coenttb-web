@@ -18,26 +18,7 @@ extension URLRequest {
     public struct Handler: Sendable {
         public var debug = false
         
-        @_disfavoredOverload
-        public func callAsFunction<ResponseType: Decodable>(
-            for request: URLRequest,
-            decodingTo type: ResponseType.Type,
-            fileID: StaticString = #fileID,
-            filePath: StaticString = #filePath,
-            line: UInt = #line,
-            column: UInt = #column
-        ) async throws -> ResponseType {
-            let (data, _) = try await performRequest(request)
-            return try decodeResponse(
-                data: data,
-                as: type,
-                fileID: fileID,
-                filePath: filePath,
-                line: line,
-                column: column
-            )
-        }
-                
+ 
         public func callAsFunction<ResponseType: Codable>(
             for request: URLRequest,
             decodingTo type: ResponseType.Type,
