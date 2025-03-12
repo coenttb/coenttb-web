@@ -11,20 +11,20 @@ import Dependencies
 
 // MARK: - Text Color Definitions
 
-extension HTMLColor {
-    public static let buttonText: Self = .primary.reverse()
-    public static let primary: Self = .black.withDarkColor(.white)
-    public static let text: Self = primary
-    public static let secondary: Self = .gray300.withDarkColor(.gray700)
-    public static let tertiary: Self = .gray450.withDarkColor(.gray550)
-}
+//extension HTMLColor {
+//    public static let buttonText: Self = .primary.reverse()
+//    public static let primary: Self = .black.withDarkColor(.white)
+//    public static let text: Self = primary
+//    public static let secondary: Self = .gray300.withDarkColor(.gray700)
+//    public static let tertiary: Self = .gray450.withDarkColor(.gray550)
+//}
 
 // MARK: - Background Color Definitions
-
-extension HTMLColor {
-    public static let offBackground: Self = .offWhite.withDarkColor(.offBlack)
-    public static let background: Self = .white.withDarkColor(.black)
-}
+//
+//extension HTMLColor {
+//    public static let offBackground: Self = .offWhite.withDarkColor(.offBlack)
+//    public static let background: Self = .white.withDarkColor(.black)
+//}
 
 // MARK: - HTMLColor Extensions
 

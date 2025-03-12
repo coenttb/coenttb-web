@@ -7,7 +7,7 @@
       "location" : "https://github.com/coenttb/coenttb-html",
       "state" : {
         "branch" : "main",
-        "revision" : "1ce8153312b4f78e38744858a116cadcb096bbca"
+        "revision" : "dc2647e5340e952480fe0f01a538af27c66f4611"
       }
     },
     {
@@ -25,7 +25,7 @@
       "location" : "https://github.com/coenttb/pointfree-html.git",
       "state" : {
         "branch" : "main",
-        "revision" : "517a823ffb482d588fbd46c2606a87dc8f35f3ec"
+        "revision" : "f9f34189a23da8c443f311ab56c8f7c8c384aa07"
       }
     },
     {
@@ -88,7 +88,7 @@
       "location" : "https://github.com/coenttb/swift-css.git",
       "state" : {
         "branch" : "main",
-        "revision" : "29fea42c6b57178e4d3be680ca0e15241df24498"
+        "revision" : "fce32749fbe3ff7d2df9055f0179cd19e25749da"
       }
     },
     {
@@ -105,8 +105,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-dependencies",
       "state" : {
-        "revision" : "52b5e1a09dc016e64ce253e19ab3124b7fae9ac9",
-        "version" : "1.7.0"
+        "revision" : "ec2862d1364536fc22ec56a3094e7a034bbc7da8",
+        "version" : "1.8.1"
       }
     },
     {
@@ -124,7 +124,7 @@
       "location" : "https://github.com/coenttb/swift-html.git",
       "state" : {
         "branch" : "main",
-        "revision" : "23bd43704174c2cab50f01e8c04263427e59f088"
+        "revision" : "25a637db445011e909b6451b7e3e4c77416dae7a"
       }
     },
     {
@@ -133,7 +133,7 @@
       "location" : "https://github.com/coenttb/swift-html-to-pdf.git",
       "state" : {
         "branch" : "main",
-        "revision" : "142d9e9d7cb817e73f691428e00c6f465b821b21"
+        "revision" : "445d920c28b4b62d3208763511794253fd7c9e15"
       }
     },
     {
@@ -142,7 +142,7 @@
       "location" : "https://github.com/coenttb/swift-language.git",
       "state" : {
         "branch" : "main",
-        "revision" : "63b455da4844a701663dd91bb681bf05a536c92f"
+        "revision" : "c47dab7ce0d7c678f699d48ce0bb623bc6138ee8"
       }
     },
     {
@@ -214,7 +214,7 @@
       "location" : "https://github.com/coenttb/swift-web",
       "state" : {
         "branch" : "main",
-        "revision" : "d1cef74828261e0848153580d57e1745f9c37ce6"
+        "revision" : "d1e02124fd0f1324001ba0667ba4422f1a9bb15c"
       }
     },
     {
@@ -231,8 +231,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/xctest-dynamic-overlay",
       "state" : {
-        "revision" : "b444594f79844b0d6d76d70fbfb3f7f71728f938",
-        "version" : "1.5.1"
+        "revision" : "39de59b2d47f7ef3ca88a039dff3084688fe27f4",
+        "version" : "1.5.2"
       }
     }
   ],

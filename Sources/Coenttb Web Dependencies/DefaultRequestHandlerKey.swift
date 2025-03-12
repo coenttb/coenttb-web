@@ -26,7 +26,6 @@ extension URLRequest {
                 print(String(data: data, encoding: .utf8) ?? "Unable to decode response data")
             }
             
-            // First try to decode as Envelope
             do {
                 if debug { print("\nAttempting to decode as Envelope<\(String(describing: ResponseType.self))>") }
                 
@@ -118,13 +117,6 @@ extension URLRequest {
             do {
                 return try decoder.decode(type, from: data)
             } catch {
-                reportIssue(
-                    error,
-                    fileID: fileID,
-                    filePath: filePath,
-                    line: line,
-                    column: column
-                )
                 throw error
             }
         }

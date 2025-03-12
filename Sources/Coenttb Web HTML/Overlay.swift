@@ -22,8 +22,6 @@ public struct Overlay<Content: HTML>: HTML {
         self.id = String.sanitizeForJavaScript(id)
     }
 
-    
-
     private var backgroundOverlay: some HTML {
         div()
             .id("background-overlay-\(id)")
@@ -59,8 +57,7 @@ public struct Overlay<Content: HTML>: HTML {
             .maxWidth(.px(440))
             .width(90.percent)
             .margin(horizontal: .auto)
-            .background(.cardBackground)
-            
+            .background(.background.primary)
         }
         .class(id)
 

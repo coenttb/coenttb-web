@@ -44,7 +44,7 @@ extension Input {
         .padding(vertical: 14.px, horizontal: 10.px)
         .border(width: 1.px, color: .gray900.withDarkColor(.gray100))
         .background(.white.withDarkColor(.black))
-        .color(.secondary)
+        .color(.text.secondary)
         .inlineStyle("border-radius", "5px")
     }
 }

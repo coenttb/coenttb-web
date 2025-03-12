@@ -51,7 +51,7 @@ public struct SectionCard: HTML {
                         p { HTMLText(subtitle) }
                             .margin(.all(.zero))
                             .padding(Padding?.none)
-                            .color(.primary)
+                            .color(.text.primary)
                             .fontSize(.secondary)
                     }
                 }
