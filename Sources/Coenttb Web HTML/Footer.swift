@@ -46,7 +46,7 @@ public struct Footer<
                 div {
                     h4 {
                         Link(tagline.title, href: tagline.href)
-                            .linkColor(self.foregroundColor)
+                            .color(.text.primary)
                     }
                     .fontScale(.h4)
                     .margin(bottom: 0, media: .mobile)
@@ -55,7 +55,7 @@ public struct Footer<
                     .lineHeight(1.45)
                     
                     tagline.content
-                        .color(self.foregroundColor)
+                        .color(.text.primary)
                         .fontStyle(.body(.regular))
                 }
                 .padding(right: 4.rem, media: .desktop)
@@ -65,7 +65,7 @@ public struct Footer<
                     HTMLForEach(self.columns) { column in
                         div {
                             h5 { HTMLText(column.title) }
-                                .color(self.foregroundColor)
+                                .color(.text.primary)
                                 .font(.size(0.75.rem))
                                 .font(.size(0.875.rem), media: .desktop)
                                 .inlineStyle("letter-spacing", "0.54pt")
@@ -78,6 +78,7 @@ public struct Footer<
                                         Link(href: link.href) {
                                             HTMLText(link.label)
                                         }
+                                        .linkColor(.text.primary)
                                     }
                                 }
                                 
@@ -91,7 +92,7 @@ public struct Footer<
             }
             .alignItems(.firstBaseline)
         }
-        .backgroundColor(backgroundColor)
+        .backgroundColor(.background.primary)
         .padding(2.rem, media: .mobile)
         .padding(4.rem, media: .desktop)
     }
