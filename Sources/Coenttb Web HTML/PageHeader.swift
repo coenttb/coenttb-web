@@ -31,18 +31,17 @@ public struct PageHeader<Title: HTML, Blurb: HTML, CallToAction: HTML>: HTML {
             HStack(alignment: .center) {
                 div {
                     Header(2) { title }
-                        .color(.black.withDarkColor(.white))
+                        .color(.text.primary)
                     
                     Paragraph(.big) { blurb }
                         .fontStyle(.body(.regular))
-                        .color(.gray150.withDarkColor(.gray800))
+                        .color(.text.secondary)
                 }
                 .grow()
                 
                 div {
                     callToAction
                 }
-                .color(.offWhite)
             }
             .boxSizing(.borderBox)
             .inlineStyle("flex-basis", "100%")

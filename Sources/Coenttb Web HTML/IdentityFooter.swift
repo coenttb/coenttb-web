@@ -40,7 +40,7 @@ public struct IdentityFooter: HTML {
             .padding(1.rem)
         }
         .fontSize(.secondary)
-        .color(.gray600)
+        .color(.text.secondary)
         .fontWeight(.light)
     }
 }

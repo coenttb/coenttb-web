@@ -21,8 +21,9 @@ public struct TextArticle<Content: HTML>: HTML {
         article {
             content
         }
-        .color(.gray150.withDarkColor(.gray800))
-        .linkColor(.black.withDarkColor(.white))
+//        .color(.gray150.withDarkColor(.gray800))
+        .color(.text.primary)
+        .linkColor(.text.primary)
         .linkUnderline(true)
         .margin(vertical: 0, horizontal: .auto, media: .desktop)
         .width(60.percent, media: .desktop)
