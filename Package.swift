@@ -29,6 +29,7 @@ extension Target.Dependency {
     static var coenttbEmail: Self { .product(name: "CoenttbEmail", package: "coenttb-html") }
     static var coenttbHtml: Self { .product(name: "CoenttbHTML", package: "coenttb-html") }
     static var coenttbMarkdown: Self { .product(name: "CoenttbMarkdown", package: "coenttb-html") }
+    static var coenttbUtils: Self { .product(name: "CoenttbUtils", package: "coenttb-utils") }
     static var languages: Self { .product(name: "Languages", package: "swift-language") }
     static var tagged: Self { .product(name: "Tagged", package: "swift-tagged") }
 }
@@ -64,6 +65,7 @@ let package = Package(
         .package(url: "https://github.com/coenttb/swift-environment-variables.git", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-language.git", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-web", branch: "main"),
+        .package(url: "https://github.com/coenttb/coenttb-utils", branch: "main"),
         .package(url: "https://github.com/pointfreeco/swift-tagged", branch: "main"),
     ],
     targets: [
@@ -118,7 +120,8 @@ let package = Package(
             dependencies: [
                 .languages,
                 .swiftWeb,
-                .tagged
+                .tagged,
+                .coenttbUtils,
             ]
         ),
         .target(
