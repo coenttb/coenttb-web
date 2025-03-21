@@ -434,8 +434,8 @@ extension String {
     )
     
     public static let follow_me_on_Twitter: TranslatedString = .init(
-        dutch: "volg mij op Twitter",
-        english: "follow me on Twitter"
+        dutch: "volg mij op X (Twitter)",
+        english: "follow me on X (Twitter)"
     )
     
     public static let with: TranslatedString = .init(
