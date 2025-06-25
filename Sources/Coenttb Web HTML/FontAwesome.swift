@@ -8,9 +8,6 @@
 import Foundation
 import CoenttbHTML
 
-import Foundation
-import CoenttbHTML
-
 public struct FontAwesomeScript: HTML {
     public init(){}
     public var body: some HTML {
@@ -19,8 +16,9 @@ public struct FontAwesomeScript: HTML {
 }
 
 public var fontAwesomeScript: some HTML {
-    script()
-        .src("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js")
+    script(
+        src: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
+    ) {}
 }
 
 public struct FontAwesomeIcon: HTML {
@@ -39,7 +37,7 @@ public struct FontAwesomeIcon: HTML {
     }
     
     public var body: some HTML {
-        i()
+        i(){}
             .attribute("class", "\(style.description) fa-\(icon) \(size.description)")
     }
 }
@@ -86,58 +84,63 @@ extension FontAwesomeIcon {
 
 extension Label {
     init(
-        alignment: VerticalAlign = .center,
+//        alignment: VerticalAlign = .center,
+        alignment: VerticalAlign = .middle,
         spacing: Length = 0.25.rem,
         fa icon: FontAwesomeIcon,
         @HTMLBuilder title: () -> Title
-    ) where Icon == HTMLElement<FontAwesomeIcon> {
+    ) where Icon == AnyHTML  {
+        
+
         self = .init(
             alignment: alignment,
             spacing: spacing,
             icon: {
-                span {
+                AnyHTML(span {
                     icon
-                }
+                })
             },
             title: title
         )
     }
     
     public init(
-        alignment: VerticalAlign = .center,
+//        alignment: VerticalAlign = .center,
+        alignment: VerticalAlign = .middle,
         spacing: Length = 0.25.rem,
         size: FontAwesomeIcon.Size = .normal,
         style: FontAwesomeIcon.Style = .solid,
         fa icon: String,
         @HTMLBuilder title: () -> Title
-    ) where Icon == HTMLElement<FontAwesomeIcon> {
+    ) where Icon == AnyHTML {
         self = .init(
             alignment: alignment,
             spacing: spacing,
             icon: {
-                span {
+                AnyHTML(span {
                     FontAwesomeIcon(icon: icon, size: size, style: style)
-                }
+                })
             },
             title: title
         )
     }
     
     public init(
-        alignment: VerticalAlign = .center,
+//        alignment: VerticalAlign = .center,
+        alignment: VerticalAlign = .middle,
         spacing: Length = 0.25.rem,
         size: FontAwesomeIcon.Size = .normal,
         style: FontAwesomeIcon.Style = .solid,
         fa icon: String,
         _ title: () -> String
-    ) where Icon == HTMLElement<FontAwesomeIcon>, Title == HTMLText {
+    ) where Icon == AnyHTML, Title == HTMLText {
         self = .init(
             alignment: alignment,
             spacing: spacing,
             icon: {
-                span {
+                AnyHTML(span {
                     FontAwesomeIcon(icon: icon, size: size, style: style)
-                }
+                })
             },
             title: { HTMLText(title()) }
         )

@@ -49,10 +49,19 @@ public struct PageModule<Title: HTML, Content: HTML>: HTML {
             justification: theme.gridJustification,
             itemAlignment: theme.itemAlignment
         )
-        .maxWidth(1280.px)
+        .maxWidth(.px(1280))
         .margin(vertical: 0, horizontal: .auto, media: .desktop)
-        .padding(top: theme.topMargin, horizontal: theme.leftRightMargin, bottom: theme.bottomMargin)
-        .padding(top: theme.topMargin, horizontal: theme.leftRightMarginDesktop, bottom: theme.bottomMargin, media: .desktop)
+        .padding(
+            top: theme.topMargin,
+            horizontal: theme.leftRightMargin,
+            bottom: theme.bottomMargin
+        )
+        .padding(
+            top: theme.topMargin,
+            horizontal: theme.leftRightMarginDesktop,
+            bottom: theme.bottomMargin,
+            media: .desktop
+        )
     }
 }
 
@@ -81,34 +90,38 @@ public struct PageModuleSeeAllTitle<Title: HTML>: HTML {
     public var body: some HTML {
             div {
                 title
-                Link("\(String.see_all.capitalizingFirstLetter().description) →", href: seeAllURL)
+                Link(
+                    href: .init(seeAllURL)) {
+                        "\(String.see_all.capitalizingFirstLetter().description) →"
+                    }
+
             }
-            .width(100.percent)
+            .width(.percent(100))
             .flexContainer(
                 direction: .row,
                 wrap: .nowrap,
                 justification: .spaceBetween,
                 itemAlignment: .center
             )
-            .flexItem(basis: .length(100.percent))
+            .flexItem(basis: .percent(100))
     }
 }
 
 extension PageModule {
     public struct Theme {
-        let topMargin: Length
-        let bottomMargin: Length
-        let leftRightMargin: Length
-        let leftRightMarginDesktop: Length
+        let topMargin: LengthPercentage
+        let bottomMargin: LengthPercentage
+        let leftRightMargin: LengthPercentage
+        let leftRightMarginDesktop: LengthPercentage
         let gridJustification: JustifyContent
         let itemAlignment: AlignItems
         
         public init(
-            topMargin: Length,
-            bottomMargin: Length,
-            leftRightMargin: Length,
-            leftRightMarginDesktop: Length,
-            gridJustification: JustifyContent = .flexStart,
+            topMargin: LengthPercentage,
+            bottomMargin: LengthPercentage,
+            leftRightMargin: LengthPercentage,
+            leftRightMarginDesktop: LengthPercentage,
+            gridJustification: JustifyContent = .flexStart(),
             itemAlignment: AlignItems = .baseline
         ) {
             self.topMargin = topMargin
@@ -124,28 +137,28 @@ extension PageModule {
 extension PageModule.Theme {
     public static var credits: Self {
         Self(
-            topMargin: 2.rem,
-            bottomMargin: 0.rem,
-            leftRightMargin: 2.rem,
-            leftRightMarginDesktop: 3.rem
+            topMargin: .rem(2),
+            bottomMargin: .rem(0),
+            leftRightMargin: .rem(2),
+            leftRightMarginDesktop: .rem(3)
         )
     }
     
     public static var content: Self {
         Self(
-            topMargin: 4.rem,
-            bottomMargin: 4.rem,
-            leftRightMargin: 2.rem,
-            leftRightMarginDesktop: 3.rem
+            topMargin: .rem(4),
+            bottomMargin: .rem(4),
+            leftRightMargin: .rem(2),
+            leftRightMarginDesktop: .rem(3)
         )
     }
     
     public static var whatPeopleAreSaying: Self {
         Self(
-            topMargin: 4.rem,
-            bottomMargin: 4.rem,
-            leftRightMargin: 2.rem,
-            leftRightMarginDesktop: 3.rem,
+            topMargin: .rem(4),
+            bottomMargin: .rem(4),
+            leftRightMargin: .rem(2),
+            leftRightMarginDesktop: .rem(3),
             itemAlignment: .center
         )
     }

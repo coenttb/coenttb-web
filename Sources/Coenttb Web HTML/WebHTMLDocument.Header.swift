@@ -28,7 +28,7 @@ public struct WebHTMLDocumentHeader<
     @HTMLBuilder let scripts: () -> Scripts
     
     @Dependencies.Dependency(\.languages) var languages
-
+    
     public init(
         title: String?,
         description: String?,
@@ -57,63 +57,89 @@ public struct WebHTMLDocumentHeader<
         if let title {
             tag("title") { HTMLText(title) }
         }
-        meta()
-            .attribute("charset", "UTF-8")
+        meta(charset: .utf8) {}
+        
         if let canonicalHref {
-            link()
-                .attribute("rel", "canonical")
-                .attribute("href", canonicalHref.absoluteString)
+            link(
+                href: .init(canonicalHref.absoluteString),
+                rel: .canonical
+            ) {
+                
+            }
         }
+        
         if
             let title,
             let rssXml {
-            link()
-                .attribute("rel", "alternate")
-                .attribute("type", "application/rss+xml")
-                .attribute("title", "\(title) RSS Feed")
-                .attribute("href", "\(rssXml.relativeString)")
+            
+            link(
+                href: .init(rssXml.relativeString),
+                rel: .alternate,
+                title: .init("\(title) RSS Feed"),
+                type: .rss
+            ) {}
+            
         }
         HTMLForEach(self.languages.filter { $0 != language }) { lx in
-            link()
-                .attribute("rel", "alternate")
-                .attribute("hreflang", "\(lx.rawValue)")
-                .attribute("href", "\(hreflang(lx))")
+            link(
+                href: .init(hreflang(lx).absoluteString),
+                hreflang: .init(value: lx.rawValue),
+                rel: .alternate,
+                
+            ) {}
         }
-        meta()
-            .attribute("name", "theme-color")
-            .attribute("content", themeColor.light.description)
-            .attribute("media", "(prefers-color-scheme: light)")
-        meta()
-            .attribute("name", "theme-color")
-            .attribute("content", themeColor.dark?.description)
-            .attribute("media", "(prefers-color-scheme: dark)")
-        meta()
-            .attribute("name", "viewport")
-            .attribute("content", "width=device-width, initial-scale=1.0, viewport-fit=cover")
+        meta(
+            name: .themeColor,
+            content: .init(themeColor.light.description),
+            media: "(prefers-color-scheme: light)"
+        ) {}
+        
+        meta(
+            name: .themeColor,
+            content: .init(themeColor.dark.description),
+            media: "(prefers-color-scheme: dark)"
+        ) {}
+        
+        meta(
+            name: .viewport,
+            content: "width=device-width, initial-scale=1.0, viewport-fit=cover"
+        ) {}
+        
         styles()
         favicons()
         scripts()
         if let title {
-          meta()
-            .attribute("name", "title")
-            .attribute("content", title)
-          meta()
-            .attribute("property", "og:title")
-            .attribute("content", title)
-          meta()
-            .attribute("name", "twitter:title")
-            .attribute("content", title)
+            meta(
+                name: "title",
+                content: .init(title)
+            ) {}
+            
+            meta(
+                content: .init(title)
+            ){}
+                .attribute("property", "og:title")
+            
+            meta(
+                name: "twitter:title",
+                content: .init(title)
+            ) {}
+            
         }
         if let description {
-          meta()
-            .attribute("name", "description")
-            .attribute("content", description)
-          meta()
-            .attribute("property", "og:description")
-            .attribute("content", description)
-          meta()
-            .attribute("name", "twitter:description")
-            .attribute("content", description)
+            meta(
+                name: "description",
+                content: .init(description)
+            ){}
+            
+            meta(
+                content: .init(description)
+            ){}
+                .attribute("property", "og:description")
+            
+            meta(
+                name: "twitter:description",
+                content: .init(description)
+            ){}
         }
     }
 }

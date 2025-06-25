@@ -11,14 +11,14 @@ public struct Footer<
     let backgroundColor: HTMLColor
     let tagline: Tagline
     let copyrightSection: CopyrightSection
-    let columns: [(title: String, links: [(label: String, href: String)])]
+    let columns: [(title: String, links: [(label: String, href: Href)])]
     
     public init(
         foregroundColor: HTMLColor = .black.withDarkColor(.white),
         backgroundColor: HTMLColor = .offBlack.withDarkColor(.offWhite),
         tagline: Tagline,
         copyrightSection: CopyrightSection,
-        columns: [(title: String, links: [(label: String, href: String)])]
+        columns: [(title: String, links: [(label: String, href: Href)])]
     ) {
         self.foregroundColor = foregroundColor
         self.backgroundColor = backgroundColor
@@ -48,26 +48,26 @@ public struct Footer<
                         Link(tagline.title, href: tagline.href)
                             .color(.text.primary)
                     }
-                    .fontScale(.h4)
+//                    .fontScale(.h4)
                     .margin(bottom: 0, media: .mobile)
-                    .font(.size(1.25.rem))
-                    .fontSize(1.5.rem, media: .desktop)
+                    .fontSize(.rem(1.25))
+                    .fontSize(.rem(1.5), media: .desktop)
                     .lineHeight(1.45)
                     
                     tagline.content
                         .color(.text.primary)
-                        .fontStyle(.body(.regular))
+//                        .fontStyle(.body(.regular))
                 }
-                .padding(right: 4.rem, media: .desktop)
-                .padding(bottom: 2.rem, media: .mobile)
+                .padding(right: .rem(4), media: .desktop)
+                .padding(bottom: .rem(2), media: .mobile)
                 
                 LazyVGrid(columns: columnsGrid) {
                     HTMLForEach(self.columns) { column in
                         div {
                             h5 { HTMLText(column.title) }
                                 .color(.text.primary)
-                                .font(.size(0.75.rem))
-                                .font(.size(0.875.rem), media: .desktop)
+                                .fontSize(.rem(0.75))
+                                .fontSize(.rem(0.875), media: .desktop)
                                 .inlineStyle("letter-spacing", "0.54pt")
                                 .lineHeight(1.25)
                                 .inlineStyle("text-transform", "uppercase")
@@ -93,8 +93,8 @@ public struct Footer<
             .alignItems(.firstBaseline)
         }
         .backgroundColor(.background.primary)
-        .padding(2.rem, media: .mobile)
-        .padding(4.rem, media: .desktop)
+        .padding(.rem(2), media: .mobile)
+        .padding(.rem(4), media: .desktop)
     }
 }
 
@@ -111,8 +111,8 @@ public struct AllRightsReserved: HTML {
             
         }
         .color(copyrightHolder.color ?? .white.withDarkColor(.black))
-        .fontStyle(.body(.small))
-        .padding(top: 2.rem, media: .mobile)
+//        .fontStyle(.body(.small))
+        .padding(top: .rem(2), media: .mobile)
     }
 }
 
@@ -120,12 +120,12 @@ public struct AllRightsReserved: HTML {
 extension Footer {
     public struct Tagline {
         let title: String
-        let href: String
+        let href: Href
         let content: TaglineContent
         
         public init(
             title: String,
-            href: String,
+            href: Href,
             content: TaglineContent
         ) {
             self.title = title
@@ -135,12 +135,12 @@ extension Footer {
     }
     
     public struct Links {
-        let content: [(label: String, href: String)]
-        let more: [(label: String, href: String)]
+        let content: [(label: String, href: Href)]
+        let more: [(label: String, href: Href)]
         
         public init(
-            content: [(label: String, href: String)],
-            more: [(label: String, href: String)]
+            content: [(label: String, href: Href)],
+            more: [(label: String, href: Href)]
         ) {
             self.content = content
             self.more = more
@@ -192,7 +192,7 @@ import SwiftUI
 )
 
 #Preview {
-    HTMLPreview.modern {
+    HTMLDocument.modern {
         footer2
     }
     

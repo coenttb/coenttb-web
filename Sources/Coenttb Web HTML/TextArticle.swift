@@ -26,6 +26,6 @@ public struct TextArticle<Content: HTML>: HTML {
         .linkColor(.text.primary)
         .linkUnderline(true)
         .margin(vertical: 0, horizontal: .auto, media: .desktop)
-        .width(60.percent, media: .desktop)
+        .width(.percent(60), media: .desktop)
     }
 }

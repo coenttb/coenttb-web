@@ -45,7 +45,7 @@ public struct StripeContainer<
             _mobileHeader
             desktopLayout
         }
-        .height(100.vh)
+        .height(.vh(100))
         .overflowX(.hidden)
         .overflowY(.hidden)
     }
@@ -54,7 +54,7 @@ public struct StripeContainer<
         div {
             mobileHeader
         }
-        .width(100.vw)
+        .width(.vw(100))
         .backgroundColor(sidebar.background)
         .display(.none, media: .desktop)
     }
@@ -67,7 +67,7 @@ public struct StripeContainer<
         .display(.flex)
         .flexDirection(.column, media: .mobile)
         .flexDirection(.row, media: .desktop)
-        .height(100.vh)
+        .height(.vh(100))
         .overflowX(.hidden)
     }
 
@@ -79,10 +79,10 @@ public struct StripeContainer<
         .inlineStyle("flex", "1 auto")
         .overflowY(.auto)
         .backgroundColor(sidebar.background)
-        .maxWidth(576.px, media: .desktop)
-        .minWidth(310.px, media: .desktop)
-        .width(51.vw, media: .desktop)
-        .display(.none, media: .mobile)
+        .maxWidth(.px(576), media: .desktop)
+        .minWidth(.px(310), media: .desktop)
+        .width(.vw(51), media: .desktop)
+        .display(Display.none, media: .mobile)
         
     }
 
@@ -94,7 +94,7 @@ public struct StripeContainer<
 //        .flex(1, basis: .auto)
 //        .padding(vertical: 2.rem, horizontal: 3.rem)
         .overflowY(.auto)
-        .width(100.percent)
+        .width(.percent(100))
         .inlineStyle("box-shadow", "rgba(0, 0, 0, 0.18) 15px 0px 30px 0px")
     }
 }

@@ -28,16 +28,18 @@ public struct PageHeader<Title: HTML, Blurb: HTML, CallToAction: HTML>: HTML {
     
     public var body: some HTML {
         VStack {
-            HStack(alignment: .center) {
+            HStack(
+                alignment: .center
+            ) {
                 div {
                     Header(2) { title }
                         .color(.text.primary)
                     
                     Paragraph(.big) { blurb }
-                        .fontStyle(.body(.regular))
+//                        .fontStyle(.body(.regular))
                         .color(.text.secondary)
                 }
-                .grow()
+                .flexGrow(1)
                 
                 div {
                     callToAction
@@ -45,11 +47,11 @@ public struct PageHeader<Title: HTML, Blurb: HTML, CallToAction: HTML>: HTML {
             }
             .boxSizing(.borderBox)
             .inlineStyle("flex-basis", "100%")
-            .maxWidth(1280.px)
-            .width(100.percent)
-            .margin(vertical: 0, horizontal: .auto)
-            .padding(vertical: 6.rem, horizontal: 2.rem)
-            .padding(vertical: 8.rem, horizontal: 3.rem, media: .desktop)
+            .maxWidth(.px(1280))
+            .width(.percent(100))
+            .margin(vertical: .zero, horizontal: .auto)
+            .padding(vertical: .rem(6), horizontal: .rem(2))
+            .padding(vertical: .rem(8), horizontal: .rem(3), media: .desktop)
         }
         .boxSizing(.borderBox)
         .boxSizing(.borderBox)

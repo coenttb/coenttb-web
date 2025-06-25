@@ -25,36 +25,40 @@ import CoenttbHTML
 public struct Input<CodingKey: RawRepresentable>: HTML where CodingKey.RawValue == String {
     
     public let codingKey: CodingKey
+    public let type: HTMLElementTypes.Input.Variant
     
-    public init(_ codingKey: CodingKey) {
+    public init(
+        codingKey: CodingKey,
+        type: HTMLElementTypes.Input.Variant
+    ) {
         self.codingKey = codingKey
+        self.type = type
     }
     
     public var body: some HTML {
-        input()
+        input(name: .init(codingKey.rawValue), type: type)
             .id(codingKey.rawValue)
-            .name(codingKey.rawValue)
     }
 }
 
-extension Input {
-    public static func `default`(_ codingKey: CodingKey) -> some HTML {
-        Input(codingKey)
-        .width(100.percent)
-        .padding(vertical: 14.px, horizontal: 10.px)
-        .border(width: 1.px, color: .gray900.withDarkColor(.gray100))
-        .background(.white.withDarkColor(.black))
-        .color(.text.secondary)
-        .inlineStyle("border-radius", "5px")
-    }
-}
-
-extension Input {
-    public static func search(_ codingKey: CodingKey) -> some HTML {
-        Input(codingKey)
-        .width(100.percent)
-        .padding(vertical: 14.px, horizontal: 10.px)
-        .border(width: 1.px, color: .init(light: .hex("#ddd")))
-        .inlineStyle("border-radius", "5px")
-    }
-}
+//extension Input {
+//    public static func `default`(_ codingKey: CodingKey) -> some HTML {
+//        Input(codingKey)
+//        .width(100.percent)
+//        .padding(vertical: 14.px, horizontal: 10.px)
+//        .border(width: 1.px, color: .gray900.withDarkColor(.gray100))
+//        .background(.white.withDarkColor(.black))
+//        .color(.text.secondary)
+//        .inlineStyle("border-radius", "5px")
+//    }
+//}
+//
+//extension Input {
+//    public static func search(_ codingKey: CodingKey) -> some HTML {
+//        Input(codingKey)
+//        .width(100.percent)
+//        .padding(vertical: 14.px, horizontal: 10.px)
+//        .border(width: 1.px, color: .init(light: .hex("#ddd")))
+//        .inlineStyle("border-radius", "5px")
+//    }
+//}

@@ -28,8 +28,8 @@ public struct ListItem<
             span {
                 bullet
             }
-            .margin(right: 1.rem)
-            .margin(top: 0.125.rem)
+            .margin(right: .rem(1))
+            .margin(top: .rem(0.125))
             
             span {
                 content

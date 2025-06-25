@@ -8,39 +8,49 @@
 
 import Dependencies
 import Foundation
-
+import HTML
 
 public struct CircleIconButton: HTML {
+    let button: HTMLElementTypes.Button
     let icon: FontAwesomeIcon
     let color: HTMLColor
-    let href: String
-    let buttonSize: CSS.Length
+    let buttonSize: CSSPropertyTypes.Size
 
     public init(
+        button: HTMLElementTypes.Button = .init(
+            type: nil,
+            disabled: nil,
+            form: nil,
+            name: nil,
+            value: nil,
+            autofocus: nil,
+            formaction: nil,
+            formenctype: nil,
+            formmethod: nil,
+            formnovalidate: nil,
+            formtarget: nil,
+            popovertarget: nil,
+            popovertargetaction: nil
+        ),
         icon: FontAwesomeIcon,
         color: HTMLColor,
-        href: String,
-        buttonSize: CSS.Length = 2.5.rem
+        href: Href,
+        buttonSize: CSSPropertyTypes.Size = .single(.rem(2.5))
     ) {
+        self.button = button
         self.icon = icon
         self.color = color
-        self.href = href
         self.buttonSize = buttonSize
     }
 
     public var body: some HTML {
-        Button(
-            tag: a,
-            background: .transparent,
-            style: .round
-        ) {
+        button {
             span { icon }
                 .color(color)
         }
-        .href(href)
         .size(buttonSize)
         .display(.flex)
         .alignItems(.center)
-        .justifyContent(.center)
+        .justifyContent(.center())
     }
 }

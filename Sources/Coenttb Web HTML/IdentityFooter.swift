@@ -21,25 +21,25 @@ public struct IdentityFooter: HTML {
     public var body: some HTML {
         footer {
             HStack {
-                Link(String.terms_of_use.capitalizingFirstLetter().description, href: termsOfUse.absoluteString)
+                Link(String.terms_of_use.capitalizingFirstLetter().description, href: .init(termsOfUse.absoluteString))
                     .inlineStyle("flex", "1")
                     .textAlign(.right)
-                    .padding(right: 0.25.rem)
+                    .padding(right: .rem(0.25))
                 
                 div { "|" }
-                    .width(1.rem)
+                    .width(.rem(1))
                     .textAlign(.center)
                 
-                Link(String.privacyStatement.capitalizingFirstLetter().description, href: privacyStatement.absoluteString)
+                Link(String.privacyStatement.capitalizingFirstLetter().description, href: .init(privacyStatement.absoluteString))
                     .inlineStyle("flex", "1")
                     .textAlign(.left)
-                    .padding(left: 0.25.rem)
+                    .padding(left: .rem(0.25))
             }
-            .maxWidth(800.px)
-            .margin(horizontal: .auto)
-            .padding(1.rem)
+            .maxWidth(.px(800))
+            .margin(vertical: nil, horizontal: .auto)
+            .padding(.rem(1))
         }
-        .fontSize(.secondary)
+//        .fontSize(.secondary)
         .color(.text.secondary)
         .fontWeight(.light)
     }

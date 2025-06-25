@@ -63,8 +63,8 @@ public struct CoenttbWebHTMLDocumentHeader<
             language: language,
             hreflang: hreflang,
             styles: {
-                style { "\(renderedNormalizeCss)" }
-                style {"""
+                Style() { "\(renderedNormalizeCss)" }
+                Style() {"""
                 html {
                     font-family: ui-sans-serif, -apple-system, Helvetica Neue, Helvetica, Arial, sans-serif;
                     line-height: 1.6;

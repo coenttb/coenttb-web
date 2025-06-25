@@ -9,6 +9,7 @@ import Foundation
 import CoenttbHTML
 import Dependencies
 
+
 public struct NavigationBar<
     Logo: HTML,
     CenteredItems: HTML,
@@ -39,20 +40,20 @@ public struct NavigationBar<
                     .lineHeight(0)
                 centeredNavItems
                     .listStyle(.reset)
-                    .display(.none, media: .mobile)
+                    .display(Display.none, media: .mobile)
                 trailingNavItems
                     .listStyle(.reset)
-                    .display(.none, media: .mobile)
+                    .display(Display.none, media: .mobile)
                 MenuButton()
                 mobileNavItems
                     .listStyle(.reset)
                        .flexItem(
                            grow: .number(1),
                            shrink: .number(1),
-                           basis: .length(100.percent)
+                           basis: .percent(100)
                        )
                        .margin(0)
-                       .display(.none)
+                       .display(Display.none)
                        .display(.block, media: .mobile, pre: "input:checked ~")
             }
             .flexContainer(
@@ -61,30 +62,34 @@ public struct NavigationBar<
                 justification: .spaceBetween,
                 itemAlignment: .center
             )
-            .padding(top: 1.5.rem, right: 2.rem, bottom: 1.5.rem, left: 2.rem)
-            .padding(1.5.rem, media: .desktop)
-            .maxWidth(1280.px)
+            .padding(
+                top: .rem(1.5),
+                bottom: .rem(1.5),
+                left: .rem(2),
+                right: .rem(2)
+            )
+            .padding(.rem(1.5), media: .desktop)
+            .maxWidth(.px(1280))
             .margin(vertical: 0, horizontal: .auto)
         }
-        .width(100.percent)
+        .width(.percent(100))
         .position(.sticky, media: .mobile)
         .top(0, media: .mobile)
-        .zIndex("9999")
+        .zIndex(9999)
     }
     
 
     struct MenuButton: HTML {
         public var body: some HTML {
-            input()
+            input.checkbox()
                 .id("menu-checkbox")
-                .attribute("type", "checkbox")
-                .display(.none)
+                .display(Display.none)
             
             Bars()
                 .id("menu-icon")
                 .attribute("for", "menu-checkbox")
                 .cursor(.pointer)
-                .display(.none, media: .desktop)
+                .display(Display.none, media: .desktop)
                 .inlineStyle("user-select", "none")
         }
         
@@ -94,10 +99,13 @@ public struct NavigationBar<
                     HTMLForEach(-1...1) { index in
                         Bar(index: index)
                     }
-                    .size(width: .px(24), height: .px(3))
-                    .background(.black.withDarkColor(.gray900))
+//                    .size(
+//                        width: .px(24),
+//                        height: .px(3)
+//                    )
+//                    .background(.black.withDarkColor(.gray900))
                     .display(.block)
-                    .border(.radius(1.5.px))
+                    .borderRadius(.px(1.5))
                     .transition("all .2s ease-out, background .2s ease-out")
                     .position(.relative)
                 }
@@ -108,14 +116,18 @@ public struct NavigationBar<
             let index: Int
             public var body: some HTML {
                 span {}
-                    .top(index == 0 ? nil : (index * 5).px)
-                    .top(index == 0 ? nil : index == 1 ? (-5).px : 0, pre: "input:checked ~ #menu-icon")
+                    .top(index == 0 ? nil : .px(Double(index) * 5))
+                    .top(index == 0 ? nil : index == 1 ? .px(-5) : 0, pre: "input:checked ~ #menu-icon")
                     .transform("rotate(\(index * 45)deg)", pre: "input:checked ~ #menu-icon")
-                    .background(index == 0 ? HTMLColor.transparent : nil, pre: "input:checked ~ #menu-icon")
+                    .background(index == 0 ? .color(.transparent) : nil, pre: "input:checked ~ #menu-icon")
                 
             }
         }
     }
+}
+
+extension Color {
+    static let transparent: Self = .transparent
 }
 
 public struct Login {
@@ -133,11 +145,11 @@ public struct Login {
 }
 
 public struct NavigationBarSVGLogo: HTML {
-    let href: String
+    let href: Href
     let svg: SVG
     
     public init(
-        href: String,
+        href: Href,
         svg: () -> SVG
     ) {
         self.svg = svg()
@@ -145,7 +157,7 @@ public struct NavigationBarSVGLogo: HTML {
     }
     
     public var body: some HTML {
-        Link.init(href: href) {
+        Link(href: href) {
             svg
         }
     }
@@ -166,7 +178,7 @@ public struct NavigationBarCenteredNavItems: HTML {
                     item
                 }
             }
-            .padding(left: 1.5.rem, media: .desktop)
+            .padding(left: .rem(1.5), media: .desktop)
         }
         
     }
@@ -174,15 +186,19 @@ public struct NavigationBarCenteredNavItems: HTML {
     
     public struct NavListItem: HTML {
         let title: String
-        let href: String
-        public init(_ title: String, href: String) {
+        let href: Href
+        
+        public init(_ title: String, href: Href) {
             self.title = title
             self.href = href
         }
         public var body: some HTML {
             li {
-                Link(title, href: href)
-                    .padding(left: 2.rem, pseudo: .not(.firstChild))
+                Link(
+                    title,
+                    href: href
+                )
+                    .padding(left: .rem(2), pseudo: .not(.firstChild))
             }
             .display(.inline)
         }
@@ -206,21 +222,27 @@ public struct NavigationBarTrailingNavItems: HTML {
                 item
             }
             .display(.inline)
-            .padding(left: 1.rem, pseudo: .not(.firstChild))
+            .padding(
+                left: .rem(1),
+                pseudo: .not(.firstChild)
+            )
         }
     }
     
     public struct NavListItem: HTML {
         let title: String
-        let href: String
+        let href: Href
         
-        public init(_ title: String, href: String) {
+        public init(_ title: String, href: Href) {
             self.title = title
             self.href = href
         }
         public var body: some HTML {
             li {
-                Link(title, href: href)
+                Link(
+                    title,
+                    href: href
+                )
                     .display(.block)
             }
         }
@@ -306,14 +328,21 @@ public struct NavigationBarMobileNavItems: HTML {
     
     public struct NavListItem: HTML {
         let title: String
-        let href: String
-        public init(_ title: String, href: String) {
+        let href: Href
+        
+        public init(
+            _ title: String,
+            href: Href
+        ) {
             self.title = title
             self.href = href
         }
         public var body: some HTML {
             
-            Link(title, href: href)
+            Link(
+                title,
+                href: href
+            )
                 .display(.block)
         }
     }

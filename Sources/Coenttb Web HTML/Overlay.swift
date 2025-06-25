@@ -23,18 +23,18 @@ public struct Overlay<Content: HTML>: HTML {
     }
 
     private var backgroundOverlay: some HTML {
-        div()
+        div() {}
             .id("background-overlay-\(id)")
-            .display(.none)
+            .display(Display.none)
             .position(.fixed)
-            .top(0)
-            .left(0)
-            .width(100.percent)
-            .height(100.percent)
+            .top(.zero)
+            .left(.zero)
+            .width(.percent(100))
+            .height(.percent(100))
             .backgroundColor(HTMLColor.init(light: .rgba(red: 0, green: 0, blue: 0, alpha: 0.7)))
             .transition("opacity 0.3s ease")
-            .opacity("0")
-            .zIndex("1000")
+            .opacity(0)
+            .zIndex(1000)
     }
     
     public var body: some HTML {
@@ -46,20 +46,23 @@ public struct Overlay<Content: HTML>: HTML {
             }
             .id("popup-container-\(id)")
             .textAlign(.center)
-            .display(.none)
+            .display(Display.none)
             .position(.fixed)
-            .top(50.percent)
-            .left(50.percent)
+            .top(.percent(50))
+            .left(.percent(50))
             .transform("translate(-50%, -50%) scale(0.95)")
             .transition("opacity 0.3s ease, transform 0.3s ease")
-            .opacity("0")
-            .zIndex("1001")
+            .opacity(0)
+            .zIndex(1001)
             .maxWidth(.px(440))
-            .width(90.percent)
-            .margin(horizontal: .auto)
-            .background(.background.primary)
+            .width(.percent(90))
+            .margin(
+                vertical: nil,
+                horizontal: .auto,
+            )
+//            .background(.color(.background.primary))
         }
-        .class(id)
+        .class(.init(id))
 
         script {
             """

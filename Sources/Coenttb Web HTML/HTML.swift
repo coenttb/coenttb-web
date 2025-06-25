@@ -15,7 +15,7 @@ extension HTML {
         let focusClass = "focus-on-load-\(UUID().uuidString)"
         
         HTMLGroup {
-            self.class(focusClass)
+            self.class(.init(focusClass))
             
             script {"""
             document.addEventListener('DOMContentLoaded', function() {
