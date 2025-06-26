@@ -56,7 +56,7 @@ public struct Footer<
                     
                     tagline.content
                         .color(.text.primary)
-//                        .fontStyle(.body(.regular))
+                        .font(.body(.regular))
                 }
                 .padding(right: .rem(4), media: .desktop)
                 .padding(bottom: .rem(2), media: .mobile)
@@ -111,7 +111,7 @@ public struct AllRightsReserved: HTML {
             
         }
         .color(copyrightHolder.color ?? .white.withDarkColor(.black))
-//        .fontStyle(.body(.small))
+        .font(.body(.small))
         .padding(top: .rem(2), media: .mobile)
     }
 }

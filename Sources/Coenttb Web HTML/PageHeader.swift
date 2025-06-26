@@ -36,7 +36,7 @@ public struct PageHeader<Title: HTML, Blurb: HTML, CallToAction: HTML>: HTML {
                         .color(.text.primary)
                     
                     Paragraph(.big) { blurb }
-//                        .fontStyle(.body(.regular))
+                        .font(.body(.regular))
                         .color(.text.secondary)
                 }
                 .flexGrow(1)

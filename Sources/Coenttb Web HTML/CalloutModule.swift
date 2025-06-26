@@ -29,7 +29,7 @@
 //                    if let blurb {
 //                        div {
 //                            Paragraph(.big) { HTMLRaw(blurb.content) }
-//                                .fontStyle(.body(.regular))
+//                                .font(.body(.regular))
 //                                .color(blurb.color)
 //                                .margin(vertical: 0, horizontal: .auto, media: .desktop)
 //                                .maxWidth(40.rem)
