@@ -7,21 +7,15 @@ public struct Footer<
     CopyrightSection: HTML
 >: HTML {
     
-    let foregroundColor: HTMLColor
-    let backgroundColor: HTMLColor
     let tagline: Tagline
     let copyrightSection: CopyrightSection
     let columns: [(title: String, links: [(label: String, href: Href)])]
     
     public init(
-        foregroundColor: HTMLColor = .black.withDarkColor(.white),
-        backgroundColor: HTMLColor = .offBlack.withDarkColor(.offWhite),
         tagline: Tagline,
         copyrightSection: CopyrightSection,
         columns: [(title: String, links: [(label: String, href: Href)])]
     ) {
-        self.foregroundColor = foregroundColor
-        self.backgroundColor = backgroundColor
         self.tagline = tagline
         self.copyrightSection = copyrightSection
         self.columns = columns
