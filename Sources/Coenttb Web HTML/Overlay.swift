@@ -60,7 +60,7 @@ public struct Overlay<Content: HTML>: HTML {
                 vertical: nil,
                 horizontal: .auto,
             )
-//            .background(.color(.background.primary))
+            .background(.color(.background.primary))
         }
         .class(.init(id))
 
