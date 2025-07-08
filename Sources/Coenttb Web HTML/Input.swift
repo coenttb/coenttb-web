@@ -7,20 +7,14 @@
 
 import CoenttbHTML
 
-//extension RawRepresentable where Self.RawValue == String  {
-//    public var rawValue: String {
-//        func rawValue(for codingKey: Self) -> String {
-//            let fullTypePath = String(reflecting: Self.self) + "." + codingKey.rawValue
-//            let words = fullTypePath.split { $0 == "." || $0 == "_" }
-//            
-//            let firstWord = words.first?.lowercased() ?? ""
-//            let camelCased = words.dropFirst().map { $0.capitalized }.joined()
-//            
-//            return firstWord + camelCased
-//        }
-//        return rawValue(for: self)
-//    }
-//}
+//
+//  File.swift
+//  coenttb-web
+//
+//  Created by Coen ten Thije Boonkkamp on 03/09/2024.
+//
+
+import CoenttbHTML
 
 public struct Input<CodingKey: RawRepresentable>: HTML where CodingKey.RawValue == String {
     
@@ -52,24 +46,74 @@ public struct Input<CodingKey: RawRepresentable>: HTML where CodingKey.RawValue 
     }
 }
 
-//extension Input {
-//    public static func `default`(_ codingKey: CodingKey) -> some HTML {
-//        Input(codingKey)
-//        .width(100.percent)
-//        .padding(vertical: 14.px, horizontal: 10.px)
-//        .border(width: 1.px, color: .gray900.withDarkColor(.gray100))
-//        .background(.white.withDarkColor(.black))
-//        .color(.text.secondary)
-//        .inlineStyle("border-radius", "5px")
-//    }
-//}
-//
-//extension Input {
-//    public static func search(_ codingKey: CodingKey) -> some HTML {
-//        Input(codingKey)
-//        .width(100.percent)
-//        .padding(vertical: 14.px, horizontal: 10.px)
-//        .border(width: 1.px, color: .init(light: .hex("#ddd")))
-//        .inlineStyle("border-radius", "5px")
-//    }
-//}
+extension Input {
+    public enum Style {
+        case `default`
+        case outlined
+        case filled
+        case minimal
+        case error
+        case success
+    }
+    
+    @HTMLBuilder
+    public func style(_ style: Style) -> some HTML {
+        switch style {
+        case .default:
+            self
+                .padding(vertical: .px(14), horizontal: .px(10))
+                .border(width: .px(1), color: .gray900.withDarkColor(.gray100))
+                .backgroundColor(.white.withDarkColor(.black))
+                .color(.text.secondary)
+                .borderRadius(.px(5))
+                
+        case .outlined:
+            self
+                .padding(vertical: .px(14), horizontal: .px(10))
+                .border(width: .px(2), color: .blue500.withDarkColor(.blue400))
+                .backgroundColor(Color.transparent)
+                .color(.text.primary)
+                .borderRadius(.px(5))
+                
+        case .filled:
+            self
+                .padding(vertical: .px(14), horizontal: .px(10))
+                .border(.none)
+                .backgroundColor(.gray100.withDarkColor(.gray800))
+                .color(.text.primary)
+                .borderRadius(.px(5))
+                
+        case .minimal:
+            self
+                .padding(vertical: .px(8), horizontal: .px(4))
+                .border(.none)
+                .backgroundColor(Color.transparent)
+                .color(.text.primary)
+                .borderBottom(.init(.px(5), .solid))
+//                .borderBottomColor(.color(.gray400.withDarkColor(.gray600)))
+                
+        case .error:
+            self
+                .padding(vertical: .px(14), horizontal: .px(10))
+                .border(width: .px(1), color: .red500.withDarkColor(.red400))
+                .backgroundColor(Color.red100.withDarkColor(.red900))
+                .color(.text.primary)
+                .borderRadius(.px(5))
+                
+        case .success:
+            self
+                .padding(vertical: .px(14), horizontal: .px(10))
+                .border(width: .px(1), color: .green500.withDarkColor(.green400))
+                .backgroundColor(.green100.withDarkColor(.green900))
+                .color(.text.primary)
+                .borderRadius(.px(5))
+        }
+    }
+}
+
+// Convenience extension for default styling
+extension Input {
+    public func styled() -> some HTML {
+        self.style(.default)
+    }
+}
