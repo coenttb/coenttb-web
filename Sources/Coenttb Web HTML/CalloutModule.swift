@@ -58,3 +58,16 @@ public struct CallToActionModule<Content: HTML>: HTML {
         }
     }
 }
+
+#if DEBUG && canImport(SwiftUI)
+import SwiftUI
+#Preview {
+    HTMLDocument {
+        CallToActionModule(
+            title: (content: "String", color: .black),
+            blurb: (content: "String", color: .blue)
+        ).width(.px(10))
+    }
+    
+}
+#endif

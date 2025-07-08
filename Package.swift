@@ -32,6 +32,7 @@ extension Target.Dependency {
     static var coenttbUtils: Self { .product(name: "CoenttbUtils", package: "coenttb-utils") }
     static var languages: Self { .product(name: "Languages", package: "swift-language") }
     static var tagged: Self { .product(name: "Tagged", package: "swift-tagged") }
+    static var htmlTestSupport: Self { .product(name: "HTMLTestSupport", package: "swift-html-css-pointfree") }
 }
 
 let package = Package(
@@ -63,6 +64,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/coenttb/coenttb-html", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-environment-variables.git", branch: "main"),
+        .package(url: "https://github.com/coenttb/swift-html-css-pointfree", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-language.git", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-web", branch: "main"),
         .package(url: "https://github.com/coenttb/coenttb-utils", branch: "main"),
@@ -107,6 +109,13 @@ let package = Package(
                 .coenttbWebDependencies,
             ]
         ),
+        .testTarget(
+            name: .coenttbWebHTML.tests,
+            dependencies: [
+                .coenttbWebHTML,
+                .htmlTestSupport,
+            ]
+        ),
         .target(
             name: .coenttbWebDependencies,
             dependencies: [
@@ -141,3 +150,9 @@ let package = Package(
     ],
     swiftLanguageModes: [.v6]
 )
+
+extension String {
+    var tests: String {
+        appending(" Tests")
+    }
+}

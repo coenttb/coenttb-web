@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "E5398E17-4BDC-4A5C-94CF-2191927A11C2",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "Coenttb Web HTML Tests",
+        "name" : "Coenttb Web HTML Tests"
+      }
+    }
+  ],
+  "version" : 1
+}
