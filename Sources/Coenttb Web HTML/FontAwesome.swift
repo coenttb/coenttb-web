@@ -80,7 +80,7 @@ extension FontAwesomeIcon {
 }
 
 
-extension Label {
+extension CoenttbHTML.Label {
     init(
 //        alignment: VerticalAlign = .center,
         alignment: VerticalAlign = .middle,

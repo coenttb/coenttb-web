@@ -81,7 +81,7 @@ public struct PageModuleSeeAllTitle<Title: HTML>: HTML {
     public init(
         title: String,
         seeAllURL: String
-    ) where Title == Header<HTMLText> {
+    ) where Title == CoenttbHTML.Header<HTMLText> {
         self.title = Header(3) { HTMLText(title) }
         self.seeAllURL = seeAllURL
     }
