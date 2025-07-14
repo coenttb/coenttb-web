@@ -103,7 +103,10 @@ public struct NavigationBar<
 //                        width: .px(24),
 //                        height: .px(3)
 //                    )
-//                    .background(.black.withDarkColor(.gray900))
+                    .size(
+                        .double(width: .px(24), height: .px(3))
+                    )
+                    .backgroundColor(.black.withDarkColor(.gray900))
                     .display(.block)
                     .borderRadius(.px(1.5))
                     .transition("all .2s ease-out, background .2s ease-out")
