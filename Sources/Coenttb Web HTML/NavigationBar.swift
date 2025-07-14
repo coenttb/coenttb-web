@@ -10,22 +10,17 @@ import CoenttbHTML
 import Dependencies
 
 
-public struct NavigationBar<
-    Logo: HTML,
-    CenteredItems: HTML,
-    TrailingItems: HTML,
-    MobileItems: HTML
->: HTML {
-    let logo: Logo
-    let centeredNavItems: CenteredItems
-    let trailingNavItems: TrailingItems
-    let mobileNavItems: MobileItems
+public struct NavigationBar: HTML {
+    let logo: any HTML
+    let centeredNavItems: any HTML
+    let trailingNavItems: any HTML
+    let mobileNavItems: any HTML
     
     public init(
-        @HTMLBuilder logo: () -> Logo,
-        @HTMLBuilder centeredNavItems: () -> CenteredItems,
-        @HTMLBuilder trailingNavItems: () -> TrailingItems,
-        @HTMLBuilder mobileNavItems: () -> MobileItems
+        @HTMLBuilder logo: () -> any HTML,
+        @HTMLBuilder centeredNavItems: () -> any HTML,
+        @HTMLBuilder trailingNavItems: () -> any HTML,
+        @HTMLBuilder mobileNavItems: () -> any HTML
     ) {
         self.logo = logo()
         self.centeredNavItems = centeredNavItems()
@@ -36,25 +31,25 @@ public struct NavigationBar<
     public var body: some HTML {
         nav {
             div {
-                logo
+                AnyHTML(logo)
                     .lineHeight(0)
-                centeredNavItems
+                AnyHTML(centeredNavItems)
                     .listStyle(.reset)
                     .display(Display.none, media: .mobile)
-                trailingNavItems
+                AnyHTML(trailingNavItems)
                     .listStyle(.reset)
                     .display(Display.none, media: .mobile)
                 MenuButton()
-                mobileNavItems
+                AnyHTML(mobileNavItems)
                     .listStyle(.reset)
-                       .flexItem(
-                           grow: .number(1),
-                           shrink: .number(1),
-                           basis: .percent(100)
-                       )
-                       .margin(0)
-                       .display(Display.none)
-                       .display(.block, media: .mobile, pre: "input:checked ~")
+                    .flexItem(
+                        grow: 1,
+                        shrink: 1,
+                        basis: .percent(100)
+                    )
+                    .margin(.zero)
+                    .display(Display.none)
+                    .display(.block, media: .mobile, pre: "input:checked ~")
             }
             .flexContainer(
                 direction: .row,
@@ -70,61 +65,64 @@ public struct NavigationBar<
             )
             .padding(.rem(1.5), media: .desktop)
             .maxWidth(.px(1280))
-            .margin(vertical: 0, horizontal: .auto)
+            .margin(vertical: .zero, horizontal: .auto)
         }
         .width(.percent(100))
         .position(.sticky, media: .mobile)
-        .top(0, media: .mobile)
+        .top(.zero, media: .mobile)
         .zIndex(9999)
     }
     
-
+    
     struct MenuButton: HTML {
-        public var body: some HTML {
-            input.checkbox()
-                .id("menu-checkbox")
-                .display(Display.none)
+        var body: some HTML {
+            
+            HTMLVoidTag("input")()
+                .attribute("id", "menu-checkbox")
+                .attribute("type", "checkbox")
+                .inlineStyle("display", "none")
             
             Bars()
-                .display(Display.none, media: .desktop)
+                .id("menu-icon")
+                .attribute("for", "menu-checkbox")
+                .inlineStyle("cursor", "pointer")
+                .inlineStyle("display", "none", media: .desktop)
+                .inlineStyle("user-select", "none")
         }
         
         struct Bars: HTML {
-            public var body: some HTML {
+            var body: some HTML {
                 label {
                     HTMLForEach(-1...1) { index in
                         Bar(index: index)
                     }
+                    .width(.px(24))
+                    .height(.px(3))
+                    .background(.black)
+                    .display(.block)
+                    .inlineStyle("border-radius", "1.5px")
+                    .inlineStyle("transition", "all .2s ease-out, background .2s ease-out")
+                    .position(.relative)
                 }
-                .id("menu-icon")
-                .attribute("for", "menu-checkbox")
-                .cursor(.pointer)
-                .inlineStyle("user-select", "none")
-                .display(.block)
-                .position(.relative)
-                .width(.px(24))
-                .height(.px(18)) // Enough height for 3 bars with spacing
             }
         }
         
         struct Bar: HTML {
             let index: Int
-            public var body: some HTML {
+            var body: some HTML {
                 span {}
-                    .position(.absolute)
-                    .width(.px(24))
-                    .height(.px(3))
-                    .backgroundColor(.black.withDarkColor(.gray900))
-                    .borderRadius(.px(1.5))
-                    .transition("all .2s ease-out, background .2s ease-out")
-                    .top(.px(Double(index + 1) * 6)) // Position bars: 6px, 12px, 18px from top
-                    .left(0)
-                    // Animation states
-                    .top(index == 0 ? .px(9) : nil, pre: "input:checked ~ #menu-icon")
-                    .top(index == 1 ? .px(9) : nil, pre: "input:checked ~ #menu-icon")
-                    .top(index == -1 ? .px(9) : nil, pre: "input:checked ~ #menu-icon")
-                    .transform("rotate(\(index == 1 ? 45 : index == -1 ? -45 : 0)deg)", pre: "input:checked ~ #menu-icon")
-                    .opacity(index == 0 ? 0 : 1, pre: "input:checked ~ #menu-icon")
+                    .inlineStyle("top", index == 0 ? nil : "\(index * 5)px")
+                    .inlineStyle(
+                        "top",
+                        index == 0 ? nil : index == 1 ? "-5px" : "0",
+                        pre: "input:checked ~ #menu-icon"
+                    )
+                    .inlineStyle("transform", "rotate(\(index * 45)deg)", pre: "input:checked ~ #menu-icon")
+                    .inlineStyle(
+                        "background",
+                        index == 0 ? "transparent" : nil,
+                        pre: "input:checked ~ #menu-icon"
+                    )
             }
         }
     }
@@ -199,7 +197,7 @@ public struct NavigationBarCenteredNavItems: HTML {
                     title,
                     href: href
                 )
-                    .padding(left: .rem(2), pseudo: .not(.firstChild))
+                .padding(left: .rem(2), pseudo: .not(.firstChild))
             }
             .display(.inline)
         }
@@ -244,7 +242,7 @@ public struct NavigationBarTrailingNavItems: HTML {
                     title,
                     href: href
                 )
-                    .display(.block)
+                .display(.block)
             }
         }
     }
@@ -264,67 +262,67 @@ public struct NavigationBarMobileNavItems: HTML {
     
     public var body: some HTML {
         HTMLText("TO BE DELETED")
-//        ul {
-//            HTMLForEach(self.items) { item in
-//                li {
-//                    item
-//                }
-//            }
-//            .padding(top: 1.5.rem)
-//            
-//            if let login {
-//                switch login.isLoggedIn {
-//                case true:
-//                    li {
-//                        Button(
-//                            tag: a,
-//                            backgroundColor: .purple,
-//                            foregroundColor: .white.withDarkColor(.black)
-//                        ) {
-//                            HTMLText("Account")
-//                        }
-//                        .textAlign(.center)
-//                        .attribute("href", login.accountHref)
-//                        .display(.block)
-//                    }
-//                case false:
-//                    li {
-//                        Button(
-//                            tag: a,
-//                            backgroundColor: .purple,
-//                            foregroundColor: .white.withDarkColor(.black)
-//                        ) {
-//                            HTMLText("Login")
-//                        }
-//                        .textAlign(.center)
-//                        .attribute(
-//                            "href",
-//                            login.loginHref
-//                        )
-//                        .display(.block)
-//                    }
-//                    
-//                    li {
-//
-//                        Button(
-//                            tag: a,
-//                            backgroundColor: .purple,
-//                            foregroundColor: .white.withDarkColor(.black)
-//                        ) {
-//                            HTMLText("Sign up")
-//                        }
-//                        .textAlign(.center)
-//                        .attribute(
-//                            "href",
-//                            login.signupHref
-//                        )
-//                        .display(.block)
-//                    }
-//                }
-//            } else {
-//                HTMLEmpty()
-//            }
-//        }
+        //        ul {
+        //            HTMLForEach(self.items) { item in
+        //                li {
+        //                    item
+        //                }
+        //            }
+        //            .padding(top: 1.5.rem)
+        //
+        //            if let login {
+        //                switch login.isLoggedIn {
+        //                case true:
+        //                    li {
+        //                        Button(
+        //                            tag: a,
+        //                            backgroundColor: .purple,
+        //                            foregroundColor: .white.withDarkColor(.black)
+        //                        ) {
+        //                            HTMLText("Account")
+        //                        }
+        //                        .textAlign(.center)
+        //                        .attribute("href", login.accountHref)
+        //                        .display(.block)
+        //                    }
+        //                case false:
+        //                    li {
+        //                        Button(
+        //                            tag: a,
+        //                            backgroundColor: .purple,
+        //                            foregroundColor: .white.withDarkColor(.black)
+        //                        ) {
+        //                            HTMLText("Login")
+        //                        }
+        //                        .textAlign(.center)
+        //                        .attribute(
+        //                            "href",
+        //                            login.loginHref
+        //                        )
+        //                        .display(.block)
+        //                    }
+        //
+        //                    li {
+        //
+        //                        Button(
+        //                            tag: a,
+        //                            backgroundColor: .purple,
+        //                            foregroundColor: .white.withDarkColor(.black)
+        //                        ) {
+        //                            HTMLText("Sign up")
+        //                        }
+        //                        .textAlign(.center)
+        //                        .attribute(
+        //                            "href",
+        //                            login.signupHref
+        //                        )
+        //                        .display(.block)
+        //                    }
+        //                }
+        //            } else {
+        //                HTMLEmpty()
+        //            }
+        //        }
     }
     
     public struct NavListItem: HTML {
@@ -344,7 +342,7 @@ public struct NavigationBarMobileNavItems: HTML {
                 title,
                 href: href
             )
-                .display(.block)
+            .display(.block)
         }
     }
 }
@@ -361,47 +359,54 @@ var content: some HTML {
         NavigationBarCenteredNavItems(
             items: [
                 .init("hello", href: "#"),
-                .init("THERE", href: "#")
+                .init("THERE", href: "#"),
             ]
         )
     } trailingNavItems: {
         NavigationBarTrailingNavItems(
             items: [
                 .init("TEST", href: ""),
-                .init("TEST2", href: "")
+                .init("TEST2", href: ""),
             ]
         )
     } mobileNavItems: {
-        HTMLEmpty()
-//            NavigationBarMobileNavItems.init(
-//                login: nil,
-//                items: [
-//                    .init("TEST", href: ""),
-//                    .init("TEST2", href: "")
-//                ]
-//            )
+        ul {
+            li { "test1" }
+            li { "test2" }
+        }
+//        NavigationBarMobileNavItems.init(
+//            login: nil,
+//            items: [
+//                .init("TEST", href: ""),
+//                .init("TEST2", href: "")
+//            ]
+//        )
     }
 }
 
-let string = try! String(
-    HTMLDocument {
-        content
-    }
-)
 
 #Preview {
     HTMLDocument {
-        div {
-            content
-            .backgroundColor(.red)
-        }
-        
-        HTMLText(
-            string
-        )
+        content
     }
-    .frame(width: 450, height: 900)
+    .frame(width: 400, height: 900)
     
     
 }
 #endif
+
+
+
+
+struct HTMLSourceText: HTML {
+    let html: any HTML
+    var body: some HTML {
+        HTMLText(
+            try! String(
+                HTMLDocument {
+                    AnyHTML(html)
+                }
+            )
+        )
+    }
+}
