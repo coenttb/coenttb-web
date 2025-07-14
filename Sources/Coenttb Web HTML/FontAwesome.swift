@@ -16,7 +16,7 @@ public struct FontAwesomeScript: HTML {
 }
 
 public var fontAwesomeScript: some HTML {
-    script(src: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js")
+    script(src: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js")
 }
 
 public struct FontAwesomeIcon: HTML {

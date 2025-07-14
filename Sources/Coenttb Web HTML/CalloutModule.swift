@@ -31,7 +31,11 @@ public struct CallToActionModule<Content: HTML>: HTML {
                             Paragraph(.big) { HTMLRaw(blurb.content) }
                                 .font(.body(.regular))
                                 .color(blurb.color)
-                                .margin(vertical: 0, horizontal: .auto, media: .desktop)
+                                .margin(
+                                    vertical: .zero,
+                                    horizontal: .auto,
+                                    media: .desktop
+                                )
                                 .maxWidth(.rem(40))
                         }
                     }
@@ -39,7 +43,7 @@ public struct CallToActionModule<Content: HTML>: HTML {
                 }
                 .textAlign(.center, media: .desktop)
             }
-            .margin(vertical: 0, horizontal: .auto)
+            .margin(vertical: .zero, horizontal: .auto)
             .maxWidth(.px(1280))
             .padding(
                 vertical: .large,
@@ -64,10 +68,19 @@ import SwiftUI
 #Preview {
     HTMLDocument {
         CallToActionModule(
-            title: (content: "String", color: .black),
-            blurb: (content: "String", color: .blue)
-        ).width(.px(10))
+            title: (content: "HELLO THERE", color: .black),
+            blurb: (content: "HELLO", color: .blue)
+        )
+        .border(.left, width: .px(3), style: .solid)
+        
+        CallToActionModule(
+            title: (content: "HELLO THERE", color: .black),
+            blurb: (content: "HELLO", color: .blue)
+        )
+        .border(.left, width: .px(3), style: .solid)
     }
+    
+    .frame(width: 600, height: 400)
     
 }
 #endif
