@@ -77,17 +77,16 @@ public struct NavigationBar: HTML {
     struct MenuButton: HTML {
         var body: some HTML {
             
-            HTMLVoidTag("input")()
-                .attribute("id", "menu-checkbox")
-                .attribute("type", "checkbox")
-                .inlineStyle("display", "none")
+            input.checkbox(checked: true)
+                .id("menu-checkbox")
+                .display(Display.none)
             
             Bars()
                 .id("menu-icon")
                 .attribute("for", "menu-checkbox")
-                .inlineStyle("cursor", "pointer")
-                .inlineStyle("display", "none", media: .desktop)
-                .inlineStyle("user-select", "none")
+                .cursor(.pointer)
+                .display(Display.none, media: .desktop)
+                .userSelect(UserSelect.none)
         }
         
         struct Bars: HTML {
@@ -374,13 +373,6 @@ var content: some HTML {
             li { "test1" }
             li { "test2" }
         }
-//        NavigationBarMobileNavItems.init(
-//            login: nil,
-//            items: [
-//                .init("TEST", href: ""),
-//                .init("TEST2", href: "")
-//            ]
-//        )
     }
 }
 
@@ -388,6 +380,8 @@ var content: some HTML {
 #Preview {
     HTMLDocument {
         content
+        
+        HTMLSourceText(html: content)
     }
     .frame(width: 400, height: 900)
     
