@@ -89,7 +89,6 @@ public struct NavigationBar<
                 .id("menu-icon")
                 .attribute("for", "menu-checkbox")
                 .cursor(.pointer)
-                .display(.block, media: .mobile)
                 .display(Display.none, media: .desktop)
                 .inlineStyle("user-select", "none")
         }
