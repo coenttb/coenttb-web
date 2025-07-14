@@ -77,7 +77,7 @@ public struct NavigationBar: HTML {
     struct MenuButton: HTML {
         var body: some HTML {
             
-            input.checkbox(checked: true)
+            input.checkbox
                 .id("menu-checkbox")
                 .display(Display.none)
             
