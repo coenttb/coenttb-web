@@ -74,7 +74,7 @@ extension Input {
                 html
                     .padding(vertical: .px(14), horizontal: .px(10))
                     .border(width: .px(2), color: .blue500.withDarkColor(.blue400))
-                    .backgroundColor(Color.transparent)
+                    .backgroundColor(.transparent)
                     .color(.text.primary)
                     .borderRadius(.px(5))
                     
@@ -90,7 +90,7 @@ extension Input {
                 html
                     .padding(vertical: .px(8), horizontal: .px(4))
                     .border(.none)
-                    .backgroundColor(Color.transparent)
+                    .backgroundColor(.transparent)
                     .color(.text.primary)
                     .borderBottom(.init(.px(5), .solid))
     //                .borderBottomColor(.color(.gray400.withDarkColor(.gray600)))

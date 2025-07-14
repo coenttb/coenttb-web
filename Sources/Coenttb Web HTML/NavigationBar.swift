@@ -86,11 +86,7 @@ public struct NavigationBar<
                 .display(Display.none)
             
             Bars()
-                .id("menu-icon")
-                .attribute("for", "menu-checkbox")
-                .cursor(.pointer)
                 .display(Display.none, media: .desktop)
-                .inlineStyle("user-select", "none")
         }
         
         struct Bars: HTML {
@@ -99,15 +95,15 @@ public struct NavigationBar<
                     HTMLForEach(-1...1) { index in
                         Bar(index: index)
                     }
-                    .size(
-                        .double(width: .px(24), height: .px(3))
-                    )
-                    .backgroundColor(.black.withDarkColor(.gray900))
-                    .display(.block)
-                    .borderRadius(.px(1.5))
-                    .transition("all .2s ease-out, background .2s ease-out")
-                    .position(.relative)
                 }
+                .id("menu-icon")
+                .attribute("for", "menu-checkbox")
+                .cursor(.pointer)
+                .inlineStyle("user-select", "none")
+                .display(.block)
+                .position(.relative)
+                .width(.px(24))
+                .height(.px(18)) // Enough height for 3 bars with spacing
             }
         }
         
@@ -115,19 +111,25 @@ public struct NavigationBar<
             let index: Int
             public var body: some HTML {
                 span {}
-                    .top(index == 0 ? nil : .px(Double(index) * 5))
-                    .top(index == 0 ? nil : index == 1 ? .px(-5) : 0, pre: "input:checked ~ #menu-icon")
-                    .transform("rotate(\(index * 45)deg)", pre: "input:checked ~ #menu-icon")
-                    .background(index == 0 ? .color(.transparent) : nil, pre: "input:checked ~ #menu-icon")
-                
+                    .position(.absolute)
+                    .width(.px(24))
+                    .height(.px(3))
+                    .backgroundColor(.black.withDarkColor(.gray900))
+                    .borderRadius(.px(1.5))
+                    .transition("all .2s ease-out, background .2s ease-out")
+                    .top(.px(Double(index + 1) * 6)) // Position bars: 6px, 12px, 18px from top
+                    .left(0)
+                    // Animation states
+                    .top(index == 0 ? .px(9) : nil, pre: "input:checked ~ #menu-icon")
+                    .top(index == 1 ? .px(9) : nil, pre: "input:checked ~ #menu-icon")
+                    .top(index == -1 ? .px(9) : nil, pre: "input:checked ~ #menu-icon")
+                    .transform("rotate(\(index == 1 ? 45 : index == -1 ? -45 : 0)deg)", pre: "input:checked ~ #menu-icon")
+                    .opacity(index == 0 ? 0 : 1, pre: "input:checked ~ #menu-icon")
             }
         }
     }
 }
 
-extension Color {
-    static let transparent: Self = .transparent
-}
 
 public struct Login {
     let isLoggedIn: Bool
@@ -156,7 +158,7 @@ public struct NavigationBarSVGLogo: HTML {
     }
     
     public var body: some HTML {
-        Link(href: href) {
+        CoenttbHTML.Link(href: href) {
             svg
         }
     }
@@ -193,7 +195,7 @@ public struct NavigationBarCenteredNavItems: HTML {
         }
         public var body: some HTML {
             li {
-                Link(
+                CoenttbHTML.Link(
                     title,
                     href: href
                 )
@@ -238,7 +240,7 @@ public struct NavigationBarTrailingNavItems: HTML {
         }
         public var body: some HTML {
             li {
-                Link(
+                CoenttbHTML.Link(
                     title,
                     href: href
                 )
@@ -338,7 +340,7 @@ public struct NavigationBarMobileNavItems: HTML {
         }
         public var body: some HTML {
             
-            Link(
+            CoenttbHTML.Link(
                 title,
                 href: href
             )
@@ -349,3 +351,57 @@ public struct NavigationBarMobileNavItems: HTML {
 
 
 
+#if DEBUG && canImport(SwiftUI)
+import SwiftUI
+
+var content: some HTML {
+    NavigationBar {
+        div {}
+    } centeredNavItems: {
+        NavigationBarCenteredNavItems(
+            items: [
+                .init("hello", href: "#"),
+                .init("THERE", href: "#")
+            ]
+        )
+    } trailingNavItems: {
+        NavigationBarTrailingNavItems(
+            items: [
+                .init("TEST", href: ""),
+                .init("TEST2", href: "")
+            ]
+        )
+    } mobileNavItems: {
+        HTMLEmpty()
+//            NavigationBarMobileNavItems.init(
+//                login: nil,
+//                items: [
+//                    .init("TEST", href: ""),
+//                    .init("TEST2", href: "")
+//                ]
+//            )
+    }
+}
+
+let string = try! String(
+    HTMLDocument {
+        content
+    }
+)
+
+#Preview {
+    HTMLDocument {
+        div {
+            content
+            .backgroundColor(.red)
+        }
+        
+        HTMLText(
+            string
+        )
+    }
+    .frame(width: 450, height: 900)
+    
+    
+}
+#endif
