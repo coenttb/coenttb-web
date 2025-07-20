@@ -32,7 +32,7 @@ extension Target.Dependency {
     static var coenttbUtils: Self { .product(name: "CoenttbUtils", package: "coenttb-utils") }
     static var languages: Self { .product(name: "Languages", package: "swift-language") }
     static var tagged: Self { .product(name: "Tagged", package: "swift-tagged") }
-    static var htmlTestSupport: Self { .product(name: "HTMLTestSupport", package: "swift-html-css-pointfree") }
+    static var htmlTestSupport: Self { .product(name: "PointFreeHTMLTestSupport", package: "pointfree-html") }
 }
 
 let package = Package(
@@ -63,15 +63,16 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/coenttb/coenttb-html", branch: "main"),
+        .package(url: "https://github.com/coenttb/coenttb-utils", branch: "main"),
+        .package(url: "https://github.com/coenttb/pointfree-html", branch: "main"),
+        .package(url: "https://github.com/coenttb/swift-html", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-environment-variables.git", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-html-css-pointfree", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-language.git", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-web", branch: "main"),
-        .package(url: "https://github.com/coenttb/coenttb-utils", branch: "main"),
         .package(url: "https://github.com/pointfreeco/swift-tagged", branch: "main"),
     ],
     targets: [
-        
         .target(
             name: .coenttbWeb,
             dependencies: [

@@ -7,7 +7,7 @@
 
 import Foundation
 import Testing
-import HTMLTestSupport
+import PointFreeHTMLTestSupport
 import Coenttb_Web_HTML
 
 @Suite(
