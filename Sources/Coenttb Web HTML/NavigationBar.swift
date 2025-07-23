@@ -49,7 +49,7 @@ public struct NavigationBar: HTML {
                     )
                     .margin(.zero)
                     .display(Display.none)
-                    .display(.block, media: .mobile, pre: "input:checked ~")
+                    .display(.block, media: .mobile, selector: "input:checked ~")
             }
             .flexContainer(
                 direction: .row,
@@ -114,13 +114,13 @@ public struct NavigationBar: HTML {
                     .inlineStyle(
                         "top",
                         index == 0 ? nil : index == 1 ? "-5px" : "0",
-                        pre: "input:checked ~ #menu-icon"
+                        selector: "input:checked ~ #menu-icon"
                     )
-                    .inlineStyle("transform", "rotate(\(index * 45)deg)", pre: "input:checked ~ #menu-icon")
+                    .inlineStyle("transform", "rotate(\(index * 45)deg)", selector: "input:checked ~ #menu-icon")
                     .inlineStyle(
                         "background",
                         index == 0 ? "transparent" : nil,
-                        pre: "input:checked ~ #menu-icon"
+                        selector: "input:checked ~ #menu-icon"
                     )
             }
         }
