@@ -10,8 +10,6 @@
 @_exported import FoundationNetworking
 #endif
 
-@_exported import Domain
-
 @_exported import Coenttb_Web_EnvVars
 @_exported import Coenttb_Web_HTML
 @_exported import Coenttb_Web_Dependencies
@@ -24,10 +22,11 @@
 @_exported import CoenttbMarkdown
 @_exported import EnvironmentVariables
 
-@_exported import SwiftWeb
+@_exported import Swift_Web
 
 @_exported import URLRouting
 @_exported import EmailAddress
+@_exported import Domain
 @_exported import Translating
 
 

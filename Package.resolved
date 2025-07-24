@@ -1,5 +1,5 @@
 {
-  "originHash" : "4815a1df4c81274f20534f1866ffcc264b066640accc318793a39191876d8753",
+  "originHash" : "936de39122137608a07fae03aee05be5d976202246e9c34d28df5c2bfa034e87",
   "pins" : [
     {
       "identity" : "coenttb-html",
@@ -137,6 +137,24 @@
       }
     },
     {
+      "identity" : "swift-domain-type",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/coenttb/swift-domain-type",
+      "state" : {
+        "branch" : "main",
+        "revision" : "e0e2116dbe676f50d27de6a49de52aa632bd6d14"
+      }
+    },
+    {
+      "identity" : "swift-emailaddress-type",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/coenttb/swift-emailaddress-type",
+      "state" : {
+        "branch" : "main",
+        "revision" : "43594e4e569efeb0da7baf93e37f2a8b0a69a707"
+      }
+    },
+    {
       "identity" : "swift-environment-variables",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/coenttb/swift-environment-variables.git",
@@ -268,7 +286,7 @@
       "location" : "https://github.com/coenttb/swift-web",
       "state" : {
         "branch" : "main",
-        "revision" : "1f3075cc5fbed21162207c8b1b0c8867319ecbf9"
+        "revision" : "cf61346f80eb67fc305ed1291f2700c2f56f49f0"
       }
     },
     {
@@ -277,7 +295,7 @@
       "location" : "https://github.com/coenttb/swift-web-standards",
       "state" : {
         "branch" : "main",
-        "revision" : "06c08d7b6b6f86a8db2cf4ec8b02c42162f3045e"
+        "revision" : "5bf44d734c5f5efce72cd3330b279f040c4281ef"
       }
     },
     {

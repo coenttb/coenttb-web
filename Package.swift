@@ -25,7 +25,7 @@ extension Target.Dependency {
 
 extension Target.Dependency {
     static var environmentVariables: Self { .product(name: "EnvironmentVariables", package: "swift-environment-variables") }
-    static var swiftWeb: Self { .product(name: "SwiftWeb", package: "swift-web") }
+    static var swiftWeb: Self { .product(name: "Swift Web", package: "swift-web") }
     static var coenttbEmail: Self { .product(name: "CoenttbEmail", package: "coenttb-html") }
     static var coenttbHtml: Self { .product(name: "CoenttbHTML", package: "coenttb-html") }
     static var coenttbMarkdown: Self { .product(name: "CoenttbMarkdown", package: "coenttb-html") }
