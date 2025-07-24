@@ -7,7 +7,7 @@
 
 import Foundation
 import Dependencies
-import Languages
+import Translating
 
 extension Bool {
     public static func isValidEmail(_ email: String) throws(EmailValidationError) -> Bool {

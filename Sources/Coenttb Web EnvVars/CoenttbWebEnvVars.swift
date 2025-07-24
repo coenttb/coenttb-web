@@ -7,7 +7,7 @@
 
 import Dependencies
 import Foundation
-import Languages
+import Translating
 import Logging
 import Coenttb_Web_Models
 import EnvironmentVariables
@@ -29,12 +29,12 @@ extension EnvVars {
 }
 
 extension EnvVars {
-    public var languages: [Languages.Language]? {
+    public var languages: [Language]? {
         get {
             self["LANGUAGES"]?
                 .components(separatedBy: ",")
                 .map { $0.trimmingCharacters(in: .whitespaces) }
-                .compactMap { Languages.Language(rawValue: $0) }
+                .compactMap { Language(rawValue: $0) }
         }
         set { self["LANGUAGES"] = newValue?.map { $0.rawValue }.joined(separator: ",") }
     }

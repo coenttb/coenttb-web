@@ -7,7 +7,7 @@
 //
 //import Foundation
 //import CoenttbHTML
-//import Languages
+//import Translating
 //
 //public struct WhatPeopleAreSaying: HTML {
 //    

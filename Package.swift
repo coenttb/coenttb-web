@@ -30,7 +30,7 @@ extension Target.Dependency {
     static var coenttbHtml: Self { .product(name: "CoenttbHTML", package: "coenttb-html") }
     static var coenttbMarkdown: Self { .product(name: "CoenttbMarkdown", package: "coenttb-html") }
     static var coenttbUtils: Self { .product(name: "CoenttbUtils", package: "coenttb-utils") }
-    static var languages: Self { .product(name: "Languages", package: "swift-language") }
+    static var translating: Self { .product(name: "Translating", package: "swift-translating") }
     static var tagged: Self { .product(name: "Tagged", package: "swift-tagged") }
     static var htmlTestSupport: Self { .product(name: "PointFreeHTMLTestSupport", package: "pointfree-html") }
 }
@@ -68,7 +68,7 @@ let package = Package(
         .package(url: "https://github.com/coenttb/swift-html", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-environment-variables.git", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-html-css-pointfree", branch: "main"),
-        .package(url: "https://github.com/coenttb/swift-language.git", branch: "main"),
+        .package(url: "https://github.com/coenttb/swift-translating.git", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-web", branch: "main"),
         .package(url: "https://github.com/pointfreeco/swift-tagged", branch: "main"),
     ],
@@ -76,7 +76,7 @@ let package = Package(
         .target(
             name: .coenttbWeb,
             dependencies: [
-                .languages,
+                .translating,
                 .coenttbHtml,
                 .coenttbMarkdown,
                 .swiftWeb,
@@ -93,7 +93,7 @@ let package = Package(
         .target(
             name: .coenttbWebEnvVars,
             dependencies: [
-                .languages,
+                .translating,
                 .swiftWeb,
                 .coenttbWebModels,
                 .environmentVariables,
@@ -102,7 +102,7 @@ let package = Package(
         .target(
             name: .coenttbWebHTML,
             dependencies: [
-                .languages,
+                .translating,
                 .swiftWeb,
                 .coenttbHtml,
                 .coenttbMarkdown,
@@ -120,7 +120,7 @@ let package = Package(
         .target(
             name: .coenttbWebDependencies,
             dependencies: [
-                .languages,
+                .translating,
                 .swiftWeb,
                 .coenttbWebModels,
             ]
@@ -128,7 +128,7 @@ let package = Package(
         .target(
             name: .coenttbWebUtils,
             dependencies: [
-                .languages,
+                .translating,
                 .swiftWeb,
                 .tagged,
                 .coenttbUtils,
@@ -137,7 +137,7 @@ let package = Package(
         .target(
             name: .coenttbWebModels,
             dependencies: [
-                .languages,
+                .translating,
                 .swiftWeb,
                 .tagged,
             ]
@@ -145,7 +145,7 @@ let package = Package(
         .target(
             name: .coenttbWebTranslations,
             dependencies: [
-                .languages,
+                .translating,
             ]
         ),
     ],

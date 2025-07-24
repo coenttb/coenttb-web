@@ -9,7 +9,7 @@ import Dependencies
 import Foundation
 import CoenttbHTML
 import CoenttbMarkdown
-import Languages
+import Translating
 
 public struct Clause<Content: HTML>: HTML {
     let index: Int?

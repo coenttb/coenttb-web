@@ -8,7 +8,7 @@
 import Foundation
 import CoenttbHTML
 import Favicon
-import Languages
+import Translating
 import Dependencies
 import Coenttb_Web_Dependencies
 
@@ -21,8 +21,8 @@ public struct CoenttbWebHTMLDocumentHeader<
     let canonicalHref: URL?
     let rssXml: URL?
     let themeColor: HTMLColor
-    let language: Languages.Language
-    let hreflang: (Languages.Language) -> URL
+    let language: Language
+    let hreflang: (Language) -> URL
     let styles: Styles
     let scripts: Scripts
     let favicons: Favicons
@@ -33,8 +33,8 @@ public struct CoenttbWebHTMLDocumentHeader<
         canonicalHref: URL?,
         rssXml: URL?,
         themeColor: HTMLColor,
-        language: Languages.Language,
-        hreflang: @escaping (Languages.Language) -> URL,
+        language: Language,
+        hreflang: @escaping (Language) -> URL,
         @HTMLBuilder styles: () -> Styles,
         @HTMLBuilder scripts: () -> Scripts,
         @HTMLBuilder favicons: () -> Favicons

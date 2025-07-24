@@ -12,7 +12,7 @@ import Coenttb_Web_HTML
 
 @Suite(
     "Tests",
-    .snapshots(record: .failed)
+    .snapshots(record: .missing)
 )
 struct Tests {
     @Test("Label and input with light- and darkmode color")
@@ -28,7 +28,7 @@ struct Tests {
         ) {
             """
             <!doctype html>
-            <html lang="en">
+            <html>
               <head>
                 <style>
             .row-gap-NKv2f3{row-gap:0.5rem}
@@ -58,28 +58,28 @@ struct Tests {
             .padding-left-QlFKs1{padding-left:0px}
             .padding-top-QlFKs1{padding-top:0px}
             .padding-bottom-yQEjs3:not(:last-child){padding-bottom:0.5rem}
-            only screen and (min-width: 832px){
-              .align-items-GE99b{align-items:center}
-              .padding-Pdq5F{padding:8rem}
-              .text-align-GE99b{text-align:center}
-              .margin-4mdLu{margin:0px auto}
+            @media only screen and (min-width: 832px){
+              .align-items-V8nK34{align-items:center}
+              .padding-2vThi2{padding:8rem}
+              .text-align-V8nK34{text-align:center}
+              .margin-FIMYj2{margin:0px auto}
             }
-            @media (prefers-color-scheme: dark), print{
-              .color-WCItz3{color:#121212}
-              .color-4Jp5N2{color:#004477}
+            @media (prefers-color-scheme: dark){
+              .color-aeCfA1{color:#121212}
+              .color-DLYGt2{color:#004477}
             }
 
                 </style>
               </head>
               <body>
             <div>
-              <div class="align-items-GE99b row-gap-NKv2f3 flex-wrap-6YEaQ3 flex-direction-7gclL display-BvS8W3 padding-Pdq5F padding-pRWYM max-width-P6HnV margin-82zpd1">
-                <div class="text-align-GE99b">
-                  <h2 class="color-WCItz3 color-K2J0r1 line-height-auF6B font-weight-SywJI1 font-size-H64QF2 margin-bottom-1rcXs4 margin-top-rmfs01 margin-QlFKs1">String
+              <div class="align-items-V8nK34 row-gap-NKv2f3 flex-wrap-6YEaQ3 flex-direction-7gclL display-BvS8W3 padding-2vThi2 padding-pRWYM max-width-P6HnV margin-82zpd1">
+                <div class="text-align-V8nK34">
+                  <h2 class="color-K2J0r1 color-aeCfA1 line-height-auF6B font-weight-SywJI1 font-size-H64QF2 margin-bottom-1rcXs4 margin-top-rmfs01 margin-QlFKs1">String
                   </h2>
                 </div>
-                <div class="text-align-GE99b">
-                  <p class="max-width-3zifi margin-4mdLu color-4Jp5N2 color-XRqQ6 line-height-9Qkso4 font-weight-evfWi1 font-variant-evfWi1 font-style-evfWi1 font-stretch-evfWi1 font-size-dnNPN1 font-family-TCJhi4 line-height-9Qkso4 margin-QlFKs1 padding-right-QlFKs1 padding-left-QlFKs1 padding-top-QlFKs1 padding-bottom-yQEjs3">String
+                <div class="text-align-V8nK34">
+                  <p class="max-width-3zifi margin-FIMYj2 color-XRqQ6 color-DLYGt2 line-height-9Qkso4 font-weight-evfWi1 font-variant-evfWi1 font-style-evfWi1 font-stretch-evfWi1 font-size-dnNPN1 font-family-TCJhi4 line-height-9Qkso4 margin-QlFKs1 padding-right-QlFKs1 padding-left-QlFKs1 padding-top-QlFKs1 padding-bottom-yQEjs3">String
                   </p>
                 </div>
               </div>
