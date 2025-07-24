@@ -1,5 +1,5 @@
 {
-  "originHash" : "936de39122137608a07fae03aee05be5d976202246e9c34d28df5c2bfa034e87",
+  "originHash" : "e18a96be7a65117776a1ea7be283e0014c93e34824d067b9b4c023d5550edef7",
   "pins" : [
     {
       "identity" : "coenttb-html",
@@ -224,6 +224,15 @@
       "state" : {
         "branch" : "main",
         "revision" : "3432cb81164dd3d69a75d0d63205be5fbae2c34b"
+      }
+    },
+    {
+      "identity" : "swift-password-validation",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/coenttb/swift-password-validation.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "56b9887851439e0759cf936d5b723b6d2530283d"
       }
     },
     {

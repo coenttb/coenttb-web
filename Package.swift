@@ -33,6 +33,7 @@ extension Target.Dependency {
     static var translating: Self { .product(name: "Translating", package: "swift-translating") }
     static var tagged: Self { .product(name: "Tagged", package: "swift-tagged") }
     static var htmlTestSupport: Self { .product(name: "PointFreeHTMLTestSupport", package: "pointfree-html") }
+    static var passwordValidation: Self { .product(name: "PasswordValidation", package: "swift-password-validation") }
 }
 
 let package = Package(
@@ -67,6 +68,7 @@ let package = Package(
         .package(url: "https://github.com/coenttb/pointfree-html", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-html", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-environment-variables.git", branch: "main"),
+        .package(url: "https://github.com/coenttb/swift-password-validation.git", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-html-css-pointfree", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-translating.git", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-web", branch: "main"),
@@ -132,6 +134,7 @@ let package = Package(
                 .swiftWeb,
                 .tagged,
                 .coenttbUtils,
+                .passwordValidation,
             ]
         ),
         .target(
