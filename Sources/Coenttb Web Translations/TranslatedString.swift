@@ -9,311 +9,311 @@ import Foundation
 import TranslatedString
 
 extension String {
-    @inlinable public static var developers: TranslatedString {
+    public static var developers: TranslatedString {
         .init(
             dutch: "developers",
             english: "developers"
         )
     }
 
-    @inlinable public static var contact: TranslatedString {
+    public static var contact: TranslatedString {
         .init(
             dutch: "contact",
             english: "contact"
         )
     }
 
-    @inlinable public static var contact_me: TranslatedString {
+    public static var contact_me: TranslatedString {
         .init(
             dutch: "neem contact op",
             english: "get in touch"
         )
     }
 
-    @inlinable public static var hire_me: TranslatedString {
+    public static var hire_me: TranslatedString {
         .init(
             dutch: "neem mij aan",
             english: "hire me"
         )
     }
 
-    @inlinable public static var contact_sales: TranslatedString {
+    public static var contact_sales: TranslatedString {
         .init(
             dutch: "neem contact op",
             english: "contact sales"
         )
     }
 
-    @inlinable public static var sales: TranslatedString {
+    public static var sales: TranslatedString {
         .init(
             dutch: "sales",
             english: "sales"
         )
     }
 
-    @inlinable public static var start_now: TranslatedString {
+    public static var start_now: TranslatedString {
         .init(
             dutch: "start nu",
             english: "start now"
         )
     }
 
-    @inlinable public static var dashboard: TranslatedString {
+    public static var dashboard: TranslatedString {
         .init(
             dutch: "dashboard",
             english: "dashboard"
         )
     }
 
-    @inlinable public static var products: TranslatedString {
+    public static var products: TranslatedString {
         .init(
             dutch: "producten",
             english: "products"
         )
     }
 
-    @inlinable public static var pricing: TranslatedString {
+    public static var pricing: TranslatedString {
         .init(
             dutch: "tarieven",
             english: "pricing"
         )
     }
 
-    @inlinable public static var resources: TranslatedString {
+    public static var resources: TranslatedString {
         .init(
             dutch: "informatie",
             english: "resources"
         )
     }
 
-    @inlinable public static var solutions: TranslatedString {
+    public static var solutions: TranslatedString {
         .init(
             dutch: "oplossingen",
             english: "solutions"
         )
     }
 
-    @inlinable public static var api: String { "api" }
+    public static var api: String { "api" }
 
-    @inlinable public static var account: TranslatedString {
+    public static var account: TranslatedString {
         .init(
             dutch: "account",
             english: "account"
         )
     }
 
-    @inlinable public static var person: TranslatedString {
+    public static var person: TranslatedString {
         .init(
             dutch: "persoon",
             english: "person"
         )
     }
 
-    @inlinable public static var email: TranslatedString {
+    public static var email: TranslatedString {
         .init(
             dutch: "email",
             english: "email"
         )
     }
 
-    @inlinable public static var current_email: TranslatedString {
+    public static var current_email: TranslatedString {
         .init(
             dutch: "huidige email",
             english: "current email"
         )
     }
 
-    @inlinable public static var unknown: TranslatedString {
+    public static var unknown: TranslatedString {
         .init(
             dutch: "onbekend",
             english: "unknown"
         )
     }
 
-    @inlinable public static var your_current_email_address_is: TranslatedString {
+    public static var your_current_email_address_is: TranslatedString {
         .init(
             dutch: "uw huidige emailadres is",
             english: "your current email address is"
         )
     }
 
-    @inlinable public static var security: TranslatedString {
+    public static var security: TranslatedString {
         .init(
             dutch: "beveiliging",
             english: "security"
         )
     }
 
-    @inlinable public static var index: TranslatedString {
+    public static var index: TranslatedString {
         .init(
             english: "index"
         )
     }
 
-    @inlinable public static var privacyPolicy: TranslatedString {
+    public static var privacyPolicy: TranslatedString {
         .init(
             dutch: "privacybeleid",
             english: "privacy policy"
         )
     }
     
-    @inlinable public static var privacyStatement: TranslatedString {
+    public static var privacyStatement: TranslatedString {
         .init(
             dutch: "privacyverklaring",
             english: "privacy statement"
         )
     }
 
-    @inlinable public static var navigationbar: TranslatedString {
+    public static var navigationbar: TranslatedString {
         .init(
             dutch: "navigatiebar",
             english: "navigationbar"
         )
     }
 
-    @inlinable public static var dark_mode: TranslatedString {
+    public static var dark_mode: TranslatedString {
         .init(
             dutch: "donkere modus",
             english: "dark mode"
         )
     }
 
-    @inlinable public static var light_mode: TranslatedString {
+    public static var light_mode: TranslatedString {
         .init(
             dutch: "lichte modus",
             english: "light mode"
         )
     }
 
-    @inlinable public static var about_me: TranslatedString {
+    public static var about_me: TranslatedString {
         .init(
             dutch: "over mij",
             english: "about"
         )
     }
 
-    @inlinable public static var about_us: TranslatedString {
+    public static var about_us: TranslatedString {
         .init(
             dutch: "over ons",
             english: "about"
         )
     }
 
-    @inlinable public static var about: TranslatedString { String.about_us }
+    public static var about: TranslatedString { String.about_us }
 
-    @inlinable public static var choose_country_region: TranslatedString {
+    public static var choose_country_region: TranslatedString {
         .init(
             dutch: "kies regio",
             english: "choose country region"
         )
     }
 
-    @inlinable public static var choose_language: TranslatedString {
+    public static var choose_language: TranslatedString {
         .init(
             dutch: "kies taal",
             english: "choose language"
         )
     }
     
-    @inlinable public static var confirm_access: TranslatedString {
+    public static var confirm_access: TranslatedString {
         .init(
             dutch: "bevestig toegang",
             english: "confirm access"
         )
     }
 
-    @inlinable public static var change_your_password: TranslatedString {
+    public static var change_your_password: TranslatedString {
         .init(
             dutch: "verander uw wachtwoord",
             english: "change your password"
         )
     }
 
-    @inlinable public static var when_you_change_your_password_we_keep_you_logged_in_to_this_device_but_may_log_you_out_from_your_other_devices: TranslatedString {
+    public static var when_you_change_your_password_we_keep_you_logged_in_to_this_device_but_may_log_you_out_from_your_other_devices: TranslatedString {
         .init(
             dutch: "wanneer u uw wachtwoord wijzigt, zorgen wij ervoor dat u ingelogd blijft op dit apparaat, maar mogelijk wordt u ook afgemeld vanaf uw andere apparaten",
             english: "when you change your password, we keep you logged in to this device but may log you out from your other devices"
         )
     }
 
-    @inlinable public static var identity: TranslatedString {
+    public static var identity: TranslatedString {
         .init(
             dutch: "identiteit",
             english: "identity"
         )
     }
     
-    @inlinable public static var current_password: TranslatedString {
+    public static var current_password: TranslatedString {
         .init(
             dutch: "huidige wachtwoord",
             english: "current password"
         )
     }
 
-    @inlinable public static var new_password: TranslatedString {
+    public static var new_password: TranslatedString {
         .init(
             dutch: "nieuw wachtwoord",
             english: "new password"
         )
     }
 
-    @inlinable public static var request_reset_password: TranslatedString {
+    public static var request_reset_password: TranslatedString {
         .init(
             dutch: "verzoek reset wachtwoord",
             english: "request reset password"
         )
     }
 
-    @inlinable public static var checkout: TranslatedString {
+    public static var checkout: TranslatedString {
         .init(
             dutch: "afrekenen",
             english: "checkout"
         )
     }
 
-    @inlinable public static var blog: TranslatedString {
+    public static var blog: TranslatedString {
         .init(
             //        dutch: "blog",
             english: "blog"
         )
     }
 
-    @inlinable public static var copyright: TranslatedString {
+    public static var copyright: TranslatedString {
         .init(
             dutch: "auteursrecht",
             english: "copyright"
         )
     }
 
-    @inlinable public static var all_rights_reserved: TranslatedString {
+    public static var all_rights_reserved: TranslatedString {
         .init(
             dutch: "Alle rechten voorbehouden",
             english: "all rights reserved"
         )
     }
 
-    @inlinable public static var login: TranslatedString {
+    public static var login: TranslatedString {
         .init(
             dutch: "log in",
             english: "log in"
         )
     }
 
-    @inlinable public static var welcome_back: TranslatedString {
+    public static var welcome_back: TranslatedString {
         .init(
             dutch: "welkom terug",
             english: "welcome back"
         )
     }
 
-    @inlinable public static var reset_your_password: TranslatedString {
+    public static var reset_your_password: TranslatedString {
         .init(
             dutch: "reset uw wachtwoord",
             english: "reset your password"
         )
     }
 
-    @inlinable public static var check_your_mail: TranslatedString {
+    public static var check_your_mail: TranslatedString {
         .init(
             dutch: "check uw mail",
             english: "check your mail"
@@ -327,98 +327,98 @@ extension String {
 //        )
 //    }
 
-    @inlinable public static var we_have_emailed_you_instructions_to_reset_your_password: TranslatedString {
+    public static var we_have_emailed_you_instructions_to_reset_your_password: TranslatedString {
         .init(
             dutch: "we hebben u per e-mail instructies gestuurd om uw wachtwoord opnieuw in te stellen",
             english: "we have emailed you instructions to reset your password"
         )
     }
 
-    @inlinable public static var please_check_your_inbox_and_click_the_link_in_the_email_to_reset_your_password: TranslatedString {
+    public static var please_check_your_inbox_and_click_the_link_in_the_email_to_reset_your_password: TranslatedString {
         .init(
             dutch: "controleer uw inbox en klik op de link in de e-mail om uw wachtwoord opnieuw in te stellen",
             english: "please check your inbox and click the link in the email to reset your password"
         )
     }
 
-    @inlinable public static var if_you_dont_receive_an_email_from_us_within_a_few_minutes_please_check_your_spam_folder: TranslatedString {
+    public static var if_you_dont_receive_an_email_from_us_within_a_few_minutes_please_check_your_spam_folder: TranslatedString {
         .init(
             dutch: "als u binnen enkele minuten geen e-mail van ons ontvangt, controleer dan uw spammap",
             english: "if you don't receive an email from us within a few minutes, please check your spam folder"
         )
     }
 
-    @inlinable public static var if_you_continue_to_experience_issues_please_contact_our_support_team: TranslatedString {
+    public static var if_you_continue_to_experience_issues_please_contact_our_support_team: TranslatedString {
         .init(
             dutch: "als u problemen blijft ondervinden, neem dan contact op met ons ondersteuningsteam",
             english: "if you continue to experience issues, please contact our support team"
         )
     }
 
-    @inlinable public static var enter_your_email_address_and_we_will_send_you_instructions_to_reset_your_password: TranslatedString {
+    public static var enter_your_email_address_and_we_will_send_you_instructions_to_reset_your_password: TranslatedString {
         .init(
             dutch: "vul uw e-mailadres in en wij sturen u instructies om uw wachtwoord opnieuw in te stellen",
             english: "enter your email address and we will send you instructions to reset your password"
         )
     }
 
-    @inlinable public static var to_reset_your_password_please_click_the_button_below_and_follow_the_instructions: TranslatedString {
+    public static var to_reset_your_password_please_click_the_button_below_and_follow_the_instructions: TranslatedString {
         .init(
             dutch: "Om uw wachtwoord opnieuw in te stellen, klikt u op de onderstaande knop en volgt u de instructies",
             english: "to reset your password, please click the button below and follow the instructions"
         )
     }
 
-    @inlinable public static var create_your_account: TranslatedString {
+    public static var create_your_account: TranslatedString {
         .init(
             dutch: "maak uw account aan",
             english: "create your account"
         )
     }
 
-    @inlinable public static var register:TranslatedString {
+    public static var register:TranslatedString {
         .init(
             dutch: "registreer",
             english: "register"
         )
     }
 
-    @inlinable public static var signup: TranslatedString {
+    public static var signup: TranslatedString {
         .init(
             dutch: "registreer",
             english: "sign up"
         )
     }
 
-    @inlinable public static var registration: TranslatedString {
+    public static var registration: TranslatedString {
         .init(
             dutch: "registratie",
             english: "registration"
         )
     }
 
-    @inlinable public static var emailadres: TranslatedString {
+    public static var emailadres: TranslatedString {
         .init(
             dutch: "e-mailadres",
             english: "emailaddress"
         )
     }
 
-    @inlinable public static var name: TranslatedString {
+    public static var name: TranslatedString {
         .init(
             dutch: "naam",
             english: "name"
         )
     }
 
-    @inlinable public static var password: TranslatedString {
+    public static var password: TranslatedString {
         .init(
             dutch: "wachtwoord",
             english: "password"
         )
     }
 
-    @inlinable public static var forgot_password: TranslatedString {
+    public static var forgot_password: TranslatedString {
         .init(
             dutch: "wachtwoord vergeten",
             english: "forgot password"
@@ -426,373 +426,373 @@ extension String {
     }
 
 
-    @inlinable public static var `continue`: TranslatedString {
+    public static var `continue`: TranslatedString {
         .init(
             dutch: "ga door",
             english: "continue"
         )
     }
 
-    @inlinable public static var logout: TranslatedString {
+    public static var logout: TranslatedString {
         .init(
             dutch: "uitloggen",
             english: "logout"
         )
     }
 
-    @inlinable public static var date_of_birth: TranslatedString {
+    public static var date_of_birth: TranslatedString {
         .init(
             dutch: "geboortedatum",
             english: "date of birth"
         )
     }
 
-    @inlinable public static var save: TranslatedString {
+    public static var save: TranslatedString {
         .init(
             dutch: "bewaar",
             english: "save"
         )
     }
 
-    @inlinable public static var dont_have_an_account: TranslatedString {
+    public static var dont_have_an_account: TranslatedString {
         .init(
             dutch: "heb je geen account",
             english: "don't have an account"
         )
     }
 
-    @inlinable public static var under_construction: TranslatedString {
+    public static var under_construction: TranslatedString {
         .init(
             //        dutch: "",
             english: "under construction"
         )
     }
 
-    @inlinable public static var terms_of_use: TranslatedString {
+    public static var terms_of_use: TranslatedString {
         .init(
             dutch: "gebruiksvoorwaarden",
             english: "terms of use"
         )
     }
     
-    @inlinable public static var general_terms_and_conditions: TranslatedString {
+    public static var general_terms_and_conditions: TranslatedString {
         .init(
             dutch: "algemene voorwaarden",
             english: "general terms and conditions"
         )
     }
 
-    @inlinable public static var sales_and_refunds: TranslatedString {
+    public static var sales_and_refunds: TranslatedString {
         .init(
             dutch: "verkopen en refunds",
             english: "sales and refunds"
         )
     }
 
-    @inlinable public static var learn_more: TranslatedString {
+    public static var learn_more: TranslatedString {
         .init(
             dutch: "Leer meer",
             english: "Learn more"
         )
     }
 
-    @inlinable public static var legal: TranslatedString {
+    public static var legal: TranslatedString {
         .init(
             dutch: "juridisch",
             english: "legal"
         )
     }
 
-    @inlinable public static var sitemap: TranslatedString {
+    public static var sitemap: TranslatedString {
         .init(
             dutch: "sitemap",
             english: "site map"
         )
     }
 
-    @inlinable public static var home: TranslatedString {
+    public static var home: TranslatedString {
         .init(
             dutch: "home",
             english: "home"
         )
     }
 
-    @inlinable public static var delete: TranslatedString {
+    public static var delete: TranslatedString {
         .init(
             dutch: "verwijder",
             english: "delete"
         )
     }
 
-    @inlinable public static var company: TranslatedString {
+    public static var company: TranslatedString {
         .init(
             dutch: "bedrijf",
             english: "company"
         )
     }
 
-    @inlinable public static var logo: TranslatedString {
+    public static var logo: TranslatedString {
         .init(
             dutch: "logo",
             english: "logo"
         )
     }
 
-    @inlinable public static var get_started_immediatly: TranslatedString {
+    public static var get_started_immediatly: TranslatedString {
         .init(
             dutch: "Probeer het nu",
             english: "Get started immediatly"
         )
     }
 
-    @inlinable public static var our_story: TranslatedString {
+    public static var our_story: TranslatedString {
         .init(
             dutch: "ons verhaal",
             english: "our story"
         )
     }
-    @inlinable public static var management_team: TranslatedString {
+    public static var management_team: TranslatedString {
         .init(
             dutch: "management",
             english: "management team"
         )
     }
-    @inlinable public static var press: TranslatedString {
+    public static var press: TranslatedString {
         .init(
             dutch: "pers",
             english: "press"
         )
     }
-    @inlinable public static var career: TranslatedString {
+    public static var career: TranslatedString {
         .init(
             dutch: "carrière",
             english: "career"
         )
     }
 
-    @inlinable public static var role: TranslatedString {
+    public static var role: TranslatedString {
         .init(
             dutch: "rol",
             english: "role"
         )
     }
 
-    @inlinable public static var roles: TranslatedString {
+    public static var roles: TranslatedString {
         .init(
             dutch: "rollen",
             english: "roles"
         )
     }
 
-    @inlinable public static var services: TranslatedString {
+    public static var services: TranslatedString {
         .init(
             dutch: "diensten",
             english: "services"
         )
     }
 
-    @inlinable public static var service: TranslatedString {
+    public static var service: TranslatedString {
         .init(
             dutch: "dienst",
             english: "service"
         )
     }
     
-    @inlinable public static var follow_me_on_Twitter: TranslatedString {
+    public static var follow_me_on_Twitter: TranslatedString {
         .init(
             dutch: "volg mij op X (Twitter)",
             english: "follow me on X (Twitter)"
         )
     }
     
-    @inlinable public static var with: TranslatedString {
+    public static var with: TranslatedString {
         .init(
             dutch: "met",
             english: "with"
         )
     }
     
-    @inlinable public static var preview: TranslatedString {
+    public static var preview: TranslatedString {
         .init(
             english: "preview"
         )
     }
     
-    @inlinable public static var more: TranslatedString {
+    public static var more: TranslatedString {
         .init(
             dutch: "meer",
             english: "more"
         )
     }
     
-    @inlinable public static var questions: TranslatedString {
+    public static var questions: TranslatedString {
         .init(
             dutch: "vragen",
             english: "questions"
         )
     }
     
-    @inlinable public static var please_feel_free_to_contact_me: TranslatedString {
+    public static var please_feel_free_to_contact_me: TranslatedString {
         .init(
             dutch: "neem gerust contact met mij op",
             english: "please feel free to contact me"
         )
     }
     
-    @inlinable public static var frequently_asked_questions: TranslatedString {
+    public static var frequently_asked_questions: TranslatedString {
         .init(
             dutch: "veelgestelde vragen",
             english: "frequently asked questions"
         )
     }
     
-    @inlinable public static var per_hour: TranslatedString {
+    public static var per_hour: TranslatedString {
         .init(
             dutch: "per uur",
             english: "per hour"
         )
     }
     
-    @inlinable public static var popular: TranslatedString {
+    public static var popular: TranslatedString {
         .init(
             dutch: "populair",
             english: "popular"
         )
     }
     
-    @inlinable public static var choose_plan: TranslatedString {
+    public static var choose_plan: TranslatedString {
         .init(
             dutch: "kies plan",
             english: "choose plan"
         )
     }
     
-    @inlinable public static var take_the_next_step: TranslatedString {
+    public static var take_the_next_step: TranslatedString {
         .init(
             dutch: "neem de volgende stap",
             english: "take the next step"
         )
     }
     
-    @inlinable public static var subscribe: TranslatedString {
+    public static var subscribe: TranslatedString {
         .init(
             dutch: "abonneer",
             english: "subscribe"
         )
     }
     
-    @inlinable public static var see_all: TranslatedString {
+    public static var see_all: TranslatedString {
         .init(
             dutch: "bekijk alle",
             english: "see all"
         )
     }
     
-    @inlinable public static var continue_reading: TranslatedString {
+    public static var continue_reading: TranslatedString {
         .init(
             dutch: "lees verder",
             english: "continue reading"
         )
     }
     
-    @inlinable public static var subscribe_to_my_newsletter: TranslatedString {
+    public static var subscribe_to_my_newsletter: TranslatedString {
         .init(
             dutch: "abonneer je op mijn nieuwsbrief",
             english: "subscribe to my newsletter"
         )
     }
     
-    @inlinable public static var start_with_a_free_post: TranslatedString {
+    public static var start_with_a_free_post: TranslatedString {
         .init(
             dutch: "start met een gratis artikel",
             english: "start with a free post"
         )
     }
         
-    @inlinable public static var curious_what_is_next: TranslatedString {
+    public static var curious_what_is_next: TranslatedString {
         .init(
             dutch: "benieuwd wat er straks komt",
             english: "Curious what's next"
         )
     }
     
-    @inlinable public static var all_posts: TranslatedString {
+    public static var all_posts: TranslatedString {
         .init(
             dutch: "alle artikelen",
             english: "all posts"
         )
     }
     
-    @inlinable public static var free: TranslatedString {
+    public static var free: TranslatedString {
         .init(
             dutch: "gratis",
             english: "free"
         )
     }
     
-    @inlinable public static var unsubscribe: TranslatedString {
+    public static var unsubscribe: TranslatedString {
         .init(
             dutch: "abonnement opzeggen",
             english: "unsubscribe"
         )
     }
     
-    @inlinable public static var newsletter: TranslatedString {
+    public static var newsletter: TranslatedString {
         .init(
             dutch: "nieuwsbrief",
             english: "newsletter"
         )
     }
     
-    @inlinable public static var settings: TranslatedString {
+    public static var settings: TranslatedString {
         .init(
             dutch: "instellingen",
             english: "settings"
         )
     }
     
-    @inlinable public static var profile: TranslatedString {
+    public static var profile: TranslatedString {
         .init(
             dutch: "profiel",
             english: "profile"
         )
     }
     
-    @inlinable public static var user: TranslatedString {
+    public static var user: TranslatedString {
         .init(
             dutch: "gebruiker",
             english: "user"
         )
     }
     
-    @inlinable public static var subscriber_only: TranslatedString {
+    public static var subscriber_only: TranslatedString {
         .init(
             dutch: "voor abbonees",
             english: "subscriber only"
         )
     }
     
-    @inlinable public static var type_your_email: TranslatedString {
+    public static var type_your_email: TranslatedString {
         .init(
             dutch: "voer je email in",
             english: "type your email"
         )
     }
     
-    @inlinable public static var already_have_an_account: TranslatedString {
+    public static var already_have_an_account: TranslatedString {
         .init(
             dutch: "heb je al een account",
             english: "already have an account"
         )
     }
     
-    @inlinable public static var your_account_creation_request_has_been_received: TranslatedString {
+    public static var your_account_creation_request_has_been_received: TranslatedString {
         .init(
             dutch: "je aanvraag voor het aanmaken van een account is ontvangen",
             english: "your account creation request has been received"
         )
     }
-    @inlinable public static var please_check_your_email_to_complete_the_process: TranslatedString {
+    public static var please_check_your_email_to_complete_the_process: TranslatedString {
         .init(
             dutch: "controleer je e-mail om het proces te voltooien",
             english: "please check your email to complete the process"
@@ -801,22 +801,22 @@ extension String {
 }
 
 public extension String {
-    @inlinable static var lorem_impsum: Self {
+    static var lorem_impsum: Self {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Imperdiet dui accumsan sit amet nulla. Morbi non arcu risus quis varius quam quisque id diam. Massa sed elementum tempus egestas sed sed risus pretium. Ante in nibh mauris cursus mattis molestie a iaculis at. Sed arcu non odio euismod lacinia at quis risus sed. Purus in massa tempor nec feugiat nisl pretium fusce. Elementum tempus egestas sed sed. Sed euismod nisi porta lorem mollis aliquam. Dolor sit amet consectetur adipiscing elit duis tristique sollicitudin nibh. Auctor elit sed vulputate mi sit amet mauris. Morbi blandit cursus risus at ultrices mi tempus imperdiet. Cursus sit amet dictum sit amet justo donec. Pulvinar elementum integer enim neque volutpat ac tincidunt vitae. Ornare lectus sit amet est. Adipiscing tristique risus nec feugiat. Massa tempor nec feugiat nisl."
     }
-    @inlinable static var lorem_impsum1: Self {
+    static var lorem_impsum1: Self {
         "Massa sed elementum tempus egestas sed sed risus pretium. Dignissim convallis aenean et tortor. Non blandit massa enim nec dui nunc mattis enim ut. Nisi lacus sed viverra tellus in hac habitasse platea dictumst. Nibh cras pulvinar mattis nunc sed blandit libero volutpat. Eu nisl nunc mi ipsum. Nascetur ridiculus mus mauris vitae ultricies leo integer malesuada. Lectus vestibulum mattis ullamcorper velit sed ullamcorper. Sed id semper risus in hendrerit gravida rutrum quisque non. Tristique risus nec feugiat in fermentum posuere. Vitae tempus quam pellentesque nec nam aliquam sem et tortor."
     }
-    @inlinable static var lorem_impsum2: Self {
+    static var lorem_impsum2: Self {
         "Urna cursus eget nunc scelerisque viverra mauris in aliquam sem. Magna fermentum iaculis eu non. Sollicitudin tempor id eu nisl nunc mi ipsum faucibus vitae. Dui nunc mattis enim ut tellus. Donec adipiscing tristique risus nec feugiat in fermentum posuere. Vitae congue mauris rhoncus aenean vel elit scelerisque mauris pellentesque. Ac tortor dignissim convallis aenean. Suspendisse interdum consectetur libero id faucibus nisl tincidunt. Amet tellus cras adipiscing enim eu turpis egestas pretium. Feugiat in ante metus dictum at tempor commodo ullamcorper."
     }
-    @inlinable static var lorem_impsum3: Self {
+    static var lorem_impsum3: Self {
         "Lacus vel facilisis volutpat est velit egestas dui id ornare. Congue quisque egestas diam in. Dignissim sodales ut eu sem integer vitae justo eget magna. Praesent elementum facilisis leo vel. Arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque. Lobortis elementum nibh tellus molestie. Suspendisse ultrices gravida dictum fusce ut. Facilisi cras fermentum odio eu. Vel facilisis volutpat est velit egestas dui id. Egestas erat imperdiet sed euismod nisi porta. Viverra vitae congue eu consequat ac felis. Laoreet sit amet cursus sit amet dictum sit amet. Massa eget egestas purus viverra. Enim neque volutpat ac tincidunt vitae. Convallis aenean et tortor at risus viverra adipiscing."
     }
-    @inlinable static var lorem_impsum4: Self {
+    static var lorem_impsum4: Self {
         "Est ante in nibh mauris. Pharetra et ultrices neque ornare aenean euismod. Varius morbi enim nunc faucibus a. Tincidunt lobortis feugiat vivamus at augue eget arcu dictum. Tortor dignissim convallis aenean et tortor. Interdum velit euismod in pellentesque massa placerat. Urna nunc id cursus metus aliquam eleifend. Id leo in vitae turpis. Interdum velit euismod in pellentesque massa placerat duis. Viverra accumsan in nisl nisi. Vivamus arcu felis bibendum ut tristique. Purus non enim praesent elementum facilisis leo vel fringilla. Rhoncus dolor purus non enim. Tellus molestie nunc non blandit massa."
     }
-    @inlinable static var lorem_impsum5: Self {
+    static var lorem_impsum5: Self {
         "Massa sed elementum tempus egestas sed sed risus pretium. Dignissim convallis aenean et tortor. Non blandit massa enim nec dui nunc mattis enim ut. Nisi lacus sed viverra tellus in hac habitasse platea dictumst. Nibh cras pulvinar mattis nunc sed blandit libero volutpat. Eu nisl nunc mi ipsum. Nascetur ridiculus mus mauris vitae ultricies leo integer malesuada. Lectus vestibulum mattis ullamcorper velit sed ullamcorper. Sed id semper risus in hendrerit gravida rutrum quisque non. Tristique risus nec feugiat in fermentum posuere. Vitae tempus quam pellentesque nec nam aliquam sem et tortor."
     }
 }
