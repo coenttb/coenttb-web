@@ -97,7 +97,7 @@ public struct NavigationBar: HTML {
                     }
                     .width(.px(24))
                     .height(.px(3))
-                    .background(.black)
+                    .backgroundColor(Color.black)
                     .display(.block)
                     .inlineStyle("border-radius", "1.5px")
                     .inlineStyle("transition", "all .2s ease-out, background .2s ease-out")
