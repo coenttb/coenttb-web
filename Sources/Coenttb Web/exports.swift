@@ -22,7 +22,7 @@
 @_exported import CoenttbMarkdown
 @_exported import EnvironmentVariables
 
-@_exported import Swift_Web
+@_exported import Web
 
 @_exported import URLRouting
 @_exported import EmailAddress

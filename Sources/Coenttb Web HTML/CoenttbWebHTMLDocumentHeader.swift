@@ -7,7 +7,7 @@
 
 import Foundation
 import CoenttbHTML
-import Favicon
+import Web
 import Translating
 import Dependencies
 import Coenttb_Web_Dependencies

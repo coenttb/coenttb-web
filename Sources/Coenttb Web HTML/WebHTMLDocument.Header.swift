@@ -57,15 +57,13 @@ public struct WebHTMLDocumentHeader<
         if let title {
             tag("title") { HTMLText(title) }
         }
-        meta(charset: .utf8) {}
+        meta(charset: .utf8)()
         
         if let canonicalHref {
             link(
                 href: .init(canonicalHref.absoluteString),
                 rel: .canonical
-            ) {
-                
-            }
+            )()
         }
         
         if
@@ -77,7 +75,7 @@ public struct WebHTMLDocumentHeader<
                 rel: .alternate,
                 title: .init("\(title) RSS Feed"),
                 type: .rss
-            ) {}
+            )()
             
         }
         HTMLForEach(self.languages.filter { $0 != language }) { lx in
@@ -86,24 +84,24 @@ public struct WebHTMLDocumentHeader<
                 hreflang: .init(value: lx.rawValue),
                 rel: .alternate,
                 
-            ) {}
+            )()
         }
         meta(
             name: .themeColor,
             content: .init(themeColor.light.description),
             media: "(prefers-color-scheme: light)"
-        ) {}
+        )()
         
         meta(
             name: .themeColor,
             content: .init(themeColor.dark.description),
             media: "(prefers-color-scheme: dark)"
-        ) {}
+        )()
         
         meta(
             name: .viewport,
             content: "width=device-width, initial-scale=1.0, viewport-fit=cover"
-        ) {}
+        )()
         
         styles()
         favicons()
@@ -112,34 +110,34 @@ public struct WebHTMLDocumentHeader<
             meta(
                 name: "title",
                 content: .init(title)
-            ) {}
+            )()
             
             meta(
                 content: .init(title)
-            ){}
+            )()
                 .attribute("property", "og:title")
             
             meta(
                 name: "twitter:title",
                 content: .init(title)
-            ) {}
+            )()
             
         }
         if let description {
             meta(
                 name: "description",
                 content: .init(description)
-            ){}
+            )()
             
             meta(
                 content: .init(description)
-            ){}
+            )()
                 .attribute("property", "og:description")
             
             meta(
                 name: "twitter:description",
                 content: .init(description)
-            ){}
+            )()
         }
     }
 }

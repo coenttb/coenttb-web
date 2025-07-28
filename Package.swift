@@ -25,7 +25,7 @@ extension Target.Dependency {
 
 extension Target.Dependency {
     static var environmentVariables: Self { .product(name: "EnvironmentVariables", package: "swift-environment-variables") }
-    static var swiftWeb: Self { .product(name: "Swift Web", package: "swift-web") }
+    static var swiftWeb: Self { .product(name: "Web", package: "swift-web") }
     static var coenttbEmail: Self { .product(name: "CoenttbEmail", package: "coenttb-html") }
     static var coenttbHtml: Self { .product(name: "CoenttbHTML", package: "coenttb-html") }
     static var coenttbMarkdown: Self { .product(name: "CoenttbMarkdown", package: "coenttb-html") }
@@ -66,10 +66,10 @@ let package = Package(
         .package(url: "https://github.com/coenttb/coenttb-html", branch: "main"),
         .package(url: "https://github.com/coenttb/coenttb-utils", branch: "main"),
         .package(url: "https://github.com/coenttb/pointfree-html", from: "2.0.0"),
-        .package(url: "https://github.com/coenttb/swift-html", branch: "main"),
+        .package(url: "https://github.com/coenttb/swift-html", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-environment-variables.git", branch: "main"),
         .package(url: "https://github.com/coenttb/swift-password-validation.git", from: "0.0.1"),
-        .package(url: "https://github.com/coenttb/swift-html-css-pointfree", branch: "main"),
+        .package(url: "https://github.com/coenttb/swift-html-css-pointfree", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-translating.git", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-web", branch: "main"),
         .package(url: "https://github.com/pointfreeco/swift-tagged", branch: "main"),

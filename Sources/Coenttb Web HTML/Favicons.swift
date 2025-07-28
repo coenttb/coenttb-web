@@ -38,44 +38,33 @@ public struct Favicons: HTML, Sendable {
     }
 
     public var body: some HTML {
-
         link(
             href: "apple-touch-icon",
             sizes: "180x180"
-        ) {
-
-        }
+        )()
 
         link(
             href: .init(icon.lightMode.relativePath),
             rel: .icon,
             type: .svg
-        ) {
-
-        }
+        )()
         .inlineStyle("media", "(prefers-color-scheme: light)")
 
         link(
             href: .init(icon.darkMode.relativePath),
             rel: .icon,
             type: .svg
-        ) {
-
-        }
+        )()
         .inlineStyle("media", "(prefers-color-scheme: dark)")
 
         link(
             href: manifest,
             rel: .manifest
-        ) {
-
-        }
+        )()
 
         link(
             href: maskIcon,
             rel: "mask-icon"
-        ) {
-
-        }
+        )()
     }
 }
