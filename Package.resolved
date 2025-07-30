@@ -7,7 +7,7 @@
       "location" : "https://github.com/coenttb/coenttb-html",
       "state" : {
         "branch" : "main",
-        "revision" : "50bb325dc88f57eaab3e19ef42f766a486476c62"
+        "revision" : "8425032f5d4814d17ba82b0c7c7a04a23a0777a5"
       }
     },
     {
@@ -34,6 +34,15 @@
       "location" : "https://github.com/coenttb/pointfree-html-to-pdf.git",
       "state" : {
         "revision" : "c496007fea2c032b5e4c93377879e548e109949a",
+        "version" : "0.0.1"
+      }
+    },
+    {
+      "identity" : "pointfree-url-form-coding",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/coenttb/pointfree-url-form-coding.git",
+      "state" : {
+        "revision" : "20c06173a90ff7a90e20d9f216b99632b68031ca",
         "version" : "0.0.1"
       }
     },
@@ -105,8 +114,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-crypto",
       "state" : {
-        "revision" : "84b1d494118d63629a785230135f82991f02329e",
-        "version" : "3.13.2"
+        "revision" : "176abc28e002a9952470f08745cd26fad9286776",
+        "version" : "3.13.3"
       }
     },
     {
@@ -114,8 +123,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/coenttb/swift-css-types.git",
       "state" : {
-        "revision" : "3e54aa7d8b61510edd1d8bad2697476908f4f1d8",
-        "version" : "0.0.1"
+        "revision" : "be78ecea36f036ab165cbf7b1134b3fb7bcf036b",
+        "version" : "0.1.0"
       }
     },
     {
@@ -184,10 +193,10 @@
     {
       "identity" : "swift-html",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/coenttb/swift-html",
+      "location" : "https://github.com/coenttb/swift-html.git",
       "state" : {
         "branch" : "main",
-        "revision" : "c318a0c58d4633b19c6f35bb2a3ee6badd6b0e8c"
+        "revision" : "cefb7623d21e4678a5ba236e59f4ff8f109cb338"
       }
     },
     {
@@ -375,8 +384,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/coenttb/swift-url-form-coding",
       "state" : {
-        "revision" : "862a7c05f18866fecd44d16b95c8a36d22ca8645",
-        "version" : "0.0.1"
+        "revision" : "589ac3b05431a6aaf7d3dd74fe1004aa1110b93f",
+        "version" : "0.0.2"
       }
     },
     {
@@ -412,7 +421,7 @@
       "location" : "https://github.com/coenttb/swift-web",
       "state" : {
         "branch" : "main",
-        "revision" : "b692b47569d5b00fdae1b983223aebb82574a6a4"
+        "revision" : "12cbd19923fe68231c6cc529f863f541b2178838"
       }
     },
     {
