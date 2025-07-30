@@ -155,10 +155,19 @@ public struct PrismJSHead: HTML {
           """
         }
         
-        script(src: "//cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js") /*TO-DO: FIGURE OUT WHY CLOSURE CAN'T BE REMOVED HERE*/ {""}
-        script(src: "//cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-highlight/prism-line-highlight.min.js") /*TO-DO: FIGURE OUT WHY CLOSURE CAN'T BE REMOVED HERE*/ {""}
+        script(
+            src: "//cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js",
+            defer: true
+        )()
+        script(
+            src: "//cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-highlight/prism-line-highlight.min.js",
+            defer: true
+        )()
         HTMLForEach(self.languages) { lang in
-            script(src: "//cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-\(lang).min.js")
+            script(
+                src: "//cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-\(lang).min.js",
+                defer: true
+            )
         }
         script {
           #"""
