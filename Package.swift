@@ -10,7 +10,6 @@ extension String {
     static let coenttbWebDependencies: Self = "Coenttb Web Dependencies"
     static let coenttbWebModels: Self = "Coenttb Web Models"
     static let coenttbWebTranslations: Self = "Coenttb Web Translations"
-    static let coenttbWebUtils: Self = "Coenttb Web Utils"
 }
 
 extension Target.Dependency {
@@ -20,7 +19,6 @@ extension Target.Dependency {
     static var coenttbWebDependencies: Self { .target(name: .coenttbWebDependencies) }
     static var coenttbWebModels: Self { .target(name: .coenttbWebModels) }
     static var coenttbWebTranslations: Self { .target(name: .coenttbWebTranslations) }
-    static var coenttbWebUtils: Self { .target(name: .coenttbWebUtils) }
 }
 
 extension Target.Dependency {
@@ -29,7 +27,8 @@ extension Target.Dependency {
     static var coenttbEmail: Self { .product(name: "CoenttbEmail", package: "coenttb-html") }
     static var coenttbHtml: Self { .product(name: "CoenttbHTML", package: "coenttb-html") }
     static var coenttbMarkdown: Self { .product(name: "CoenttbMarkdown", package: "coenttb-html") }
-    static var coenttbUtils: Self { .product(name: "CoenttbUtils", package: "coenttb-utils") }
+    static var builders: Self { .product(name: "Builders", package: "swift-builders") }
+    static var foundationExtensions: Self { .product(name: "FoundationExtensions", package: "swift-foundation-extensions") }
     static var translating: Self { .product(name: "Translating", package: "swift-translating") }
     static var tagged: Self { .product(name: "Tagged", package: "swift-tagged") }
     static var htmlTestSupport: Self { .product(name: "PointFreeHTMLTestSupport", package: "pointfree-html") }
@@ -52,7 +51,6 @@ let package = Package(
                 .coenttbWebDependencies,
                 .coenttbWebModels,
                 .coenttbWebTranslations,
-                .coenttbWebUtils,
             ]
         ),
         .library(name: .coenttbWebEnvVars, targets: [.coenttbWebEnvVars]),
@@ -60,14 +58,14 @@ let package = Package(
         .library(name: .coenttbWebDependencies, targets: [.coenttbWebDependencies]),
         .library(name: .coenttbWebModels, targets: [.coenttbWebModels]),
         .library(name: .coenttbWebTranslations, targets: [.coenttbWebTranslations]),
-        .library(name: .coenttbWebUtils, targets: [.coenttbWebUtils]),
     ],
     dependencies: [
         .package(url: "https://github.com/coenttb/coenttb-html", branch: "main"),
-        .package(url: "https://github.com/coenttb/coenttb-utils", branch: "main"),
         .package(url: "https://github.com/coenttb/pointfree-html", from: "2.0.0"),
+        .package(url: "https://github.com/coenttb/swift-builders", from: "0.0.1"),
+        .package(url: "https://github.com/coenttb/swift-foundation-extensions", from: "0.1.0"),
         .package(url: "https://github.com/coenttb/swift-html", from: "0.0.1"),
-        .package(url: "https://github.com/coenttb/swift-environment-variables.git", branch: "main"),
+        .package(url: "https://github.com/coenttb/swift-environment-variables.git", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-password-validation.git", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-html-css-pointfree", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-translating.git", from: "0.0.1"),
@@ -88,8 +86,10 @@ let package = Package(
                 .coenttbWebDependencies,
                 .coenttbWebModels,
                 .coenttbWebTranslations,
-                .coenttbWebUtils,
+                .foundationExtensions,
+                .builders,
                 .tagged,
+                .passwordValidation,
             ]
         ),
         .target(
@@ -125,16 +125,6 @@ let package = Package(
                 .translating,
                 .swiftWeb,
                 .coenttbWebModels,
-            ]
-        ),
-        .target(
-            name: .coenttbWebUtils,
-            dependencies: [
-                .translating,
-                .swiftWeb,
-                .tagged,
-                .coenttbUtils,
-                .passwordValidation,
             ]
         ),
         .target(

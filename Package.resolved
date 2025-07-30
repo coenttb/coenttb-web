@@ -1,5 +1,5 @@
 {
-  "originHash" : "542ec83097a1337b16228e91944dbe9c3bc5c536fa8b345f6aa0cde11807a0b1",
+  "originHash" : "a26e87dbd348587e2bfd3ae0fc14a2258898ac09bb46b96b8467abdb176e019b",
   "pins" : [
     {
       "identity" : "coenttb-html",
@@ -8,15 +8,6 @@
       "state" : {
         "branch" : "main",
         "revision" : "50bb325dc88f57eaab3e19ef42f766a486476c62"
-      }
-    },
-    {
-      "identity" : "coenttb-utils",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/coenttb/coenttb-utils",
-      "state" : {
-        "branch" : "main",
-        "revision" : "77fce35cc2465733c0afdc9dfd1ce7d40fe3f644"
       }
     },
     {
@@ -53,6 +44,15 @@
       "state" : {
         "revision" : "f70225981241859eb4aa1a18a75531d26637c8cc",
         "version" : "1.4.0"
+      }
+    },
+    {
+      "identity" : "swift-builders",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/coenttb/swift-builders",
+      "state" : {
+        "revision" : "d9df6fa20e2ae7d9467baf9d19daa5b6d25d0644",
+        "version" : "0.1.0"
       }
     },
     {
@@ -168,8 +168,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/coenttb/swift-environment-variables.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "db501524815b94b8559e1d302b3bf5728254391f"
+        "revision" : "68ebbde5e665b2038a7271ca00b7eaff4791be40",
+        "version" : "0.0.1"
       }
     },
     {
@@ -177,8 +177,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/coenttb/swift-foundation-extensions",
       "state" : {
-        "revision" : "ef00a5057b29b77bd2c8cbaf72b392184408af12",
-        "version" : "0.0.1"
+        "revision" : "878151aba1aba0ef24c0767d814c8b3908fee41c",
+        "version" : "0.1.0"
       }
     },
     {
