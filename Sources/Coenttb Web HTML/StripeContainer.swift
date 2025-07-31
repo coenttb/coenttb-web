@@ -56,7 +56,7 @@ public struct StripeContainer<
         }
         .width(.vw(100))
         .backgroundColor(sidebar.background)
-        .display(.none, media: .desktop)
+        .display(Display.none, media: .desktop)
     }
 
     private var desktopLayout: some HTML {

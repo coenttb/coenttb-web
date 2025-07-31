@@ -9,7 +9,6 @@ import Foundation
 import CoenttbHTML
 import Translating
 import Dependencies
-import Coenttb_Web_Dependencies
 
 public struct CoenttbWebHTMLDocumentHeader<
     Styles: HTML,

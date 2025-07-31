@@ -1,5 +1,5 @@
 {
-  "originHash" : "a26e87dbd348587e2bfd3ae0fc14a2258898ac09bb46b96b8467abdb176e019b",
+  "originHash" : "df1736ac6b01bba9f3e7a0624d90e45e1ca282def4af8b5287aece8278052ca2",
   "pins" : [
     {
       "identity" : "coenttb-html",
@@ -168,8 +168,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/coenttb/swift-emailaddress-type",
       "state" : {
-        "revision" : "7a36ce866c9d657385d6c55b3685960e5a036e5d",
-        "version" : "0.0.1"
+        "revision" : "132c22471b012fe512cb3ad26c5ff0074a4bfd3d",
+        "version" : "0.1.0"
       }
     },
     {
@@ -416,9 +416,9 @@
       }
     },
     {
-      "identity" : "swift-web",
+      "identity" : "swift-web-foundation",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/coenttb/swift-web",
+      "location" : "https://github.com/coenttb/swift-web-foundation",
       "state" : {
         "branch" : "main",
         "revision" : "12cbd19923fe68231c6cc529f863f541b2178838"
