@@ -1,5 +1,5 @@
 {
-  "originHash" : "df1736ac6b01bba9f3e7a0624d90e45e1ca282def4af8b5287aece8278052ca2",
+  "originHash" : "17fedbb84de68f184d2150ce0309033144e09d455cbd84770041a789870135f1",
   "pins" : [
     {
       "identity" : "coenttb-html",
@@ -148,10 +148,10 @@
     {
       "identity" : "swift-dependencies",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/swift-dependencies",
+      "location" : "https://github.com/pointfreeco/swift-dependencies.git",
       "state" : {
-        "revision" : "4c90d6b2b9bf0911af87b103bb40f41771891596",
-        "version" : "1.9.2"
+        "revision" : "eefcdaa88d2e2fd82e3405dfb6eb45872011a0b5",
+        "version" : "1.9.3"
       }
     },
     {
@@ -421,7 +421,7 @@
       "location" : "https://github.com/coenttb/swift-web-foundation",
       "state" : {
         "branch" : "main",
-        "revision" : "12cbd19923fe68231c6cc529f863f541b2178838"
+        "revision" : "ee961d5e7d035cfc003494c162665c3dd968b98e"
       }
     },
     {

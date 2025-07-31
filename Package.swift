@@ -19,7 +19,7 @@ extension Target.Dependency {
 
 extension Target.Dependency {
     static var environmentVariables: Self { .product(name: "EnvironmentVariables", package: "swift-environment-variables") }
-    static var swiftWeb: Self { .product(name: "Web", package: "swift-web-foundation") }
+    static var webFoundation: Self { .product(name: "WebFoundation", package: "swift-web-foundation") }
     static var coenttbEmail: Self { .product(name: "CoenttbEmail", package: "coenttb-html") }
     static var coenttbHtml: Self { .product(name: "CoenttbHTML", package: "coenttb-html") }
     static var coenttbMarkdown: Self { .product(name: "CoenttbMarkdown", package: "coenttb-html") }
@@ -71,7 +71,7 @@ let package = Package(
                 .translating,
                 .coenttbHtml,
                 .coenttbMarkdown,
-                .swiftWeb,
+                .webFoundation,
                 .coenttbEmail,
                 .coenttbWebHTML,
                 .coenttbWebModels,
@@ -79,14 +79,14 @@ let package = Package(
                 .foundationExtensions,
                 .builders,
                 .tagged,
-                .passwordValidation,
+                .passwordValidation
             ]
         ),
         .target(
             name: .coenttbWebHTML,
             dependencies: [
                 .translating,
-                .swiftWeb,
+                .webFoundation,
                 .coenttbHtml,
                 .coenttbMarkdown,
                 .coenttbWebTranslations,
@@ -103,7 +103,7 @@ let package = Package(
             name: .coenttbWebModels,
             dependencies: [
                 .translating,
-                .swiftWeb,
+                .webFoundation,
                 .tagged,
             ]
         ),

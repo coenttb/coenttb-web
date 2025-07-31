@@ -16,7 +16,7 @@
 @_exported import CoenttbMarkdown
 @_exported import EnvironmentVariables
 
-@_exported import Web
+@_exported import WebFoundation
 
 @_exported import URLRouting
 @_exported import EmailAddress
