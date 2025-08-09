@@ -15,7 +15,7 @@ public struct SectionCard: HTML {
     let href: String
     let icon: FontAwesomeIcon
     
-    @Dependency(\.color.text.link) var color
+    @Dependency(\.theme.text.link) var color
     
     public init(
         title: String,
