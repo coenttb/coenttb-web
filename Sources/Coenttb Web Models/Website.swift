@@ -12,11 +12,11 @@ import URLRouting
 public struct Website<
     Page: Equatable & Sendable
 >: Equatable & Sendable {
-    public let language: Language?
+    public let language: Translating.Language?
     public let page: Page
 
     public init(
-        language: Language? = nil,
+        language: Translating.Language? = nil,
         page: Page
     ) {
         self.language = language
