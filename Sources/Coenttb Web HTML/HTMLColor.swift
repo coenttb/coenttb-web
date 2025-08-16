@@ -29,13 +29,6 @@ import Dependencies
 // MARK: - HTMLColor Extensions
 
 extension HTMLColor {
-    /// Reverses the light and dark colors
-    public func reverse() -> Self {
-        .init(
-            light: self.dark,
-            dark: self.light
-        )
-    }
     
     /// Calculates the midpoint color between two HTMLColors for gradients
     public static func gradientMidpoint(from color1: HTMLColor, to color2: HTMLColor) -> HTMLColor? {
