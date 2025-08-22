@@ -57,7 +57,7 @@ public struct PageModule<Title: HTML, Content: HTML>: HTML {
             bottom: theme.bottomMargin
         )
         .padding(
-            top: theme.topMargin,
+            top: theme.topMarginDesktop,
             horizontal: theme.leftRightMarginDesktop,
             bottom: theme.bottomMargin,
             media: .desktop
@@ -110,6 +110,7 @@ public struct PageModuleSeeAllTitle<Title: HTML>: HTML {
 extension PageModule {
     public struct Theme {
         let topMargin: LengthPercentage
+        let topMarginDesktop: LengthPercentage
         let bottomMargin: LengthPercentage
         let leftRightMargin: LengthPercentage
         let leftRightMarginDesktop: LengthPercentage
@@ -118,6 +119,7 @@ extension PageModule {
         
         public init(
             topMargin: LengthPercentage,
+            topMarginDesktop: LengthPercentage? = nil,
             bottomMargin: LengthPercentage,
             leftRightMargin: LengthPercentage,
             leftRightMarginDesktop: LengthPercentage,
@@ -125,6 +127,7 @@ extension PageModule {
             itemAlignment: AlignItems = .baseline
         ) {
             self.topMargin = topMargin
+            self.topMarginDesktop = topMarginDesktop ?? topMargin
             self.bottomMargin = bottomMargin
             self.leftRightMargin = leftRightMargin
             self.leftRightMarginDesktop = leftRightMarginDesktop
