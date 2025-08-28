@@ -25,3 +25,10 @@ public extension String.StringInterpolation {
         appendLiteral("`\(escapedString)`")
     }
 }
+
+public extension String.StringInterpolation {
+    mutating func appendInterpolation(json value: some Codable) {
+        let json = try! JSONEncoder().encode(value).base64EncodedString()
+        appendLiteral(#"`\#(json)`"#)
+    }
+}
